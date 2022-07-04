@@ -1,0 +1,4 @@
+outs:
+- md5: e12c3fe5b7f1f82696a8e00bfd68511b
+  size: 282606
+  path: deepchem_Lipophilicity.csv
