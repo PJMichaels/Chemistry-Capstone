@@ -1,0 +1,17 @@
+How to add a new dataset or trained model file to dvc repo/versioning.
+**** Important, you need to add this file to dvc before git ****
+**** this first step tells git to ignore the large file(s), and ****
+**** adds some additional file which will get tracked in git/github!!!
+
+$ dvc add data\<file_to_track.csv> 
+$ git commit data/data.xml.dvc -m "Dataset update notes"
+$ dvc push
+
+Once a dataset is added to dvc git commit will track file changes
+and dvc push will update/version files in dvc repo. These are easily
+fetched with dvc pull
+
+$ git commit -m "<change notes here>" -a
+$ dvc push
+$ git push origin main
+
