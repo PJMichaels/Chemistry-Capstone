@@ -1,0 +1,37 @@
+Connecting to remote repos and getting your local project setup!
+
+1. Make sure dependencies are installed
+    - install git
+    - install/configure Gdrive for desktop. Make sure you can navigate to this in your terminal.
+      It should be possible by entering "G:" in your terminal.
+    - pip install dvc in whatever env is being used by your terminal
+    - I recommend using VS code as an IDE with DVC, Jupyter, YAML, and Python extensions installed
+
+2. Navigate in your terminal to where you want your Chemistry_Capstone project to exist and enter the
+   following cmd:    git clone https://github.com/PJMichaels/Chemistry-Capstone.git
+   If successful you should see all contents present in GitHub repo in your local repo
+   
+3. I would recommend opening VS code, using the Open Folder command to load your Chemistry_Capstone
+   folder, and continuing this tutorial from there.
+   
+Status Check: At this point, you should have all the GitHub repo, including the .dvc directory, and the
+              .dvcignore file. This is important because datasets and trained models for this project do
+              not exist in GitHub, but instead exist in a remote repo in google drive. We need to configure
+              the dvc remote repo, dvc_origin, to be able to pull/push these files to and from our local repo.
+              
+4. Assuming the reader of this has access to the Gdrive repo, navigate to the dvc repo folder in your shared
+   Gdrive folder and get the repo path. It might look something like this: G:\Shared Drives\Chemistry Capstone
+   In your local project folder, open the .dvc\config file, and edit the url path to reflect the path you just
+   retrieved. The contents of this folder should look something like this (disregarding indents for formatting
+   of this README.md file):
+   
+   [core]
+       remote = dvc_origin
+   ['remote "dvc_origin"']
+       url = G:\Shared Drives\Chemistry Capstone\Datasets\DVC_Repo
+       
+5. Now that your Gdrive is linked, and dvc remote config is pointing to the right repo folder, enter in your
+   command line: dvc pull
+   
+6. All datasets and associated trained models (anything very large which should be stored in Gdrive) should now
+   exist in your local repo. At this point you can start coding!
