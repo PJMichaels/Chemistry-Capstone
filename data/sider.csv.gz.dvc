@@ -1,0 +1,4 @@
+outs:
+- md5: 77c0ef421f7cc8ce963c5836c8761fd2
+  size: 34759
+  path: sider.csv.gz
