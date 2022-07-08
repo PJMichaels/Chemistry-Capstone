@@ -1,4 +1,4 @@
 [core]
-    remote = dvc_origin
-['remote "dvc_origin"']
-    url = G:\My Drive\Chemistry Capstone\Datasets\DVC_Repo
+    remote = capstone
+['remote "capstone"']
+    url = gdrive://14hwM8fjK2tFw7aXw8nzGqzrU8qzBz9ge
