@@ -1,0 +1,13 @@
+Planning Doc:
+
+To do:
+
+1) Organize data sets
+2) Convert Data sets to classifications
+3) Generate EDA Notebook 
+4) Build benchmark models for each data set & dummy models
+5) Build complex models
+6) Error analysis
+7) Model comparison 
+
+  
