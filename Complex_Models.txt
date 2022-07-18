@@ -1,0 +1,6 @@
+Complex Models
+
+1) Chemprop
+2) Build a simple NN e.g. https://towardsdatascience.com/build-a-simple-neural-network-using-pytorch-38c55158028d
+
+3) DeepChem
