@@ -20,4 +20,6 @@ Generate & fit models for each data set
 Score models & record time to train -> store output in CSV? 
 
 
-  
+ 
+ 
+https://stats.stackexchange.com/questions/96739/what-is-the-632-rule-in-bootstrapping
