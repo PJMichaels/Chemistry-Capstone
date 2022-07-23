@@ -24,3 +24,7 @@ $ git push origin main
 To get the most recent versions of dvc and github:
 $ git pull
 $ dvc pull
+
+
+
+$ dvc stage add dvc stage add -n prepare -p prepare.dataset,prepare.split, prepare.seed -d src/prepare.py -o data/processed/train.csv -o data/processed/test.csv python src/prepare.py

@@ -1,0 +1,20 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: src/prepare.py
+      md5: 088f5cdb809451e908da6c1e80c2a68d
+      size: 1780
+    params:
+      params.yaml:
+        prepare.dataset: HIV.csv
+        prepare.seed: 42
+        prepare.split: 0.25
+    outs:
+    - path: data/processed/test.csv
+      md5: 94abf273022d3cfc11990105ded67740
+      size: 537710
+    - path: data/processed/train.csv
+      md5: b3be635ee27b878b99a2df16fb08e304
+      size: 1615034
