@@ -24,7 +24,8 @@ if not data_path.exists():
     print(f"Path to data not found:\n\t{data_dir}")
     exit()
 
-# if we end up 
+
+# will likely need a different elif per data file type
 if data_path.suffix == ".csv":
     df = pd.read_csv(data_path)
 else:
@@ -42,7 +43,7 @@ print(f"\nDataset split into train:test at ratio of {1 - split}:{split}")
 print(f"Row counts are: \nTrain: {len(train)}\nTest: {len(test)}\n")
 
 
-# write out csvs
+# write out csv
 train.to_csv(processed_dir / "train.csv", index=False)
 test.to_csv(processed_dir / "test.csv", index=False)
 
@@ -55,14 +56,4 @@ test.to_csv(processed_dir / "test.csv", index=False)
 # - This might be a place to record some dataset statistics for final analysis
 #   but this could also be done as part of the eval step after featurization is done
 #     - record train vs test datasets
-
-### it also might be a good place to capture some basic dataset statistics such as 
-### how many of each class exist in the labels section, how many training rows there are
-### etc...
-
-### it could also be a place to automatically edit/append instructions to the
-### YAML params file...
-
-# df['HIV_active'].value_counts()
-
-# df['HIV_active'].value_counts()/df.shape[0]
+#     - make note of label class ratios per train/test?
