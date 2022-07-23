@@ -1,0 +1,12 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - src/prepare.py
+    params:
+    - prepare.dataset
+    - prepare.seed
+    - prepare.split
+    outs:
+    - data/processed/test.csv
+    - data/processed/train.csv

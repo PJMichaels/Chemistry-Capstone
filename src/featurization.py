@@ -26,6 +26,10 @@ def generate_fingerprint(smiles,radius,bits):
 dataset_path = "DATASET PLACE HOLDER"
 
 
+
+X=[generate_fingerprint(mol,2,1024) for mol in df['smiles']]
+y=df['HIV_active'].to_list()
+
 ### get YAML PARAMS DATASET, Radius, bits
 ### dataset might have to be a prepare-data-step set making sure smiles  is properly labeled
 ### it would also be cool to use the dvc stream feature that checks for the latest/updated dataset...
