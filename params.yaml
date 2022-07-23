@@ -1,0 +1,14 @@
+prepare:
+  dataset: HIV.csv
+  split: 0.25
+  seed: 42
+
+featurize:
+  max_features: 100
+  ngrams: 1
+
+train:
+  seed: 42
+  n_est: 100
+  min_split: 0.01
+
