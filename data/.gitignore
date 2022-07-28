@@ -8,4 +8,5 @@
 /sider.csv.gz
 /Solubility_delaney-processed.csv
 /muv.csv.gz
-/processed
+/prepared
+/featurized

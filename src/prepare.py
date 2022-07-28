@@ -15,10 +15,10 @@ except:
 
 
 data_path = Path.cwd() / 'data' / file_name
-processed_dir = Path.cwd() / 'data' / "processed"
+prepared_dir = Path.cwd() / 'data' / "prepared"
 
-if not processed_dir.exists():
-    processed_dir.mkdir()
+if not prepared_dir.exists():
+    prepared_dir.mkdir()
 
 if not data_path.exists():
     print(f"Path to data not found:\n\t{data_dir}")
@@ -44,8 +44,8 @@ print(f"Row counts are: \nTrain: {len(train)}\nTest: {len(test)}\n")
 
 
 # write out csv
-train.to_csv(processed_dir / "train.csv", index=False)
-test.to_csv(processed_dir / "test.csv", index=False)
+train.to_csv(prepared_dir / "train.csv", index=False)
+test.to_csv(prepared_dir / "test.csv", index=False)
 
 
 # Thoughts for future development:

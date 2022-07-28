@@ -27,4 +27,4 @@ $ dvc pull
 
 
 
-$ dvc stage add dvc stage add -n prepare -p prepare.dataset,prepare.split, prepare.seed -d src/prepare.py -o data/processed/train.csv -o data/processed/test.csv python src/prepare.py
+$ dvc stage add dvc stage add -n prepare -p prepare.dataset, prepare.split, prepare.seed -d src/prepare.py -o data/processed/train.csv -o data/processed/test.csv python src/prepare.py

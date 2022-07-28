@@ -4,11 +4,11 @@ prepare:
   seed: 42
 
 featurize:
-  max_features: 100
-  ngrams: 1
+  X: smiles
+  y: HIV_active
+  mol_representation: morganfingerprint-2-1024
 
 train:
   seed: 42
   n_est: 100
   min_split: 0.01
-

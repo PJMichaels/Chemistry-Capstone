@@ -8,5 +8,5 @@ stages:
     - prepare.seed
     - prepare.split
     outs:
-    - data/processed/test.csv
-    - data/processed/train.csv
+    - data/prepared/test.csv
+    - data/prepared/train.csv
