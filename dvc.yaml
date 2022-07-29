@@ -8,5 +8,31 @@ stages:
     - prepare.seed
     - prepare.split
     outs:
-    - data/prepared/test.csv
     - data/prepared/train.csv
+    - data/prepared/test.csv
+  featurize:
+    cmd: python src/featurize.py
+    deps:
+    - src/featurize.py
+    - data/prepared/train.csv
+    - data/prepared/test.csv
+    params:
+    - general.X
+    - general.y
+    - featurize.mol_representation
+    outs:
+    - data/featurized/train.csv
+    - data/featurized/test.csv
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py
+    - data/featurized/train.csv
+    - data/featurized/test.csv
+    params:
+    - general.y
+    - general.seed
+    - train.max_iter
+    outs:
+    - pipeline_artifacts/model.pkl
+    

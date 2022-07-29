@@ -1,3 +1,4 @@
 /.vscode
 .ipynb_checkpoints
 github_PAT.txt
+/pipeline_artifacts
