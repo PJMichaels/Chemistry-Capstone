@@ -43,4 +43,5 @@ stages:
     - pipeline_artifacts/model.pkl
     - src/evaluate.py
     metrics:
-    - evaluation/scores.json
+    - evaluation/eval.json:
+        cache: false

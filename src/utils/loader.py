@@ -53,11 +53,11 @@ def write_model(model, model_path = False):
         pickle.dump(model, f)
 
 def write_scores(results_dict):
-    scores_path = Path.cwd() / "scores.json"
-    scores_string = json.dumps(results_dict, indent = 2)
+    eval_path = Path.cwd() / "evaluation" / "eval.json"
+    eval_string = json.dumps(results_dict, indent = 2)
 
     print("Model Eval Results:")
-    print(scores_string)
+    print(eval_string)
     
-    with open(scores_path, 'w') as f:
-        f.write(scores_string)
+    with open(eval_path, 'w') as f:
+        f.write(eval_string)
