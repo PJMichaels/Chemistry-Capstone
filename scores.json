@@ -1,7 +1,0 @@
-{
-  "Model_Train_Time": "2.741325616836548 seconds",
-  "Accuracy Score - train": 0.9736748257416112,
-  "F1 Score - train": 0.4586666666666667,
-  "Accuracy Score - test": 0.9670297607469364,
-  "F1 Score - test": 0.3493282149712092
-}
