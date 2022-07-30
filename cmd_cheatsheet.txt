@@ -28,3 +28,8 @@ $ dvc pull
 
 
 $ dvc stage add dvc stage add -n prepare -p prepare.dataset, prepare.split, prepare.seed -d src/prepare.py -o data/processed/train.csv -o data/processed/test.csv python src/prepare.py
+
+$ dvc stage add dvc stage add -n evaluate -d src/evaluate.py -M  python src/prepare.py
+
+$ dvc run -n evaluate -d src/evaluate.py -d pipeline_artifacts/model.pkl -d data/featurized/train.csv -d data/featurized/test.csv -M scores.json python src/evaluate.py
+

@@ -52,8 +52,8 @@ stages:
       md5: ed1df58b2e7d9979d745cc91a7883a96
       size: 63267117
     - path: src/train.py
-      md5: c382048ee303ad596b9fe95a7222a3dc
-      size: 1993
+      md5: abd758dd7287c0625b42649ef58af26c
+      size: 1634
     params:
       params.yaml:
         general.seed: 42
@@ -61,5 +61,24 @@ stages:
         train.max_iter: 1000
     outs:
     - path: pipeline_artifacts/model.pkl
-      md5: d8f7110cdde6f444aab92c469551dfca
-      size: 15021
+      md5: 466dfb0f4006ad02ebf4fe61b00f4ab4
+      size: 15062
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: data/featurized/test.csv
+      md5: 971a07f82cfe9c22c8147c1f7d884fd6
+      size: 21092404
+    - path: data/featurized/train.csv
+      md5: ed1df58b2e7d9979d745cc91a7883a96
+      size: 63267117
+    - path: pipeline_artifacts/model.pkl
+      md5: 466dfb0f4006ad02ebf4fe61b00f4ab4
+      size: 15062
+    - path: src/evaluate.py
+      md5: f51435af5a982ac0c04ee92573369b59
+      size: 5667
+    outs:
+    - path: scores.json
+      md5: 9a63ad5b658f27509791327f8e9d1b6f
+      size: 237

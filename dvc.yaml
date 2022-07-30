@@ -35,4 +35,13 @@ stages:
     - train.max_iter
     outs:
     - pipeline_artifacts/model.pkl
-    
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - data/featurized/test.csv
+    - data/featurized/train.csv
+    - pipeline_artifacts/model.pkl
+    - src/evaluate.py
+    metrics:
+    - scores.json:
+        cache: false

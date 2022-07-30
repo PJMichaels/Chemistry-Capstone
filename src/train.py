@@ -1,6 +1,5 @@
 import yaml
-import pandas as pd
-import numpy as np
+import time
 from sklearn.linear_model import LogisticRegression
 from utils import loader
 
@@ -32,8 +31,14 @@ X_train, y_train = loader.load_featurized_train_test(y_id, test = False)
 
 ### take a time stamp here so we can also note model train time if not captured elsewhere
 print("\nBeggining to train model")
+start_time = time.time()
+
 clf = LogisticRegression(random_state= random_seed ,solver='lbfgs',max_iter= max_iterations, verbose= True)
 clf.fit(X_train, y_train)
+
+stop_time = time.time()
+
+clf.train_time = f"{stop_time - start_time} seconds"
 
 loader.write_model(clf)
 
