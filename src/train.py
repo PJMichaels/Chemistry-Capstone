@@ -1,9 +1,8 @@
 import yaml
-from pathlib import Path
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-import pickle
+from utils import loader
 
 
 try:
@@ -12,7 +11,6 @@ try:
     max_iterations = params['max_iter']
     y_id = gen_params['y']
     random_seed = gen_params['seed']
-    # mol_rep = params['mol_representation']
 except:
     print('There is a problem during import of params.yaml for train.py')
     exit()
@@ -21,17 +19,7 @@ except:
 ### random state could also be hard coded maybe
 ### YAML PARAMS will also either need to note X and Y column names to know what labels are
 
-train_path = Path.cwd() / "data" / "featurized" / "train.csv"
-artifacts_dir = Path.cwd() / "pipeline_artifacts"
-if not artifacts_dir.exists():
-    artifacts_dir.mkdir()
-model_path = artifacts_dir / "model.pkl"
-
-train_df = pd.read_csv(train_path)
-
-X_train = train_df.iloc[:,:-1]
-y_train = list(train_df[y_id])
-
+X_train, y_train = loader.load_featurized_train_test(y_id, test = False)
 
 
 ### will need to find a way to make model import into a variable as well and ensure
@@ -47,11 +35,7 @@ print("\nBeggining to train model")
 clf = LogisticRegression(random_state= random_seed ,solver='lbfgs',max_iter= max_iterations, verbose= True)
 clf.fit(X_train, y_train)
 
-print(f"\nWriting model to filepath:\n{model_path}")
-pickle.dump(clf, open(model_path, 'wb'))
+loader.write_model(clf)
 
-### take another time stamp and calculate/record delta for metrics
-### pickle model here
-
-### add some cmd line outputs for sanity!
+### take another time stamp and calculate/record delta time for metrics
 
