@@ -1,0 +1,4 @@
+[core]
+    remote = capstone
+['remote "capstone"']
+    url = gdrive://14hwM8fjK2tFw7aXw8nzGqzrU8qzBz9ge
