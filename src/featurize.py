@@ -43,12 +43,12 @@ if "morganfingerprint" in mol_rep:
     
     ### do this for train and test
     print("\nFeaturizing Train Data")
-    new_train_df = pd.DataFrame([generate_fingerprint(mol,2,1024) for mol in tqdm(train_df[X_id])])
+    new_train_df = pd.DataFrame([generate_fingerprint(mol, radius, bits) for mol in tqdm(train_df[X_id])])
     new_train_df[y_id] = train_df[y_id]
     new_train_df.to_csv(featurized_dir / "train.csv", index=False)
     
     print("\nFeaturizing Test Data")
-    new_test_df = pd.DataFrame([generate_fingerprint(mol,2,1024) for mol in tqdm(test_df[X_id])])
+    new_test_df = pd.DataFrame([generate_fingerprint(mol,radius, bits) for mol in tqdm(test_df[X_id])])
     new_test_df[y_id] = test_df[y_id]
     new_test_df.to_csv(featurized_dir / "test.csv", index=False)
 
