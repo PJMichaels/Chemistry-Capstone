@@ -4,7 +4,13 @@ Blog Outline:
 
 1) General intro of project, field etc.
 2) Chem informatics intro 
-3) 
+3) Featurization of datasets
+3) Base results with each model including dummy results
+4) Dataset exploration -> advanced splitting
+5) Model optimization steps
+6) Top Results (all or maybe just a few diverse models)
+7) Analysis of results
+8) Conclusions
 
 Scaffold split:
 
