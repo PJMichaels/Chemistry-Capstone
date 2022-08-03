@@ -1,0 +1,22 @@
+Project Planning Meeting: 
+
+Blog Outline:
+
+1) General intro of project, field etc.
+2) Chem informatics intro 
+3) 
+
+Scaffold split:
+
+https://www.blopig.com/blog/2021/06/out-of-distribution-generalisation-and-scaffold-splitting-in-molecular-property-prediction/
+
+
+Next steps:
+1) Develop code to split data:
+    Might as well clean the data at this point too - remove any that fail converstion to mol/fp
+    Random Split (set seed and split to train/test & val)
+    Second split - cluster based - perform a KNN clustering then iterate through clusters and add to the sets 
+        Scaffold based Chemprop (https://chemprop.readthedocs.io/en/latest/_modules/chemprop/data/scaffold.html)
+2) Build Exploratory data analysis notebook, check class balances, visualize chemical space & clusters, 
+3)Add code for hyperparamter optimization for the various simple models
+4) Train the chem prop models on the post-split data.
