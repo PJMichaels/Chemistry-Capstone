@@ -1,0 +1,76 @@
+Fold 0
+Model 0 best validation auc = 0.772746 on epoch 0
+Model 0 test auc = 0.807939
+Model 0 test accuracy = 0.972254
+Model 0 test f1 = 0.397516
+Model 0 test binary_cross_entropy = 0.113068
+Ensemble test auc = 0.807939
+Ensemble test accuracy = 0.972254
+Ensemble test f1 = 0.397516
+Ensemble test binary_cross_entropy = 0.113068
+Fold 1
+Model 0 best validation auc = 0.736646 on epoch 0
+Model 0 test auc = 0.768467
+Model 0 test accuracy = 0.970538
+Model 0 test f1 = 0.437158
+Model 0 test binary_cross_entropy = 0.126534
+Ensemble test auc = 0.768467
+Ensemble test accuracy = 0.970538
+Ensemble test f1 = 0.437158
+Ensemble test binary_cross_entropy = 0.126534
+Fold 2
+Model 0 best validation auc = 0.764952 on epoch 0
+Model 0 test auc = 0.820156
+Model 0 test accuracy = 0.970681
+Model 0 test f1 = 0.432133
+Model 0 test binary_cross_entropy = 0.112343
+Ensemble test auc = 0.820156
+Ensemble test accuracy = 0.970681
+Ensemble test f1 = 0.432133
+Ensemble test binary_cross_entropy = 0.112343
+Fold 3
+Model 0 best validation auc = 0.778407 on epoch 1
+Model 0 test auc = 0.800063
+Model 0 test accuracy = 0.968965
+Model 0 test f1 = 0.427441
+Model 0 test binary_cross_entropy = 0.129577
+Ensemble test auc = 0.800063
+Ensemble test accuracy = 0.968965
+Ensemble test f1 = 0.427441
+Ensemble test binary_cross_entropy = 0.129577
+Fold 4
+Model 0 best validation auc = 0.771090 on epoch 4
+Model 0 test auc = 0.802513
+Model 0 test accuracy = 0.968249
+Model 0 test f1 = 0.450495
+Model 0 test binary_cross_entropy = 0.183419
+Ensemble test auc = 0.802513
+Ensemble test accuracy = 0.968249
+Ensemble test f1 = 0.450495
+Ensemble test binary_cross_entropy = 0.183419
+5-fold cross validation
+	Seed 0 ==> test auc = 0.807939
+	Seed 0 ==> test accuracy = 0.972254
+	Seed 0 ==> test f1 = 0.397516
+	Seed 0 ==> test binary_cross_entropy = 0.113068
+	Seed 1 ==> test auc = 0.768467
+	Seed 1 ==> test accuracy = 0.970538
+	Seed 1 ==> test f1 = 0.437158
+	Seed 1 ==> test binary_cross_entropy = 0.126534
+	Seed 2 ==> test auc = 0.820156
+	Seed 2 ==> test accuracy = 0.970681
+	Seed 2 ==> test f1 = 0.432133
+	Seed 2 ==> test binary_cross_entropy = 0.112343
+	Seed 3 ==> test auc = 0.800063
+	Seed 3 ==> test accuracy = 0.968965
+	Seed 3 ==> test f1 = 0.427441
+	Seed 3 ==> test binary_cross_entropy = 0.129577
+	Seed 4 ==> test auc = 0.802513
+	Seed 4 ==> test accuracy = 0.968249
+	Seed 4 ==> test f1 = 0.450495
+	Seed 4 ==> test binary_cross_entropy = 0.183419
+Overall test auc = 0.799828 +/- 0.017145
+Overall test accuracy = 0.970137 +/- 0.001405
+Overall test f1 = 0.428949 +/- 0.017505
+Overall test binary_cross_entropy = 0.132988 +/- 0.026152
+Elapsed time = 4:58:22

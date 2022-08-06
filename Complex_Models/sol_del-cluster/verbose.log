@@ -1,0 +1,2039 @@
+Command line
+python /home/ddunstan/.conda/envs/chemprop/bin/chemprop_train --data_path /home/ddunstan/Chemistry-Capstone/data_split_cleaned/sol_del-cluster-train.csv --dataset_type classification --save_dir /home/ddunstan/Chemistry-Capstone/Complex_Models/sol_del-cluster --epochs 50 --extra_metrics accuracy f1 binary_cross_entropy --metric auc --target_columns binned_sol --smiles_columns smiles --num_folds 5 --split_sizes 0.8 0 0.2 --separate_val_path /home/ddunstan/Chemistry-Capstone/data_split_cleaned/sol_del-cluster-validate.csv --features_generator morgan
+Args
+{'activation': 'ReLU',
+ 'adding_h': False,
+ 'aggregation': 'mean',
+ 'aggregation_norm': 100,
+ 'atom_descriptor_scaling': True,
+ 'atom_descriptors': None,
+ 'atom_descriptors_path': None,
+ 'atom_descriptors_size': 0,
+ 'atom_features_size': 0,
+ 'atom_messages': False,
+ 'batch_size': 50,
+ 'bias': False,
+ 'bias_solvent': False,
+ 'bond_feature_scaling': True,
+ 'bond_features_path': None,
+ 'bond_features_size': 0,
+ 'cache_cutoff': 10000,
+ 'checkpoint_dir': None,
+ 'checkpoint_frzn': None,
+ 'checkpoint_path': None,
+ 'checkpoint_paths': None,
+ 'class_balance': False,
+ 'config_path': None,
+ 'crossval_index_dir': None,
+ 'crossval_index_file': None,
+ 'crossval_index_sets': None,
+ 'cuda': True,
+ 'data_path': '/home/ddunstan/Chemistry-Capstone/data_split_cleaned/sol_del-cluster-train.csv',
+ 'data_weights_path': None,
+ 'dataset_type': 'classification',
+ 'depth': 3,
+ 'depth_solvent': 3,
+ 'device': device(type='cuda'),
+ 'dropout': 0.0,
+ 'empty_cache': False,
+ 'ensemble_size': 1,
+ 'epochs': 50,
+ 'evidential_regularization': 0,
+ 'explicit_h': False,
+ 'extra_metrics': ['accuracy', 'f1', 'binary_cross_entropy'],
+ 'features_generator': ['morgan'],
+ 'features_only': False,
+ 'features_path': None,
+ 'features_scaling': True,
+ 'features_size': None,
+ 'ffn_hidden_size': 300,
+ 'ffn_num_layers': 2,
+ 'final_lr': 0.0001,
+ 'folds_file': None,
+ 'freeze_first_only': False,
+ 'frzn_ffn_layers': 0,
+ 'gpu': None,
+ 'grad_clip': None,
+ 'hidden_size': 300,
+ 'hidden_size_solvent': 300,
+ 'ignore_columns': None,
+ 'init_lr': 0.0001,
+ 'log_frequency': 10,
+ 'loss_function': 'binary_cross_entropy',
+ 'max_data_size': None,
+ 'max_lr': 0.001,
+ 'metric': 'auc',
+ 'metrics': ['auc', 'accuracy', 'f1', 'binary_cross_entropy'],
+ 'minimize_score': False,
+ 'mpn_shared': False,
+ 'multiclass_num_classes': 3,
+ 'no_atom_descriptor_scaling': False,
+ 'no_bond_features_scaling': False,
+ 'no_cache_mol': False,
+ 'no_cuda': False,
+ 'no_features_scaling': False,
+ 'num_folds': 5,
+ 'num_lrs': 1,
+ 'num_tasks': 1,
+ 'num_workers': 8,
+ 'number_of_molecules': 1,
+ 'overwrite_default_atom_features': False,
+ 'overwrite_default_bond_features': False,
+ 'phase_features_path': None,
+ 'pytorch_seed': 0,
+ 'quiet': False,
+ 'reaction': False,
+ 'reaction_mode': 'reac_diff',
+ 'reaction_solvent': False,
+ 'resume_experiment': False,
+ 'save_dir': '/home/ddunstan/Chemistry-Capstone/Complex_Models/sol_del-cluster',
+ 'save_preds': False,
+ 'save_smiles_splits': False,
+ 'seed': 0,
+ 'separate_test_atom_descriptors_path': None,
+ 'separate_test_bond_features_path': None,
+ 'separate_test_features_path': None,
+ 'separate_test_path': None,
+ 'separate_test_phase_features_path': None,
+ 'separate_val_atom_descriptors_path': None,
+ 'separate_val_bond_features_path': None,
+ 'separate_val_features_path': None,
+ 'separate_val_path': '/home/ddunstan/Chemistry-Capstone/data_split_cleaned/sol_del-cluster-validate.csv',
+ 'separate_val_phase_features_path': None,
+ 'show_individual_scores': False,
+ 'smiles_columns': ['smiles'],
+ 'spectra_activation': 'exp',
+ 'spectra_phase_mask_path': None,
+ 'spectra_target_floor': 1e-08,
+ 'split_key_molecule': 0,
+ 'split_sizes': [0.8, 0.0, 0.2],
+ 'split_type': 'random',
+ 'target_columns': ['binned_sol'],
+ 'target_weights': None,
+ 'task_names': ['binned_sol'],
+ 'test': False,
+ 'test_fold_index': None,
+ 'train_data_size': None,
+ 'undirected': False,
+ 'use_input_features': True,
+ 'val_fold_index': None,
+ 'warmup_epochs': 2.0}
+Setting molecule featurization parameters to default.
+Loading data
+Number of tasks = 1
+Fold 0
+Splitting data with seed 0
+Class sizes
+binned_sol 0: 84.78%, 1: 15.22%
+Total size = 959 | train size = 767 | val size = 169 | test size = 192
+Building model 0
+MoleculeModel(
+  (sigmoid): Sigmoid()
+  (encoder): MPN(
+    (encoder): ModuleList(
+      (0): MPNEncoder(
+        (dropout_layer): Dropout(p=0.0, inplace=False)
+        (act_func): ReLU()
+        (W_i): Linear(in_features=147, out_features=300, bias=False)
+        (W_h): Linear(in_features=300, out_features=300, bias=False)
+        (W_o): Linear(in_features=433, out_features=300, bias=True)
+      )
+    )
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.0, inplace=False)
+    (1): Linear(in_features=2348, out_features=300, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.0, inplace=False)
+    (4): Linear(in_features=300, out_features=1, bias=True)
+  )
+)
+Number of parameters = 969,601
+Moving model to cuda
+Epoch 0
+Loss = 5.8367e-01, PNorm = 37.2586, GNorm = 1.8250, lr_0 = 4.3000e-04
+Validation auc = 0.657594
+Validation accuracy = 0.745562
+Validation f1 = 0.000000
+Validation binary_cross_entropy = 0.804903
+Epoch 1
+Loss = 2.0272e-01, PNorm = 37.2671, GNorm = 0.9094, lr_0 = 7.6000e-04
+Loss = 1.8642e-01, PNorm = 37.3116, GNorm = 0.5820, lr_0 = 9.9362e-04
+Loss = 1.8446e-01, PNorm = 37.3213, GNorm = 1.4950, lr_0 = 9.9045e-04
+Validation auc = 0.724458
+Validation accuracy = 0.757396
+Validation f1 = 0.388060
+Validation binary_cross_entropy = 0.540447
+Epoch 2
+Loss = 8.3051e-02, PNorm = 37.4124, GNorm = 0.2756, lr_0 = 9.5928e-04
+Validation auc = 0.746351
+Validation accuracy = 0.745562
+Validation f1 = 0.156863
+Validation binary_cross_entropy = 0.567146
+Epoch 3
+Loss = 4.8310e-02, PNorm = 37.4549, GNorm = 0.2161, lr_0 = 9.2909e-04
+Loss = 4.0235e-02, PNorm = 37.5057, GNorm = 0.2798, lr_0 = 8.9984e-04
+Validation auc = 0.761933
+Validation accuracy = 0.769231
+Validation f1 = 0.235294
+Validation binary_cross_entropy = 0.585758
+Epoch 4
+Loss = 2.2733e-02, PNorm = 37.5589, GNorm = 0.3033, lr_0 = 8.6874e-04
+Validation auc = 0.761341
+Validation accuracy = 0.786982
+Validation f1 = 0.379310
+Validation binary_cross_entropy = 0.574339
+Epoch 5
+Loss = 1.9095e-02, PNorm = 37.5797, GNorm = 0.1531, lr_0 = 8.3871e-04
+Loss = 2.1806e-02, PNorm = 37.6114, GNorm = 0.0487, lr_0 = 8.1231e-04
+Validation auc = 0.772387
+Validation accuracy = 0.792899
+Validation f1 = 0.339623
+Validation binary_cross_entropy = 0.601489
+Epoch 6
+Loss = 1.5025e-02, PNorm = 37.6355, GNorm = 0.0566, lr_0 = 7.8674e-04
+Validation auc = 0.774556
+Validation accuracy = 0.792899
+Validation f1 = 0.339623
+Validation binary_cross_entropy = 0.613276
+Epoch 7
+Loss = 1.2902e-02, PNorm = 37.6617, GNorm = 0.2130, lr_0 = 7.5955e-04
+Loss = 1.1924e-02, PNorm = 37.6798, GNorm = 0.2015, lr_0 = 7.3564e-04
+Validation auc = 0.778895
+Validation accuracy = 0.804734
+Validation f1 = 0.421053
+Validation binary_cross_entropy = 0.604248
+Epoch 8
+Loss = 1.3011e-02, PNorm = 37.7018, GNorm = 0.0953, lr_0 = 7.1021e-04
+Validation auc = 0.779684
+Validation accuracy = 0.792899
+Validation f1 = 0.313725
+Validation binary_cross_entropy = 0.660250
+Epoch 9
+Loss = 1.2183e-02, PNorm = 37.7256, GNorm = 0.0399, lr_0 = 6.8786e-04
+Loss = 9.9588e-03, PNorm = 37.7416, GNorm = 0.0588, lr_0 = 6.6621e-04
+Validation auc = 0.786785
+Validation accuracy = 0.828402
+Validation f1 = 0.508475
+Validation binary_cross_entropy = 0.622051
+Epoch 10
+Loss = 1.0628e-02, PNorm = 37.7601, GNorm = 0.1004, lr_0 = 6.4318e-04
+Validation auc = 0.789546
+Validation accuracy = 0.816568
+Validation f1 = 0.436364
+Validation binary_cross_entropy = 0.680333
+Epoch 11
+Loss = 1.4574e-02, PNorm = 37.7819, GNorm = 0.0502, lr_0 = 6.2095e-04
+Loss = 6.7739e-03, PNorm = 37.7968, GNorm = 0.2308, lr_0 = 6.0140e-04
+Validation auc = 0.790533
+Validation accuracy = 0.816568
+Validation f1 = 0.456140
+Validation binary_cross_entropy = 0.648728
+Epoch 12
+Loss = 3.7455e-03, PNorm = 37.8105, GNorm = 0.0352, lr_0 = 5.8248e-04
+Validation auc = 0.795266
+Validation accuracy = 0.822485
+Validation f1 = 0.482759
+Validation binary_cross_entropy = 0.646157
+Epoch 13
+Loss = 3.1269e-03, PNorm = 37.8281, GNorm = 0.0258, lr_0 = 5.6234e-04
+Loss = 5.1298e-03, PNorm = 37.8451, GNorm = 0.0430, lr_0 = 5.4464e-04
+Validation auc = 0.801183
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.620414
+Epoch 14
+Loss = 6.9517e-03, PNorm = 37.8570, GNorm = 0.0370, lr_0 = 5.2582e-04
+Loss = 6.9365e-03, PNorm = 37.8707, GNorm = 0.1007, lr_0 = 5.0927e-04
+Validation auc = 0.803550
+Validation accuracy = 0.822485
+Validation f1 = 0.444444
+Validation binary_cross_entropy = 0.716545
+Epoch 15
+Loss = 4.7670e-03, PNorm = 37.8791, GNorm = 0.0229, lr_0 = 4.9324e-04
+Validation auc = 0.796844
+Validation accuracy = 0.822485
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.644501
+Epoch 16
+Loss = 5.8077e-03, PNorm = 37.8889, GNorm = 0.0177, lr_0 = 4.7619e-04
+Loss = 5.2147e-03, PNorm = 37.9019, GNorm = 0.0238, lr_0 = 4.6120e-04
+Loss = 1.3112e-03, PNorm = 37.9030, GNorm = 0.0325, lr_0 = 4.5973e-04
+Validation auc = 0.802564
+Validation accuracy = 0.822485
+Validation f1 = 0.482759
+Validation binary_cross_entropy = 0.664647
+Epoch 17
+Loss = 4.3986e-03, PNorm = 37.9137, GNorm = 0.0253, lr_0 = 4.4526e-04
+Validation auc = 0.808481
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.652423
+Epoch 18
+Loss = 1.8909e-03, PNorm = 37.9243, GNorm = 0.0242, lr_0 = 4.3124e-04
+Loss = 4.4452e-03, PNorm = 37.9319, GNorm = 0.0309, lr_0 = 4.1767e-04
+Validation auc = 0.809073
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.651211
+Epoch 19
+Loss = 3.8653e-03, PNorm = 37.9445, GNorm = 0.0152, lr_0 = 4.0323e-04
+Validation auc = 0.809270
+Validation accuracy = 0.822485
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.643245
+Epoch 20
+Loss = 1.9609e-03, PNorm = 37.9511, GNorm = 0.0163, lr_0 = 3.8929e-04
+Loss = 5.8461e-03, PNorm = 37.9596, GNorm = 0.3445, lr_0 = 3.7704e-04
+Validation auc = 0.814990
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.633983
+Epoch 21
+Loss = 1.8995e-03, PNorm = 37.9693, GNorm = 0.0226, lr_0 = 3.6517e-04
+Validation auc = 0.814990
+Validation accuracy = 0.834320
+Validation f1 = 0.517241
+Validation binary_cross_entropy = 0.681171
+Epoch 22
+Loss = 2.2847e-03, PNorm = 37.9782, GNorm = 0.0380, lr_0 = 3.5255e-04
+Loss = 3.4490e-03, PNorm = 37.9866, GNorm = 0.0153, lr_0 = 3.4145e-04
+Validation auc = 0.817949
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.638760
+Epoch 23
+Loss = 4.0078e-03, PNorm = 37.9958, GNorm = 0.0112, lr_0 = 3.2965e-04
+Validation auc = 0.820316
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.646783
+Epoch 24
+Loss = 9.3617e-03, PNorm = 38.0032, GNorm = 0.2529, lr_0 = 3.1928e-04
+Loss = 3.9420e-03, PNorm = 38.0108, GNorm = 0.0257, lr_0 = 3.0923e-04
+Validation auc = 0.821499
+Validation accuracy = 0.840237
+Validation f1 = 0.557377
+Validation binary_cross_entropy = 0.668148
+Epoch 25
+Loss = 1.7830e-03, PNorm = 38.0182, GNorm = 0.0187, lr_0 = 2.9854e-04
+Validation auc = 0.822880
+Validation accuracy = 0.840237
+Validation f1 = 0.557377
+Validation binary_cross_entropy = 0.662704
+Epoch 26
+Loss = 7.7748e-04, PNorm = 38.0255, GNorm = 0.0083, lr_0 = 2.8822e-04
+Loss = 3.1632e-03, PNorm = 38.0317, GNorm = 0.0118, lr_0 = 2.7915e-04
+Validation auc = 0.826430
+Validation accuracy = 0.822485
+Validation f1 = 0.531250
+Validation binary_cross_entropy = 0.643705
+Epoch 27
+Loss = 1.0103e-03, PNorm = 38.0378, GNorm = 0.0155, lr_0 = 2.7036e-04
+Validation auc = 0.824063
+Validation accuracy = 0.828402
+Validation f1 = 0.508475
+Validation binary_cross_entropy = 0.678418
+Epoch 28
+Loss = 7.3254e-04, PNorm = 38.0444, GNorm = 0.0111, lr_0 = 2.6102e-04
+Loss = 2.7931e-03, PNorm = 38.0519, GNorm = 0.0115, lr_0 = 2.5280e-04
+Validation auc = 0.828994
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.657913
+Epoch 29
+Loss = 1.6998e-03, PNorm = 38.0579, GNorm = 0.0247, lr_0 = 2.4406e-04
+Loss = 3.8138e-03, PNorm = 38.0623, GNorm = 0.0051, lr_0 = 2.3638e-04
+Validation auc = 0.832150
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.659053
+Epoch 30
+Loss = 2.4196e-03, PNorm = 38.0671, GNorm = 0.0190, lr_0 = 2.2894e-04
+Validation auc = 0.830966
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.670083
+Epoch 31
+Loss = 3.9905e-03, PNorm = 38.0702, GNorm = 0.0107, lr_0 = 2.2103e-04
+Loss = 4.3916e-03, PNorm = 38.0735, GNorm = 0.0110, lr_0 = 2.1407e-04
+Loss = 5.4515e-04, PNorm = 38.0739, GNorm = 0.0150, lr_0 = 2.1339e-04
+Validation auc = 0.830769
+Validation accuracy = 0.822485
+Validation f1 = 0.531250
+Validation binary_cross_entropy = 0.647764
+Epoch 32
+Loss = 4.2885e-03, PNorm = 38.0774, GNorm = 0.0147, lr_0 = 2.0667e-04
+Validation auc = 0.827613
+Validation accuracy = 0.828402
+Validation f1 = 0.508475
+Validation binary_cross_entropy = 0.696456
+Epoch 33
+Loss = 8.0627e-04, PNorm = 38.0814, GNorm = 0.0095, lr_0 = 2.0017e-04
+Loss = 4.2087e-03, PNorm = 38.0859, GNorm = 0.0180, lr_0 = 1.9387e-04
+Validation auc = 0.831361
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.652832
+Epoch 34
+Loss = 4.3936e-03, PNorm = 38.0910, GNorm = 0.3084, lr_0 = 1.8716e-04
+Validation auc = 0.831953
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.667356
+Epoch 35
+Loss = 1.0159e-03, PNorm = 38.0959, GNorm = 0.0126, lr_0 = 1.8069e-04
+Loss = 2.4702e-03, PNorm = 38.1002, GNorm = 0.0326, lr_0 = 1.7501e-04
+Validation auc = 0.833136
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.670246
+Epoch 36
+Loss = 5.2050e-03, PNorm = 38.1019, GNorm = 0.0080, lr_0 = 1.6950e-04
+Validation auc = 0.834517
+Validation accuracy = 0.846154
+Validation f1 = 0.617647
+Validation binary_cross_entropy = 0.619397
+Epoch 37
+Loss = 7.3936e-04, PNorm = 38.1050, GNorm = 0.0132, lr_0 = 1.6364e-04
+Loss = 3.8191e-03, PNorm = 38.1085, GNorm = 0.3790, lr_0 = 1.5849e-04
+Validation auc = 0.832544
+Validation accuracy = 0.846154
+Validation f1 = 0.566667
+Validation binary_cross_entropy = 0.697239
+Epoch 38
+Loss = 2.4603e-03, PNorm = 38.1106, GNorm = 0.1051, lr_0 = 1.5301e-04
+Validation auc = 0.832347
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.665079
+Epoch 39
+Loss = 8.6633e-04, PNorm = 38.1136, GNorm = 0.0146, lr_0 = 1.4819e-04
+Loss = 2.8525e-03, PNorm = 38.1175, GNorm = 0.3007, lr_0 = 1.4353e-04
+Validation auc = 0.834714
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.672742
+Epoch 40
+Loss = 5.1117e-03, PNorm = 38.1213, GNorm = 0.0200, lr_0 = 1.3857e-04
+Validation auc = 0.835108
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.667091
+Epoch 41
+Loss = 7.5652e-03, PNorm = 38.1251, GNorm = 0.0086, lr_0 = 1.3378e-04
+Loss = 2.6682e-03, PNorm = 38.1281, GNorm = 0.0176, lr_0 = 1.2957e-04
+Validation auc = 0.835700
+Validation accuracy = 0.834320
+Validation f1 = 0.562500
+Validation binary_cross_entropy = 0.659397
+Epoch 42
+Loss = 3.7478e-03, PNorm = 38.1310, GNorm = 0.2858, lr_0 = 1.2549e-04
+Validation auc = 0.837475
+Validation accuracy = 0.840237
+Validation f1 = 0.584615
+Validation binary_cross_entropy = 0.655646
+Epoch 43
+Loss = 7.6446e-04, PNorm = 38.1339, GNorm = 0.0108, lr_0 = 1.2115e-04
+Loss = 2.3977e-03, PNorm = 38.1368, GNorm = 0.0202, lr_0 = 1.1734e-04
+Validation auc = 0.838067
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.673088
+Epoch 44
+Loss = 7.1355e-04, PNorm = 38.1388, GNorm = 0.0071, lr_0 = 1.1328e-04
+Loss = 3.7217e-03, PNorm = 38.1412, GNorm = 0.0152, lr_0 = 1.0972e-04
+Validation auc = 0.839053
+Validation accuracy = 0.840237
+Validation f1 = 0.584615
+Validation binary_cross_entropy = 0.655484
+Epoch 45
+Loss = 2.2904e-03, PNorm = 38.1436, GNorm = 0.0052, lr_0 = 1.0626e-04
+Validation auc = 0.841223
+Validation accuracy = 0.840237
+Validation f1 = 0.584615
+Validation binary_cross_entropy = 0.644343
+Epoch 46
+Loss = 8.1514e-04, PNorm = 38.1459, GNorm = 0.0085, lr_0 = 1.0259e-04
+Loss = 3.9258e-03, PNorm = 38.1482, GNorm = 0.2959, lr_0 = 1.0000e-04
+Loss = 9.2374e-05, PNorm = 38.1483, GNorm = 0.0030, lr_0 = 1.0000e-04
+Validation auc = 0.839448
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.691242
+Epoch 47
+Loss = 7.3095e-04, PNorm = 38.1499, GNorm = 0.0057, lr_0 = 1.0000e-04
+Validation auc = 0.841026
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.669817
+Epoch 48
+Loss = 6.3704e-04, PNorm = 38.1518, GNorm = 0.0145, lr_0 = 1.0000e-04
+Loss = 3.3896e-03, PNorm = 38.1540, GNorm = 0.0083, lr_0 = 1.0000e-04
+Validation auc = 0.841617
+Validation accuracy = 0.840237
+Validation f1 = 0.584615
+Validation binary_cross_entropy = 0.657914
+Epoch 49
+Loss = 4.0041e-03, PNorm = 38.1566, GNorm = 0.0099, lr_0 = 1.0000e-04
+Validation auc = 0.842801
+Validation accuracy = 0.840237
+Validation f1 = 0.584615
+Validation binary_cross_entropy = 0.653899
+Model 0 best validation auc = 0.842801 on epoch 49
+Loading pretrained parameter "encoder.encoder.0.cached_zero_vector".
+Loading pretrained parameter "encoder.encoder.0.W_i.weight".
+Loading pretrained parameter "encoder.encoder.0.W_h.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.bias".
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.4.weight".
+Loading pretrained parameter "ffn.4.bias".
+Moving model to cuda
+Model 0 test auc = 0.942670
+Model 0 test accuracy = 0.906250
+Model 0 test f1 = 0.678571
+Model 0 test binary_cross_entropy = 0.270067
+Ensemble test auc = 0.942670
+Ensemble test accuracy = 0.906250
+Ensemble test f1 = 0.678571
+Ensemble test binary_cross_entropy = 0.270067
+Fold 1
+Splitting data with seed 1
+Class sizes
+binned_sol 0: 84.78%, 1: 15.22%
+Total size = 959 | train size = 767 | val size = 169 | test size = 192
+Building model 0
+MoleculeModel(
+  (sigmoid): Sigmoid()
+  (encoder): MPN(
+    (encoder): ModuleList(
+      (0): MPNEncoder(
+        (dropout_layer): Dropout(p=0.0, inplace=False)
+        (act_func): ReLU()
+        (W_i): Linear(in_features=147, out_features=300, bias=False)
+        (W_h): Linear(in_features=300, out_features=300, bias=False)
+        (W_o): Linear(in_features=433, out_features=300, bias=True)
+      )
+    )
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.0, inplace=False)
+    (1): Linear(in_features=2348, out_features=300, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.0, inplace=False)
+    (4): Linear(in_features=300, out_features=1, bias=True)
+  )
+)
+Number of parameters = 969,601
+Moving model to cuda
+Epoch 0
+Loss = 6.3870e-01, PNorm = 37.2579, GNorm = 2.2331, lr_0 = 4.3000e-04
+Validation auc = 0.633925
+Validation accuracy = 0.757396
+Validation f1 = 0.000000
+Validation binary_cross_entropy = 0.783802
+Epoch 1
+Loss = 3.3511e-01, PNorm = 37.2639, GNorm = 0.8883, lr_0 = 7.6000e-04
+Loss = 1.9333e-01, PNorm = 37.3110, GNorm = 0.8906, lr_0 = 9.9362e-04
+Loss = 2.2376e-01, PNorm = 37.3205, GNorm = 1.3527, lr_0 = 9.9045e-04
+Validation auc = 0.719724
+Validation accuracy = 0.751479
+Validation f1 = 0.343750
+Validation binary_cross_entropy = 0.548566
+Epoch 2
+Loss = 9.2780e-02, PNorm = 37.4108, GNorm = 0.6050, lr_0 = 9.5928e-04
+Validation auc = 0.742406
+Validation accuracy = 0.751479
+Validation f1 = 0.250000
+Validation binary_cross_entropy = 0.554164
+Epoch 3
+Loss = 4.7775e-02, PNorm = 37.4585, GNorm = 0.3146, lr_0 = 9.2909e-04
+Loss = 4.2958e-02, PNorm = 37.5107, GNorm = 0.1668, lr_0 = 8.9984e-04
+Validation auc = 0.765878
+Validation accuracy = 0.757396
+Validation f1 = 0.280702
+Validation binary_cross_entropy = 0.562737
+Epoch 4
+Loss = 2.9855e-02, PNorm = 37.5544, GNorm = 0.2134, lr_0 = 8.6874e-04
+Validation auc = 0.776726
+Validation accuracy = 0.763314
+Validation f1 = 0.310345
+Validation binary_cross_entropy = 0.568755
+Epoch 5
+Loss = 1.9810e-02, PNorm = 37.5970, GNorm = 0.1129, lr_0 = 8.3871e-04
+Loss = 2.2695e-02, PNorm = 37.6313, GNorm = 0.1520, lr_0 = 8.1231e-04
+Validation auc = 0.786588
+Validation accuracy = 0.775148
+Validation f1 = 0.321429
+Validation binary_cross_entropy = 0.587511
+Epoch 6
+Loss = 1.7627e-02, PNorm = 37.6618, GNorm = 0.1080, lr_0 = 7.8674e-04
+Validation auc = 0.801775
+Validation accuracy = 0.775148
+Validation f1 = 0.406250
+Validation binary_cross_entropy = 0.557721
+Epoch 7
+Loss = 1.4087e-02, PNorm = 37.6866, GNorm = 0.1855, lr_0 = 7.5955e-04
+Loss = 1.8114e-02, PNorm = 37.7081, GNorm = 0.3534, lr_0 = 7.3564e-04
+Validation auc = 0.796252
+Validation accuracy = 0.786982
+Validation f1 = 0.357143
+Validation binary_cross_entropy = 0.603632
+Epoch 8
+Loss = 1.1668e-02, PNorm = 37.7241, GNorm = 0.0767, lr_0 = 7.1021e-04
+Validation auc = 0.799211
+Validation accuracy = 0.792899
+Validation f1 = 0.363636
+Validation binary_cross_entropy = 0.601798
+Epoch 9
+Loss = 1.0705e-02, PNorm = 37.7489, GNorm = 0.0685, lr_0 = 6.8786e-04
+Loss = 1.3041e-02, PNorm = 37.7708, GNorm = 0.0584, lr_0 = 6.6621e-04
+Validation auc = 0.807692
+Validation accuracy = 0.810651
+Validation f1 = 0.466667
+Validation binary_cross_entropy = 0.577631
+Epoch 10
+Loss = 7.8233e-03, PNorm = 37.7912, GNorm = 0.1255, lr_0 = 6.4318e-04
+Validation auc = 0.810848
+Validation accuracy = 0.804734
+Validation f1 = 0.421053
+Validation binary_cross_entropy = 0.660785
+Epoch 11
+Loss = 6.9667e-03, PNorm = 37.8145, GNorm = 0.1674, lr_0 = 6.2095e-04
+Loss = 1.0362e-02, PNorm = 37.8252, GNorm = 0.2121, lr_0 = 6.0140e-04
+Validation auc = 0.817554
+Validation accuracy = 0.810651
+Validation f1 = 0.542857
+Validation binary_cross_entropy = 0.563826
+Epoch 12
+Loss = 6.3381e-03, PNorm = 37.8422, GNorm = 0.0367, lr_0 = 5.8248e-04
+Validation auc = 0.818935
+Validation accuracy = 0.816568
+Validation f1 = 0.474576
+Validation binary_cross_entropy = 0.607692
+Epoch 13
+Loss = 1.8854e-03, PNorm = 37.8597, GNorm = 0.0188, lr_0 = 5.6234e-04
+Loss = 8.6171e-03, PNorm = 37.8746, GNorm = 0.0278, lr_0 = 5.4464e-04
+Validation auc = 0.824458
+Validation accuracy = 0.828402
+Validation f1 = 0.539683
+Validation binary_cross_entropy = 0.597698
+Epoch 14
+Loss = 4.9588e-03, PNorm = 37.8910, GNorm = 0.0270, lr_0 = 5.2582e-04
+Loss = 7.5314e-03, PNorm = 37.9047, GNorm = 0.1012, lr_0 = 5.0927e-04
+Validation auc = 0.828402
+Validation accuracy = 0.822485
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.618596
+Epoch 15
+Loss = 3.4818e-03, PNorm = 37.9148, GNorm = 0.1099, lr_0 = 4.9324e-04
+Validation auc = 0.831164
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.574458
+Epoch 16
+Loss = 5.7033e-03, PNorm = 37.9281, GNorm = 0.0729, lr_0 = 4.7619e-04
+Loss = 6.2784e-03, PNorm = 37.9400, GNorm = 0.0412, lr_0 = 4.6120e-04
+Loss = 2.8572e-03, PNorm = 37.9409, GNorm = 0.0794, lr_0 = 4.5973e-04
+Validation auc = 0.827811
+Validation accuracy = 0.804734
+Validation f1 = 0.421053
+Validation binary_cross_entropy = 0.696755
+Epoch 17
+Loss = 7.3336e-03, PNorm = 37.9487, GNorm = 0.0277, lr_0 = 4.4526e-04
+Validation auc = 0.834714
+Validation accuracy = 0.828402
+Validation f1 = 0.579710
+Validation binary_cross_entropy = 0.569133
+Epoch 18
+Loss = 1.1893e-02, PNorm = 37.9588, GNorm = 0.1957, lr_0 = 4.3124e-04
+Loss = 2.9056e-03, PNorm = 37.9703, GNorm = 0.0287, lr_0 = 4.1767e-04
+Validation auc = 0.834122
+Validation accuracy = 0.822485
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.633208
+Epoch 19
+Loss = 6.4390e-03, PNorm = 37.9798, GNorm = 0.0227, lr_0 = 4.0323e-04
+Validation auc = 0.841026
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.587395
+Epoch 20
+Loss = 8.5834e-03, PNorm = 37.9911, GNorm = 0.0281, lr_0 = 3.8929e-04
+Loss = 3.5921e-03, PNorm = 37.9999, GNorm = 0.0261, lr_0 = 3.7704e-04
+Validation auc = 0.841223
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.593753
+Epoch 21
+Loss = 3.0247e-03, PNorm = 38.0084, GNorm = 0.0378, lr_0 = 3.6517e-04
+Validation auc = 0.839842
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.619382
+Epoch 22
+Loss = 3.7937e-03, PNorm = 38.0160, GNorm = 0.0692, lr_0 = 3.5255e-04
+Loss = 5.1906e-03, PNorm = 38.0209, GNorm = 0.0287, lr_0 = 3.4145e-04
+Validation auc = 0.837870
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.625347
+Epoch 23
+Loss = 1.5569e-03, PNorm = 38.0286, GNorm = 0.0128, lr_0 = 3.2965e-04
+Validation auc = 0.841026
+Validation accuracy = 0.822485
+Validation f1 = 0.531250
+Validation binary_cross_entropy = 0.606618
+Epoch 24
+Loss = 1.2287e-03, PNorm = 38.0367, GNorm = 0.0148, lr_0 = 3.1928e-04
+Loss = 5.3639e-03, PNorm = 38.0459, GNorm = 0.0105, lr_0 = 3.0923e-04
+Validation auc = 0.844181
+Validation accuracy = 0.834320
+Validation f1 = 0.562500
+Validation binary_cross_entropy = 0.618666
+Epoch 25
+Loss = 6.1024e-03, PNorm = 38.0542, GNorm = 0.1598, lr_0 = 2.9854e-04
+Validation auc = 0.847535
+Validation accuracy = 0.834320
+Validation f1 = 0.562500
+Validation binary_cross_entropy = 0.617290
+Epoch 26
+Loss = 2.2001e-03, PNorm = 38.0609, GNorm = 0.0654, lr_0 = 2.8822e-04
+Loss = 2.8736e-03, PNorm = 38.0675, GNorm = 0.0551, lr_0 = 2.7915e-04
+Validation auc = 0.850690
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.609201
+Epoch 27
+Loss = 9.5935e-03, PNorm = 38.0723, GNorm = 0.0314, lr_0 = 2.7036e-04
+Validation auc = 0.843984
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.649967
+Epoch 28
+Loss = 6.8114e-04, PNorm = 38.0762, GNorm = 0.0096, lr_0 = 2.6102e-04
+Loss = 4.3479e-03, PNorm = 38.0816, GNorm = 0.0321, lr_0 = 2.5280e-04
+Validation auc = 0.848521
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.595922
+Epoch 29
+Loss = 5.7955e-03, PNorm = 38.0881, GNorm = 0.1591, lr_0 = 2.4406e-04
+Loss = 2.8605e-03, PNorm = 38.0935, GNorm = 0.1449, lr_0 = 2.3638e-04
+Validation auc = 0.852071
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.603743
+Epoch 30
+Loss = 2.0105e-03, PNorm = 38.0985, GNorm = 0.0178, lr_0 = 2.2894e-04
+Validation auc = 0.853452
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.612506
+Epoch 31
+Loss = 8.3296e-03, PNorm = 38.1038, GNorm = 0.0919, lr_0 = 2.2103e-04
+Loss = 1.9618e-03, PNorm = 38.1084, GNorm = 0.0244, lr_0 = 2.1407e-04
+Loss = 3.7892e-04, PNorm = 38.1089, GNorm = 0.0078, lr_0 = 2.1339e-04
+Validation auc = 0.853649
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.612698
+Epoch 32
+Loss = 2.5105e-03, PNorm = 38.1132, GNorm = 0.0173, lr_0 = 2.0667e-04
+Validation auc = 0.855819
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.599640
+Epoch 33
+Loss = 3.2124e-03, PNorm = 38.1175, GNorm = 0.1388, lr_0 = 2.0017e-04
+Loss = 3.1379e-03, PNorm = 38.1214, GNorm = 0.0416, lr_0 = 1.9387e-04
+Validation auc = 0.854043
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.649521
+Epoch 34
+Loss = 4.3853e-03, PNorm = 38.1251, GNorm = 0.0244, lr_0 = 1.8716e-04
+Validation auc = 0.856607
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.613637
+Epoch 35
+Loss = 1.5709e-03, PNorm = 38.1294, GNorm = 0.0121, lr_0 = 1.8069e-04
+Loss = 4.6743e-03, PNorm = 38.1331, GNorm = 0.0495, lr_0 = 1.7501e-04
+Validation auc = 0.857396
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.603467
+Epoch 36
+Loss = 3.5529e-03, PNorm = 38.1370, GNorm = 0.0073, lr_0 = 1.6950e-04
+Validation auc = 0.857594
+Validation accuracy = 0.840237
+Validation f1 = 0.584615
+Validation binary_cross_entropy = 0.634264
+Epoch 37
+Loss = 1.8077e-03, PNorm = 38.1411, GNorm = 0.0481, lr_0 = 1.6364e-04
+Loss = 3.2188e-03, PNorm = 38.1447, GNorm = 0.0125, lr_0 = 1.5849e-04
+Validation auc = 0.858974
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.604596
+Epoch 38
+Loss = 2.9047e-03, PNorm = 38.1490, GNorm = 0.0247, lr_0 = 1.5301e-04
+Validation auc = 0.859961
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.611349
+Epoch 39
+Loss = 7.0199e-04, PNorm = 38.1519, GNorm = 0.0092, lr_0 = 1.4819e-04
+Loss = 4.2704e-03, PNorm = 38.1543, GNorm = 0.1943, lr_0 = 1.4353e-04
+Validation auc = 0.858974
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.644281
+Epoch 40
+Loss = 4.5860e-03, PNorm = 38.1572, GNorm = 0.0106, lr_0 = 1.3857e-04
+Validation auc = 0.861538
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.612484
+Epoch 41
+Loss = 3.3528e-03, PNorm = 38.1604, GNorm = 0.1190, lr_0 = 1.3378e-04
+Loss = 4.1828e-03, PNorm = 38.1635, GNorm = 0.1325, lr_0 = 1.2957e-04
+Validation auc = 0.861538
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.609471
+Epoch 42
+Loss = 5.3302e-03, PNorm = 38.1659, GNorm = 0.0107, lr_0 = 1.2549e-04
+Validation auc = 0.859961
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.633494
+Epoch 43
+Loss = 5.1809e-04, PNorm = 38.1689, GNorm = 0.0091, lr_0 = 1.2115e-04
+Loss = 3.5031e-03, PNorm = 38.1717, GNorm = 0.0135, lr_0 = 1.1734e-04
+Validation auc = 0.861341
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.615941
+Epoch 44
+Loss = 8.7961e-04, PNorm = 38.1743, GNorm = 0.0064, lr_0 = 1.1328e-04
+Loss = 4.4739e-03, PNorm = 38.1766, GNorm = 0.0233, lr_0 = 1.0972e-04
+Validation auc = 0.862525
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.612910
+Epoch 45
+Loss = 4.0454e-03, PNorm = 38.1788, GNorm = 0.0166, lr_0 = 1.0626e-04
+Validation auc = 0.861933
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.625146
+Epoch 46
+Loss = 8.1283e-04, PNorm = 38.1812, GNorm = 0.0068, lr_0 = 1.0259e-04
+Loss = 4.6971e-03, PNorm = 38.1836, GNorm = 0.3563, lr_0 = 1.0000e-04
+Loss = 1.7608e-03, PNorm = 38.1838, GNorm = 0.0528, lr_0 = 1.0000e-04
+Validation auc = 0.864497
+Validation accuracy = 0.834320
+Validation f1 = 0.600000
+Validation binary_cross_entropy = 0.607903
+Epoch 47
+Loss = 1.0871e-03, PNorm = 38.1856, GNorm = 0.0100, lr_0 = 1.0000e-04
+Validation auc = 0.862525
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.632373
+Epoch 48
+Loss = 5.2580e-03, PNorm = 38.1875, GNorm = 0.0584, lr_0 = 1.0000e-04
+Loss = 1.8220e-03, PNorm = 38.1892, GNorm = 0.0062, lr_0 = 1.0000e-04
+Validation auc = 0.864497
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.622524
+Epoch 49
+Loss = 1.4677e-03, PNorm = 38.1923, GNorm = 0.0354, lr_0 = 1.0000e-04
+Validation auc = 0.866469
+Validation accuracy = 0.840237
+Validation f1 = 0.619718
+Validation binary_cross_entropy = 0.601431
+Model 0 best validation auc = 0.866469 on epoch 49
+Loading pretrained parameter "encoder.encoder.0.cached_zero_vector".
+Loading pretrained parameter "encoder.encoder.0.W_i.weight".
+Loading pretrained parameter "encoder.encoder.0.W_h.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.bias".
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.4.weight".
+Loading pretrained parameter "ffn.4.bias".
+Moving model to cuda
+Model 0 test auc = 0.954491
+Model 0 test accuracy = 0.916667
+Model 0 test f1 = 0.692308
+Model 0 test binary_cross_entropy = 0.302378
+Ensemble test auc = 0.954491
+Ensemble test accuracy = 0.916667
+Ensemble test f1 = 0.692308
+Ensemble test binary_cross_entropy = 0.302378
+Fold 2
+Splitting data with seed 2
+Class sizes
+binned_sol 0: 84.78%, 1: 15.22%
+Total size = 959 | train size = 767 | val size = 169 | test size = 192
+Building model 0
+MoleculeModel(
+  (sigmoid): Sigmoid()
+  (encoder): MPN(
+    (encoder): ModuleList(
+      (0): MPNEncoder(
+        (dropout_layer): Dropout(p=0.0, inplace=False)
+        (act_func): ReLU()
+        (W_i): Linear(in_features=147, out_features=300, bias=False)
+        (W_h): Linear(in_features=300, out_features=300, bias=False)
+        (W_o): Linear(in_features=433, out_features=300, bias=True)
+      )
+    )
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.0, inplace=False)
+    (1): Linear(in_features=2348, out_features=300, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.0, inplace=False)
+    (4): Linear(in_features=300, out_features=1, bias=True)
+  )
+)
+Number of parameters = 969,601
+Moving model to cuda
+Epoch 0
+Loss = 6.1673e-01, PNorm = 37.2590, GNorm = 2.1733, lr_0 = 4.3000e-04
+Validation auc = 0.663116
+Validation accuracy = 0.745562
+Validation f1 = 0.000000
+Validation binary_cross_entropy = 0.749771
+Epoch 1
+Loss = 2.5121e-01, PNorm = 37.2553, GNorm = 1.1861, lr_0 = 7.6000e-04
+Loss = 1.9878e-01, PNorm = 37.3041, GNorm = 0.6478, lr_0 = 9.9362e-04
+Loss = 1.5515e-01, PNorm = 37.3140, GNorm = 1.4643, lr_0 = 9.9045e-04
+Validation auc = 0.733136
+Validation accuracy = 0.751479
+Validation f1 = 0.382353
+Validation binary_cross_entropy = 0.540929
+Epoch 2
+Loss = 8.2178e-02, PNorm = 37.4029, GNorm = 0.6773, lr_0 = 9.5928e-04
+Validation auc = 0.756213
+Validation accuracy = 0.775148
+Validation f1 = 0.344828
+Validation binary_cross_entropy = 0.556939
+Epoch 3
+Loss = 4.3553e-02, PNorm = 37.4508, GNorm = 0.1973, lr_0 = 9.2909e-04
+Loss = 4.5476e-02, PNorm = 37.4954, GNorm = 0.3497, lr_0 = 8.9984e-04
+Validation auc = 0.768442
+Validation accuracy = 0.775148
+Validation f1 = 0.366667
+Validation binary_cross_entropy = 0.560900
+Epoch 4
+Loss = 2.8082e-02, PNorm = 37.5386, GNorm = 0.1829, lr_0 = 8.6874e-04
+Validation auc = 0.779487
+Validation accuracy = 0.775148
+Validation f1 = 0.387097
+Validation binary_cross_entropy = 0.592894
+Epoch 5
+Loss = 2.4585e-02, PNorm = 37.5777, GNorm = 0.2063, lr_0 = 8.3871e-04
+Loss = 2.0154e-02, PNorm = 37.5988, GNorm = 0.2361, lr_0 = 8.1231e-04
+Validation auc = 0.785799
+Validation accuracy = 0.792899
+Validation f1 = 0.477612
+Validation binary_cross_entropy = 0.575019
+Epoch 6
+Loss = 1.4693e-02, PNorm = 37.6272, GNorm = 0.1326, lr_0 = 7.8674e-04
+Validation auc = 0.791716
+Validation accuracy = 0.786982
+Validation f1 = 0.437500
+Validation binary_cross_entropy = 0.597950
+Epoch 7
+Loss = 1.3572e-02, PNorm = 37.6476, GNorm = 0.1447, lr_0 = 7.5955e-04
+Loss = 1.3204e-02, PNorm = 37.6737, GNorm = 0.0366, lr_0 = 7.3564e-04
+Validation auc = 0.795858
+Validation accuracy = 0.798817
+Validation f1 = 0.413793
+Validation binary_cross_entropy = 0.623065
+Epoch 8
+Loss = 7.6473e-03, PNorm = 37.6918, GNorm = 0.0559, lr_0 = 7.1021e-04
+Validation auc = 0.800197
+Validation accuracy = 0.804734
+Validation f1 = 0.440678
+Validation binary_cross_entropy = 0.638254
+Epoch 9
+Loss = 3.8721e-03, PNorm = 37.7125, GNorm = 0.0496, lr_0 = 6.8786e-04
+Loss = 9.2174e-03, PNorm = 37.7284, GNorm = 0.1603, lr_0 = 6.6621e-04
+Validation auc = 0.805523
+Validation accuracy = 0.816568
+Validation f1 = 0.575342
+Validation binary_cross_entropy = 0.606918
+Epoch 10
+Loss = 1.0507e-02, PNorm = 37.7486, GNorm = 0.4157, lr_0 = 6.4318e-04
+Validation auc = 0.807298
+Validation accuracy = 0.810651
+Validation f1 = 0.542857
+Validation binary_cross_entropy = 0.595832
+Epoch 11
+Loss = 2.0258e-02, PNorm = 37.7602, GNorm = 0.0941, lr_0 = 6.2095e-04
+Loss = 5.7395e-03, PNorm = 37.7776, GNorm = 0.0477, lr_0 = 6.0140e-04
+Validation auc = 0.811440
+Validation accuracy = 0.816568
+Validation f1 = 0.537313
+Validation binary_cross_entropy = 0.622578
+Epoch 12
+Loss = 1.1811e-02, PNorm = 37.7937, GNorm = 0.1130, lr_0 = 5.8248e-04
+Validation auc = 0.813807
+Validation accuracy = 0.822485
+Validation f1 = 0.558824
+Validation binary_cross_entropy = 0.629296
+Epoch 13
+Loss = 3.7027e-03, PNorm = 37.8099, GNorm = 0.0353, lr_0 = 5.6234e-04
+Loss = 4.0289e-03, PNorm = 37.8255, GNorm = 0.0344, lr_0 = 5.4464e-04
+Validation auc = 0.817160
+Validation accuracy = 0.822485
+Validation f1 = 0.531250
+Validation binary_cross_entropy = 0.644458
+Epoch 14
+Loss = 9.5873e-03, PNorm = 37.8404, GNorm = 0.3762, lr_0 = 5.2582e-04
+Loss = 4.1508e-03, PNorm = 37.8539, GNorm = 0.3880, lr_0 = 5.0927e-04
+Validation auc = 0.820907
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.631418
+Epoch 15
+Loss = 7.2681e-03, PNorm = 37.8611, GNorm = 0.0620, lr_0 = 4.9324e-04
+Validation auc = 0.821499
+Validation accuracy = 0.828402
+Validation f1 = 0.591549
+Validation binary_cross_entropy = 0.633008
+Epoch 16
+Loss = 5.5999e-03, PNorm = 37.8731, GNorm = 0.1373, lr_0 = 4.7619e-04
+Loss = 6.5308e-03, PNorm = 37.8835, GNorm = 0.0168, lr_0 = 4.6120e-04
+Loss = 6.1255e-03, PNorm = 37.8849, GNorm = 0.1147, lr_0 = 4.5973e-04
+Validation auc = 0.821499
+Validation accuracy = 0.810651
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.664413
+Epoch 17
+Loss = 6.4703e-03, PNorm = 37.8965, GNorm = 0.0141, lr_0 = 4.4526e-04
+Validation auc = 0.826824
+Validation accuracy = 0.822485
+Validation f1 = 0.558824
+Validation binary_cross_entropy = 0.612255
+Epoch 18
+Loss = 2.7327e-03, PNorm = 37.9059, GNorm = 0.0222, lr_0 = 4.3124e-04
+Loss = 5.8235e-03, PNorm = 37.9166, GNorm = 0.0159, lr_0 = 4.1767e-04
+Validation auc = 0.826036
+Validation accuracy = 0.822485
+Validation f1 = 0.531250
+Validation binary_cross_entropy = 0.648824
+Epoch 19
+Loss = 2.8131e-03, PNorm = 37.9252, GNorm = 0.0200, lr_0 = 4.0323e-04
+Validation auc = 0.828402
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.640165
+Epoch 20
+Loss = 4.1854e-03, PNorm = 37.9353, GNorm = 0.0341, lr_0 = 3.8929e-04
+Loss = 5.1162e-03, PNorm = 37.9444, GNorm = 0.0138, lr_0 = 3.7704e-04
+Validation auc = 0.830572
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.644316
+Epoch 21
+Loss = 7.0169e-03, PNorm = 37.9537, GNorm = 0.0230, lr_0 = 3.6517e-04
+Validation auc = 0.837475
+Validation accuracy = 0.834320
+Validation f1 = 0.600000
+Validation binary_cross_entropy = 0.625737
+Epoch 22
+Loss = 1.1404e-02, PNorm = 37.9617, GNorm = 0.0151, lr_0 = 3.5255e-04
+Loss = 2.6628e-03, PNorm = 37.9686, GNorm = 0.0069, lr_0 = 3.4145e-04
+Validation auc = 0.838067
+Validation accuracy = 0.822485
+Validation f1 = 0.558824
+Validation binary_cross_entropy = 0.623024
+Epoch 23
+Loss = 2.3153e-03, PNorm = 37.9762, GNorm = 0.0187, lr_0 = 3.2965e-04
+Validation auc = 0.834714
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.658022
+Epoch 24
+Loss = 4.9266e-03, PNorm = 37.9836, GNorm = 0.0102, lr_0 = 3.1928e-04
+Loss = 3.7969e-03, PNorm = 37.9895, GNorm = 0.0197, lr_0 = 3.0923e-04
+Validation auc = 0.837278
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.640946
+Epoch 25
+Loss = 5.9090e-03, PNorm = 37.9954, GNorm = 0.0241, lr_0 = 2.9854e-04
+Validation auc = 0.838856
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.634115
+Epoch 26
+Loss = 7.4432e-04, PNorm = 38.0025, GNorm = 0.0091, lr_0 = 2.8822e-04
+Loss = 4.9896e-03, PNorm = 38.0087, GNorm = 0.0103, lr_0 = 2.7915e-04
+Validation auc = 0.839645
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.641398
+Epoch 27
+Loss = 6.4974e-03, PNorm = 38.0156, GNorm = 0.2497, lr_0 = 2.7036e-04
+Validation auc = 0.841815
+Validation accuracy = 0.846154
+Validation f1 = 0.638889
+Validation binary_cross_entropy = 0.626237
+Epoch 28
+Loss = 7.7178e-04, PNorm = 38.0209, GNorm = 0.0105, lr_0 = 2.6102e-04
+Loss = 4.6021e-03, PNorm = 38.0268, GNorm = 0.0285, lr_0 = 2.5280e-04
+Validation auc = 0.841026
+Validation accuracy = 0.828402
+Validation f1 = 0.553846
+Validation binary_cross_entropy = 0.655583
+Epoch 29
+Loss = 2.0842e-03, PNorm = 38.0313, GNorm = 0.0108, lr_0 = 2.4406e-04
+Loss = 5.0523e-03, PNorm = 38.0359, GNorm = 0.0249, lr_0 = 2.3638e-04
+Validation auc = 0.843195
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.623827
+Epoch 30
+Loss = 4.5007e-03, PNorm = 38.0420, GNorm = 0.0210, lr_0 = 2.2894e-04
+Validation auc = 0.841617
+Validation accuracy = 0.828402
+Validation f1 = 0.553846
+Validation binary_cross_entropy = 0.663902
+Epoch 31
+Loss = 1.4562e-03, PNorm = 38.0479, GNorm = 0.0139, lr_0 = 2.2103e-04
+Loss = 5.1021e-03, PNorm = 38.0523, GNorm = 0.0068, lr_0 = 2.1407e-04
+Loss = 7.5841e-04, PNorm = 38.0527, GNorm = 0.0176, lr_0 = 2.1339e-04
+Validation auc = 0.845168
+Validation accuracy = 0.834320
+Validation f1 = 0.600000
+Validation binary_cross_entropy = 0.629822
+Epoch 32
+Loss = 4.6904e-03, PNorm = 38.0577, GNorm = 0.0112, lr_0 = 2.0667e-04
+Validation auc = 0.844181
+Validation accuracy = 0.828402
+Validation f1 = 0.553846
+Validation binary_cross_entropy = 0.659010
+Epoch 33
+Loss = 1.0569e-03, PNorm = 38.0624, GNorm = 0.0253, lr_0 = 2.0017e-04
+Loss = 2.6153e-03, PNorm = 38.0659, GNorm = 0.1735, lr_0 = 1.9387e-04
+Validation auc = 0.847140
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.637561
+Epoch 34
+Loss = 6.8122e-03, PNorm = 38.0729, GNorm = 0.0165, lr_0 = 1.8716e-04
+Validation auc = 0.846154
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.644961
+Epoch 35
+Loss = 3.6796e-03, PNorm = 38.0772, GNorm = 0.0120, lr_0 = 1.8069e-04
+Loss = 4.3153e-03, PNorm = 38.0794, GNorm = 0.0082, lr_0 = 1.7501e-04
+Validation auc = 0.848521
+Validation accuracy = 0.834320
+Validation f1 = 0.621622
+Validation binary_cross_entropy = 0.621537
+Epoch 36
+Loss = 4.5110e-03, PNorm = 38.0828, GNorm = 0.0083, lr_0 = 1.6950e-04
+Validation auc = 0.845759
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.654775
+Epoch 37
+Loss = 7.0228e-03, PNorm = 38.0863, GNorm = 0.3315, lr_0 = 1.6364e-04
+Loss = 1.7978e-03, PNorm = 38.0897, GNorm = 0.0202, lr_0 = 1.5849e-04
+Validation auc = 0.848126
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.640319
+Epoch 38
+Loss = 1.7808e-03, PNorm = 38.0925, GNorm = 0.0187, lr_0 = 1.5301e-04
+Validation auc = 0.847732
+Validation accuracy = 0.840237
+Validation f1 = 0.619718
+Validation binary_cross_entropy = 0.637338
+Epoch 39
+Loss = 1.3284e-02, PNorm = 38.0957, GNorm = 0.3808, lr_0 = 1.4819e-04
+Loss = 2.1779e-03, PNorm = 38.0991, GNorm = 0.0185, lr_0 = 1.4353e-04
+Validation auc = 0.848323
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.643137
+Epoch 40
+Loss = 1.6689e-03, PNorm = 38.1022, GNorm = 0.0162, lr_0 = 1.3857e-04
+Validation auc = 0.849507
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.645637
+Epoch 41
+Loss = 9.5017e-04, PNorm = 38.1054, GNorm = 0.0100, lr_0 = 1.3378e-04
+Loss = 4.4836e-03, PNorm = 38.1075, GNorm = 0.0144, lr_0 = 1.2957e-04
+Validation auc = 0.849112
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.654263
+Epoch 42
+Loss = 6.8007e-03, PNorm = 38.1105, GNorm = 0.0419, lr_0 = 1.2549e-04
+Validation auc = 0.850296
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.646741
+Epoch 43
+Loss = 8.4509e-03, PNorm = 38.1133, GNorm = 0.1875, lr_0 = 1.2115e-04
+Loss = 3.6125e-03, PNorm = 38.1154, GNorm = 0.0110, lr_0 = 1.1734e-04
+Validation auc = 0.851479
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.637873
+Epoch 44
+Loss = 6.5770e-03, PNorm = 38.1185, GNorm = 0.0075, lr_0 = 1.1328e-04
+Loss = 8.5862e-04, PNorm = 38.1209, GNorm = 0.0305, lr_0 = 1.0972e-04
+Validation auc = 0.851282
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.646865
+Epoch 45
+Loss = 1.5982e-03, PNorm = 38.1231, GNorm = 0.0109, lr_0 = 1.0626e-04
+Validation auc = 0.853057
+Validation accuracy = 0.828402
+Validation f1 = 0.579710
+Validation binary_cross_entropy = 0.636649
+Epoch 46
+Loss = 2.5023e-03, PNorm = 38.1261, GNorm = 0.2147, lr_0 = 1.0259e-04
+Loss = 3.5851e-03, PNorm = 38.1285, GNorm = 0.0075, lr_0 = 1.0000e-04
+Loss = 7.2964e-04, PNorm = 38.1288, GNorm = 0.0159, lr_0 = 1.0000e-04
+Validation auc = 0.851874
+Validation accuracy = 0.834320
+Validation f1 = 0.575758
+Validation binary_cross_entropy = 0.654759
+Epoch 47
+Loss = 6.5288e-04, PNorm = 38.1311, GNorm = 0.0132, lr_0 = 1.0000e-04
+Validation auc = 0.852663
+Validation accuracy = 0.834320
+Validation f1 = 0.588235
+Validation binary_cross_entropy = 0.639590
+Epoch 48
+Loss = 9.6239e-04, PNorm = 38.1336, GNorm = 0.0337, lr_0 = 1.0000e-04
+Loss = 4.7450e-03, PNorm = 38.1358, GNorm = 0.0089, lr_0 = 1.0000e-04
+Validation auc = 0.854043
+Validation accuracy = 0.840237
+Validation f1 = 0.619718
+Validation binary_cross_entropy = 0.635218
+Epoch 49
+Loss = 2.0737e-03, PNorm = 38.1382, GNorm = 0.2683, lr_0 = 1.0000e-04
+Validation auc = 0.854043
+Validation accuracy = 0.840237
+Validation f1 = 0.619718
+Validation binary_cross_entropy = 0.636380
+Model 0 best validation auc = 0.854043 on epoch 48
+Loading pretrained parameter "encoder.encoder.0.cached_zero_vector".
+Loading pretrained parameter "encoder.encoder.0.W_i.weight".
+Loading pretrained parameter "encoder.encoder.0.W_h.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.bias".
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.4.weight".
+Loading pretrained parameter "ffn.4.bias".
+Moving model to cuda
+Model 0 test auc = 0.941149
+Model 0 test accuracy = 0.906250
+Model 0 test f1 = 0.625000
+Model 0 test binary_cross_entropy = 0.299639
+Ensemble test auc = 0.941149
+Ensemble test accuracy = 0.906250
+Ensemble test f1 = 0.625000
+Ensemble test binary_cross_entropy = 0.299639
+Fold 3
+Splitting data with seed 3
+Class sizes
+binned_sol 0: 84.78%, 1: 15.22%
+Total size = 959 | train size = 767 | val size = 169 | test size = 192
+Building model 0
+MoleculeModel(
+  (sigmoid): Sigmoid()
+  (encoder): MPN(
+    (encoder): ModuleList(
+      (0): MPNEncoder(
+        (dropout_layer): Dropout(p=0.0, inplace=False)
+        (act_func): ReLU()
+        (W_i): Linear(in_features=147, out_features=300, bias=False)
+        (W_h): Linear(in_features=300, out_features=300, bias=False)
+        (W_o): Linear(in_features=433, out_features=300, bias=True)
+      )
+    )
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.0, inplace=False)
+    (1): Linear(in_features=2348, out_features=300, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.0, inplace=False)
+    (4): Linear(in_features=300, out_features=1, bias=True)
+  )
+)
+Number of parameters = 969,601
+Moving model to cuda
+Epoch 0
+Loss = 6.1425e-01, PNorm = 37.2598, GNorm = 1.9065, lr_0 = 4.3000e-04
+Validation auc = 0.629389
+Validation accuracy = 0.751479
+Validation f1 = 0.000000
+Validation binary_cross_entropy = 0.800957
+Epoch 1
+Loss = 2.9708e-01, PNorm = 37.2566, GNorm = 0.8270, lr_0 = 7.6000e-04
+Loss = 1.9068e-01, PNorm = 37.3063, GNorm = 0.8301, lr_0 = 9.9362e-04
+Loss = 1.4095e-01, PNorm = 37.3159, GNorm = 1.3169, lr_0 = 9.9045e-04
+Validation auc = 0.705523
+Validation accuracy = 0.733728
+Validation f1 = 0.262295
+Validation binary_cross_entropy = 0.546500
+Epoch 2
+Loss = 9.5574e-02, PNorm = 37.4055, GNorm = 0.6787, lr_0 = 9.5928e-04
+Validation auc = 0.730966
+Validation accuracy = 0.769231
+Validation f1 = 0.133333
+Validation binary_cross_entropy = 0.578362
+Epoch 3
+Loss = 5.9876e-02, PNorm = 37.4517, GNorm = 0.2524, lr_0 = 9.2909e-04
+Loss = 4.0830e-02, PNorm = 37.4949, GNorm = 0.1857, lr_0 = 8.9984e-04
+Validation auc = 0.751677
+Validation accuracy = 0.775148
+Validation f1 = 0.208333
+Validation binary_cross_entropy = 0.565538
+Epoch 4
+Loss = 2.8925e-02, PNorm = 37.5430, GNorm = 0.1812, lr_0 = 8.6874e-04
+Validation auc = 0.758383
+Validation accuracy = 0.781065
+Validation f1 = 0.212766
+Validation binary_cross_entropy = 0.592669
+Epoch 5
+Loss = 1.9822e-02, PNorm = 37.5733, GNorm = 0.1043, lr_0 = 8.3871e-04
+Loss = 2.4568e-02, PNorm = 37.6000, GNorm = 0.2431, lr_0 = 8.1231e-04
+Validation auc = 0.775937
+Validation accuracy = 0.786982
+Validation f1 = 0.280000
+Validation binary_cross_entropy = 0.581607
+Epoch 6
+Loss = 1.4496e-02, PNorm = 37.6324, GNorm = 0.1160, lr_0 = 7.8674e-04
+Validation auc = 0.779093
+Validation accuracy = 0.798817
+Validation f1 = 0.346154
+Validation binary_cross_entropy = 0.580684
+Epoch 7
+Loss = 1.6628e-02, PNorm = 37.6521, GNorm = 0.0913, lr_0 = 7.5955e-04
+Loss = 1.5189e-02, PNorm = 37.6767, GNorm = 0.0535, lr_0 = 7.3564e-04
+Validation auc = 0.784615
+Validation accuracy = 0.786982
+Validation f1 = 0.280000
+Validation binary_cross_entropy = 0.608857
+Epoch 8
+Loss = 1.0227e-02, PNorm = 37.6976, GNorm = 0.0738, lr_0 = 7.1021e-04
+Validation auc = 0.788955
+Validation accuracy = 0.792899
+Validation f1 = 0.313725
+Validation binary_cross_entropy = 0.613070
+Epoch 9
+Loss = 8.7133e-03, PNorm = 37.7194, GNorm = 0.0774, lr_0 = 6.8786e-04
+Loss = 1.0658e-02, PNorm = 37.7401, GNorm = 0.1556, lr_0 = 6.6621e-04
+Validation auc = 0.793097
+Validation accuracy = 0.798817
+Validation f1 = 0.346154
+Validation binary_cross_entropy = 0.605254
+Epoch 10
+Loss = 9.2603e-03, PNorm = 37.7571, GNorm = 0.0508, lr_0 = 6.4318e-04
+Validation auc = 0.795464
+Validation accuracy = 0.798817
+Validation f1 = 0.346154
+Validation binary_cross_entropy = 0.624006
+Epoch 11
+Loss = 9.9196e-03, PNorm = 37.7785, GNorm = 0.0778, lr_0 = 6.2095e-04
+Loss = 8.7946e-03, PNorm = 37.7934, GNorm = 0.0544, lr_0 = 6.0140e-04
+Validation auc = 0.795661
+Validation accuracy = 0.786982
+Validation f1 = 0.280000
+Validation binary_cross_entropy = 0.641205
+Epoch 12
+Loss = 6.9797e-03, PNorm = 37.8027, GNorm = 0.1086, lr_0 = 5.8248e-04
+Validation auc = 0.798619
+Validation accuracy = 0.798817
+Validation f1 = 0.346154
+Validation binary_cross_entropy = 0.638167
+Epoch 13
+Loss = 1.0287e-02, PNorm = 37.8239, GNorm = 0.1391, lr_0 = 5.6234e-04
+Loss = 8.7642e-03, PNorm = 37.8415, GNorm = 0.1368, lr_0 = 5.4464e-04
+Validation auc = 0.800592
+Validation accuracy = 0.804734
+Validation f1 = 0.352941
+Validation binary_cross_entropy = 0.658583
+Epoch 14
+Loss = 4.3723e-03, PNorm = 37.8558, GNorm = 0.0445, lr_0 = 5.2582e-04
+Loss = 8.6819e-03, PNorm = 37.8690, GNorm = 0.0716, lr_0 = 5.0927e-04
+Validation auc = 0.803945
+Validation accuracy = 0.810651
+Validation f1 = 0.407407
+Validation binary_cross_entropy = 0.616648
+Epoch 15
+Loss = 5.2623e-03, PNorm = 37.8815, GNorm = 0.0306, lr_0 = 4.9324e-04
+Validation auc = 0.809862
+Validation accuracy = 0.810651
+Validation f1 = 0.428571
+Validation binary_cross_entropy = 0.614593
+Epoch 16
+Loss = 6.1840e-03, PNorm = 37.8962, GNorm = 0.1994, lr_0 = 4.7619e-04
+Loss = 5.7389e-03, PNorm = 37.9075, GNorm = 0.0745, lr_0 = 4.6120e-04
+Loss = 2.3292e-03, PNorm = 37.9087, GNorm = 0.0427, lr_0 = 4.5973e-04
+Validation auc = 0.812032
+Validation accuracy = 0.810651
+Validation f1 = 0.407407
+Validation binary_cross_entropy = 0.630764
+Epoch 17
+Loss = 6.6659e-03, PNorm = 37.9209, GNorm = 0.0120, lr_0 = 4.4526e-04
+Validation auc = 0.816568
+Validation accuracy = 0.810651
+Validation f1 = 0.407407
+Validation binary_cross_entropy = 0.625819
+Epoch 18
+Loss = 3.8430e-03, PNorm = 37.9320, GNorm = 0.0282, lr_0 = 4.3124e-04
+Loss = 6.6467e-03, PNorm = 37.9426, GNorm = 0.0863, lr_0 = 4.1767e-04
+Validation auc = 0.818935
+Validation accuracy = 0.810651
+Validation f1 = 0.384615
+Validation binary_cross_entropy = 0.682018
+Epoch 19
+Loss = 5.9979e-03, PNorm = 37.9508, GNorm = 0.0164, lr_0 = 4.0323e-04
+Validation auc = 0.820316
+Validation accuracy = 0.822485
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.604249
+Epoch 20
+Loss = 2.3605e-03, PNorm = 37.9599, GNorm = 0.0272, lr_0 = 3.8929e-04
+Loss = 6.1609e-03, PNorm = 37.9695, GNorm = 0.0155, lr_0 = 3.7704e-04
+Validation auc = 0.818146
+Validation accuracy = 0.804734
+Validation f1 = 0.377358
+Validation binary_cross_entropy = 0.667368
+Epoch 21
+Loss = 5.5326e-03, PNorm = 37.9785, GNorm = 0.0139, lr_0 = 3.6517e-04
+Validation auc = 0.821893
+Validation accuracy = 0.828402
+Validation f1 = 0.508475
+Validation binary_cross_entropy = 0.622121
+Epoch 22
+Loss = 4.6331e-03, PNorm = 37.9882, GNorm = 0.0737, lr_0 = 3.5255e-04
+Loss = 5.1496e-03, PNorm = 37.9966, GNorm = 0.0119, lr_0 = 3.4145e-04
+Validation auc = 0.823669
+Validation accuracy = 0.810651
+Validation f1 = 0.407407
+Validation binary_cross_entropy = 0.654206
+Epoch 23
+Loss = 4.7430e-03, PNorm = 38.0043, GNorm = 0.0103, lr_0 = 3.2965e-04
+Validation auc = 0.826824
+Validation accuracy = 0.828402
+Validation f1 = 0.491228
+Validation binary_cross_entropy = 0.635414
+Epoch 24
+Loss = 9.4787e-03, PNorm = 38.0129, GNorm = 0.0101, lr_0 = 3.1928e-04
+Loss = 2.6540e-03, PNorm = 38.0214, GNorm = 0.0169, lr_0 = 3.0923e-04
+Validation auc = 0.826430
+Validation accuracy = 0.816568
+Validation f1 = 0.436364
+Validation binary_cross_entropy = 0.659636
+Epoch 25
+Loss = 4.2524e-03, PNorm = 38.0279, GNorm = 0.0191, lr_0 = 2.9854e-04
+Validation auc = 0.828600
+Validation accuracy = 0.834320
+Validation f1 = 0.533333
+Validation binary_cross_entropy = 0.630217
+Epoch 26
+Loss = 2.4693e-03, PNorm = 38.0366, GNorm = 0.0381, lr_0 = 2.8822e-04
+Loss = 2.9762e-03, PNorm = 38.0444, GNorm = 0.0367, lr_0 = 2.7915e-04
+Validation auc = 0.829586
+Validation accuracy = 0.822485
+Validation f1 = 0.464286
+Validation binary_cross_entropy = 0.659432
+Epoch 27
+Loss = 1.4889e-03, PNorm = 38.0480, GNorm = 0.0261, lr_0 = 2.7036e-04
+Validation auc = 0.831755
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.617881
+Epoch 28
+Loss = 1.0284e-03, PNorm = 38.0548, GNorm = 0.0162, lr_0 = 2.6102e-04
+Loss = 3.0248e-03, PNorm = 38.0618, GNorm = 0.0337, lr_0 = 2.5280e-04
+Validation auc = 0.831558
+Validation accuracy = 0.834320
+Validation f1 = 0.517241
+Validation binary_cross_entropy = 0.653196
+Epoch 29
+Loss = 4.8243e-03, PNorm = 38.0692, GNorm = 0.0113, lr_0 = 2.4406e-04
+Loss = 3.5314e-03, PNorm = 38.0750, GNorm = 0.0287, lr_0 = 2.3638e-04
+Validation auc = 0.834714
+Validation accuracy = 0.828402
+Validation f1 = 0.491228
+Validation binary_cross_entropy = 0.653180
+Epoch 30
+Loss = 2.4605e-03, PNorm = 38.0797, GNorm = 0.0153, lr_0 = 2.2894e-04
+Validation auc = 0.837870
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.616463
+Epoch 31
+Loss = 1.3525e-03, PNorm = 38.0857, GNorm = 0.0108, lr_0 = 2.2103e-04
+Loss = 3.2945e-03, PNorm = 38.0912, GNorm = 0.0170, lr_0 = 2.1407e-04
+Loss = 4.2961e-02, PNorm = 38.0916, GNorm = 0.7513, lr_0 = 2.1339e-04
+Validation auc = 0.838067
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.633161
+Epoch 32
+Loss = 2.3713e-03, PNorm = 38.0965, GNorm = 0.0849, lr_0 = 2.0667e-04
+Validation auc = 0.837870
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.633818
+Epoch 33
+Loss = 1.0884e-02, PNorm = 38.1007, GNorm = 0.2317, lr_0 = 2.0017e-04
+Loss = 1.5288e-03, PNorm = 38.1041, GNorm = 0.0285, lr_0 = 1.9387e-04
+Validation auc = 0.836292
+Validation accuracy = 0.816568
+Validation f1 = 0.436364
+Validation binary_cross_entropy = 0.680268
+Epoch 34
+Loss = 3.5243e-03, PNorm = 38.1070, GNorm = 0.0127, lr_0 = 1.8716e-04
+Validation auc = 0.836292
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.628398
+Epoch 35
+Loss = 2.5316e-03, PNorm = 38.1117, GNorm = 0.0163, lr_0 = 1.8069e-04
+Loss = 4.0472e-03, PNorm = 38.1167, GNorm = 0.0105, lr_0 = 1.7501e-04
+Validation auc = 0.836884
+Validation accuracy = 0.822485
+Validation f1 = 0.482759
+Validation binary_cross_entropy = 0.649625
+Epoch 36
+Loss = 2.9344e-03, PNorm = 38.1207, GNorm = 0.0280, lr_0 = 1.6950e-04
+Validation auc = 0.839053
+Validation accuracy = 0.834320
+Validation f1 = 0.533333
+Validation binary_cross_entropy = 0.648689
+Epoch 37
+Loss = 5.2064e-03, PNorm = 38.1254, GNorm = 0.0093, lr_0 = 1.6364e-04
+Loss = 3.2316e-03, PNorm = 38.1294, GNorm = 0.2898, lr_0 = 1.5849e-04
+Validation auc = 0.840237
+Validation accuracy = 0.828402
+Validation f1 = 0.508475
+Validation binary_cross_entropy = 0.650771
+Epoch 38
+Loss = 1.2992e-03, PNorm = 38.1335, GNorm = 0.0089, lr_0 = 1.5301e-04
+Validation auc = 0.840828
+Validation accuracy = 0.828402
+Validation f1 = 0.508475
+Validation binary_cross_entropy = 0.652497
+Epoch 39
+Loss = 7.7641e-03, PNorm = 38.1372, GNorm = 0.2568, lr_0 = 1.4819e-04
+Loss = 2.8373e-03, PNorm = 38.1408, GNorm = 0.2929, lr_0 = 1.4353e-04
+Validation auc = 0.843393
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.636343
+Epoch 40
+Loss = 3.3612e-03, PNorm = 38.1446, GNorm = 0.0473, lr_0 = 1.3857e-04
+Validation auc = 0.842801
+Validation accuracy = 0.828402
+Validation f1 = 0.524590
+Validation binary_cross_entropy = 0.654998
+Epoch 41
+Loss = 7.9497e-03, PNorm = 38.1487, GNorm = 0.0556, lr_0 = 1.3378e-04
+Loss = 3.1276e-03, PNorm = 38.1523, GNorm = 0.0131, lr_0 = 1.2957e-04
+Validation auc = 0.845365
+Validation accuracy = 0.834320
+Validation f1 = 0.548387
+Validation binary_cross_entropy = 0.640036
+Epoch 42
+Loss = 3.3900e-03, PNorm = 38.1546, GNorm = 0.2554, lr_0 = 1.2549e-04
+Validation auc = 0.847535
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.623121
+Epoch 43
+Loss = 1.0077e-03, PNorm = 38.1578, GNorm = 0.0169, lr_0 = 1.2115e-04
+Loss = 4.2022e-03, PNorm = 38.1607, GNorm = 0.2651, lr_0 = 1.1734e-04
+Validation auc = 0.846943
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.636411
+Epoch 44
+Loss = 3.2897e-03, PNorm = 38.1640, GNorm = 0.0640, lr_0 = 1.1328e-04
+Loss = 2.6093e-03, PNorm = 38.1668, GNorm = 0.0332, lr_0 = 1.0972e-04
+Validation auc = 0.846943
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.637812
+Epoch 45
+Loss = 3.8054e-03, PNorm = 38.1690, GNorm = 0.2599, lr_0 = 1.0626e-04
+Validation auc = 0.849901
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.631427
+Epoch 46
+Loss = 1.1582e-03, PNorm = 38.1719, GNorm = 0.0135, lr_0 = 1.0259e-04
+Loss = 3.8673e-03, PNorm = 38.1744, GNorm = 0.0086, lr_0 = 1.0000e-04
+Loss = 5.2738e-05, PNorm = 38.1746, GNorm = 0.0023, lr_0 = 1.0000e-04
+Validation auc = 0.849507
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.643981
+Epoch 47
+Loss = 2.0719e-03, PNorm = 38.1767, GNorm = 0.0043, lr_0 = 1.0000e-04
+Validation auc = 0.851479
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.633305
+Epoch 48
+Loss = 7.6063e-03, PNorm = 38.1786, GNorm = 0.0362, lr_0 = 1.0000e-04
+Loss = 1.2110e-03, PNorm = 38.1813, GNorm = 0.0151, lr_0 = 1.0000e-04
+Validation auc = 0.853254
+Validation accuracy = 0.846154
+Validation f1 = 0.593750
+Validation binary_cross_entropy = 0.610025
+Epoch 49
+Loss = 4.0184e-03, PNorm = 38.1839, GNorm = 0.0082, lr_0 = 1.0000e-04
+Validation auc = 0.850888
+Validation accuracy = 0.840237
+Validation f1 = 0.571429
+Validation binary_cross_entropy = 0.641737
+Model 0 best validation auc = 0.853254 on epoch 48
+Loading pretrained parameter "encoder.encoder.0.cached_zero_vector".
+Loading pretrained parameter "encoder.encoder.0.W_i.weight".
+Loading pretrained parameter "encoder.encoder.0.W_h.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.bias".
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.4.weight".
+Loading pretrained parameter "ffn.4.bias".
+Moving model to cuda
+Model 0 test auc = 0.963613
+Model 0 test accuracy = 0.927083
+Model 0 test f1 = 0.740741
+Model 0 test binary_cross_entropy = 0.230793
+Ensemble test auc = 0.963613
+Ensemble test accuracy = 0.927083
+Ensemble test f1 = 0.740741
+Ensemble test binary_cross_entropy = 0.230793
+Fold 4
+Splitting data with seed 4
+Class sizes
+binned_sol 0: 84.78%, 1: 15.22%
+Total size = 959 | train size = 767 | val size = 169 | test size = 192
+Building model 0
+MoleculeModel(
+  (sigmoid): Sigmoid()
+  (encoder): MPN(
+    (encoder): ModuleList(
+      (0): MPNEncoder(
+        (dropout_layer): Dropout(p=0.0, inplace=False)
+        (act_func): ReLU()
+        (W_i): Linear(in_features=147, out_features=300, bias=False)
+        (W_h): Linear(in_features=300, out_features=300, bias=False)
+        (W_o): Linear(in_features=433, out_features=300, bias=True)
+      )
+    )
+  )
+  (ffn): Sequential(
+    (0): Dropout(p=0.0, inplace=False)
+    (1): Linear(in_features=2348, out_features=300, bias=True)
+    (2): ReLU()
+    (3): Dropout(p=0.0, inplace=False)
+    (4): Linear(in_features=300, out_features=1, bias=True)
+  )
+)
+Number of parameters = 969,601
+Moving model to cuda
+Epoch 0
+Loss = 5.8218e-01, PNorm = 37.2604, GNorm = 2.2709, lr_0 = 4.3000e-04
+Validation auc = 0.636884
+Validation accuracy = 0.739645
+Validation f1 = 0.000000
+Validation binary_cross_entropy = 0.793968
+Epoch 1
+Loss = 1.8819e-01, PNorm = 37.2653, GNorm = 1.2686, lr_0 = 7.6000e-04
+Loss = 2.0040e-01, PNorm = 37.3127, GNorm = 1.0090, lr_0 = 9.9362e-04
+Loss = 9.9974e-02, PNorm = 37.3220, GNorm = 1.1745, lr_0 = 9.9045e-04
+Validation auc = 0.723077
+Validation accuracy = 0.739645
+Validation f1 = 0.312500
+Validation binary_cross_entropy = 0.551450
+Epoch 2
+Loss = 8.6463e-02, PNorm = 37.4039, GNorm = 0.4353, lr_0 = 9.5928e-04
+Validation auc = 0.734714
+Validation accuracy = 0.763314
+Validation f1 = 0.200000
+Validation binary_cross_entropy = 0.601982
+Epoch 3
+Loss = 3.8984e-02, PNorm = 37.4567, GNorm = 0.3516, lr_0 = 9.2909e-04
+Loss = 4.4697e-02, PNorm = 37.4971, GNorm = 0.1278, lr_0 = 8.9984e-04
+Validation auc = 0.757396
+Validation accuracy = 0.763314
+Validation f1 = 0.354839
+Validation binary_cross_entropy = 0.575336
+Epoch 4
+Loss = 2.6762e-02, PNorm = 37.5388, GNorm = 0.1412, lr_0 = 8.6874e-04
+Validation auc = 0.762919
+Validation accuracy = 0.769231
+Validation f1 = 0.315789
+Validation binary_cross_entropy = 0.640167
+Epoch 5
+Loss = 2.0649e-02, PNorm = 37.5754, GNorm = 0.1989, lr_0 = 8.3871e-04
+Loss = 1.8786e-02, PNorm = 37.5974, GNorm = 0.0915, lr_0 = 8.1231e-04
+Validation auc = 0.765286
+Validation accuracy = 0.769231
+Validation f1 = 0.338983
+Validation binary_cross_entropy = 0.602108
+Epoch 6
+Loss = 1.3854e-02, PNorm = 37.6228, GNorm = 0.1014, lr_0 = 7.8674e-04
+Validation auc = 0.764300
+Validation accuracy = 0.786982
+Validation f1 = 0.333333
+Validation binary_cross_entropy = 0.682198
+Epoch 7
+Loss = 2.1796e-02, PNorm = 37.6498, GNorm = 0.3222, lr_0 = 7.5955e-04
+Loss = 9.8855e-03, PNorm = 37.6702, GNorm = 0.0974, lr_0 = 7.3564e-04
+Validation auc = 0.773767
+Validation accuracy = 0.786982
+Validation f1 = 0.437500
+Validation binary_cross_entropy = 0.629355
+Epoch 8
+Loss = 1.2103e-02, PNorm = 37.6923, GNorm = 0.0531, lr_0 = 7.1021e-04
+Validation auc = 0.773176
+Validation accuracy = 0.786982
+Validation f1 = 0.333333
+Validation binary_cross_entropy = 0.712328
+Epoch 9
+Loss = 6.3030e-03, PNorm = 37.7097, GNorm = 0.0732, lr_0 = 6.8786e-04
+Loss = 9.1116e-03, PNorm = 37.7268, GNorm = 0.0632, lr_0 = 6.6621e-04
+Validation auc = 0.778107
+Validation accuracy = 0.798817
+Validation f1 = 0.413793
+Validation binary_cross_entropy = 0.655229
+Epoch 10
+Loss = 1.0198e-02, PNorm = 37.7449, GNorm = 0.1965, lr_0 = 6.4318e-04
+Validation auc = 0.781460
+Validation accuracy = 0.804734
+Validation f1 = 0.440678
+Validation binary_cross_entropy = 0.673316
+Epoch 11
+Loss = 2.0320e-02, PNorm = 37.7629, GNorm = 0.0581, lr_0 = 6.2095e-04
+Loss = 4.3254e-03, PNorm = 37.7812, GNorm = 0.0476, lr_0 = 6.0140e-04
+Validation auc = 0.787377
+Validation accuracy = 0.804734
+Validation f1 = 0.459016
+Validation binary_cross_entropy = 0.673374
+Epoch 12
+Loss = 2.7424e-03, PNorm = 37.7958, GNorm = 0.0255, lr_0 = 5.8248e-04
+Validation auc = 0.787574
+Validation accuracy = 0.798817
+Validation f1 = 0.392857
+Validation binary_cross_entropy = 0.765428
+Epoch 13
+Loss = 3.8480e-03, PNorm = 37.8119, GNorm = 0.0558, lr_0 = 5.6234e-04
+Loss = 1.0038e-02, PNorm = 37.8202, GNorm = 0.0662, lr_0 = 5.4464e-04
+Validation auc = 0.784615
+Validation accuracy = 0.786982
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.630074
+Epoch 14
+Loss = 4.3204e-03, PNorm = 37.8287, GNorm = 0.0734, lr_0 = 5.2582e-04
+Loss = 1.0228e-02, PNorm = 37.8380, GNorm = 0.0735, lr_0 = 5.0927e-04
+Validation auc = 0.781854
+Validation accuracy = 0.804734
+Validation f1 = 0.476190
+Validation binary_cross_entropy = 0.687407
+Epoch 15
+Loss = 7.2403e-03, PNorm = 37.8479, GNorm = 0.0389, lr_0 = 4.9324e-04
+Validation auc = 0.785799
+Validation accuracy = 0.804734
+Validation f1 = 0.492308
+Validation binary_cross_entropy = 0.693620
+Epoch 16
+Loss = 2.7417e-03, PNorm = 37.8589, GNorm = 0.0281, lr_0 = 4.7619e-04
+Loss = 4.0696e-03, PNorm = 37.8683, GNorm = 0.0144, lr_0 = 4.6120e-04
+Loss = 8.5752e-02, PNorm = 37.8701, GNorm = 1.0294, lr_0 = 4.5973e-04
+Validation auc = 0.785602
+Validation accuracy = 0.804734
+Validation f1 = 0.459016
+Validation binary_cross_entropy = 0.703541
+Epoch 17
+Loss = 5.4884e-03, PNorm = 37.8850, GNorm = 0.0388, lr_0 = 4.4526e-04
+Validation auc = 0.787377
+Validation accuracy = 0.804734
+Validation f1 = 0.459016
+Validation binary_cross_entropy = 0.707959
+Epoch 18
+Loss = 7.3136e-03, PNorm = 37.8909, GNorm = 0.0458, lr_0 = 4.3124e-04
+Loss = 2.8346e-03, PNorm = 37.8966, GNorm = 0.0133, lr_0 = 4.1767e-04
+Validation auc = 0.790533
+Validation accuracy = 0.810651
+Validation f1 = 0.515152
+Validation binary_cross_entropy = 0.678043
+Epoch 19
+Loss = 3.3352e-03, PNorm = 37.9041, GNorm = 0.0267, lr_0 = 4.0323e-04
+Validation auc = 0.791716
+Validation accuracy = 0.810651
+Validation f1 = 0.466667
+Validation binary_cross_entropy = 0.732422
+Epoch 20
+Loss = 1.9063e-03, PNorm = 37.9140, GNorm = 0.0124, lr_0 = 3.8929e-04
+Loss = 6.9507e-03, PNorm = 37.9226, GNorm = 0.4650, lr_0 = 3.7704e-04
+Validation auc = 0.790927
+Validation accuracy = 0.804734
+Validation f1 = 0.459016
+Validation binary_cross_entropy = 0.719826
+Epoch 21
+Loss = 6.4471e-03, PNorm = 37.9279, GNorm = 0.3478, lr_0 = 3.6517e-04
+Validation auc = 0.792899
+Validation accuracy = 0.816568
+Validation f1 = 0.523077
+Validation binary_cross_entropy = 0.704318
+Epoch 22
+Loss = 1.7354e-03, PNorm = 37.9355, GNorm = 0.0100, lr_0 = 3.5255e-04
+Loss = 5.4879e-03, PNorm = 37.9424, GNorm = 0.0150, lr_0 = 3.4145e-04
+Validation auc = 0.793886
+Validation accuracy = 0.804734
+Validation f1 = 0.476190
+Validation binary_cross_entropy = 0.733736
+Epoch 23
+Loss = 2.4768e-03, PNorm = 37.9480, GNorm = 0.0160, lr_0 = 3.2965e-04
+Validation auc = 0.795069
+Validation accuracy = 0.810651
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.718958
+Epoch 24
+Loss = 1.8930e-03, PNorm = 37.9538, GNorm = 0.0143, lr_0 = 3.1928e-04
+Loss = 3.2350e-03, PNorm = 37.9607, GNorm = 0.0202, lr_0 = 3.0923e-04
+Validation auc = 0.795661
+Validation accuracy = 0.804734
+Validation f1 = 0.476190
+Validation binary_cross_entropy = 0.737491
+Epoch 25
+Loss = 5.5045e-03, PNorm = 37.9657, GNorm = 0.1840, lr_0 = 2.9854e-04
+Validation auc = 0.799014
+Validation accuracy = 0.816568
+Validation f1 = 0.523077
+Validation binary_cross_entropy = 0.715345
+Epoch 26
+Loss = 1.5330e-03, PNorm = 37.9702, GNorm = 0.0284, lr_0 = 2.8822e-04
+Loss = 2.6103e-03, PNorm = 37.9740, GNorm = 0.0899, lr_0 = 2.7915e-04
+Validation auc = 0.799606
+Validation accuracy = 0.810651
+Validation f1 = 0.500000
+Validation binary_cross_entropy = 0.723565
+Epoch 27
+Loss = 6.7270e-03, PNorm = 37.9800, GNorm = 0.0055, lr_0 = 2.7036e-04
+Validation auc = 0.800197
+Validation accuracy = 0.804734
+Validation f1 = 0.476190
+Validation binary_cross_entropy = 0.747441
+Epoch 28
+Loss = 1.1861e-03, PNorm = 37.9847, GNorm = 0.0147, lr_0 = 2.6102e-04
+Loss = 5.0776e-03, PNorm = 37.9888, GNorm = 0.0141, lr_0 = 2.5280e-04
+Validation auc = 0.801578
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.714237
+Epoch 29
+Loss = 4.8098e-03, PNorm = 37.9934, GNorm = 0.0398, lr_0 = 2.4406e-04
+Loss = 3.2996e-03, PNorm = 37.9972, GNorm = 0.0181, lr_0 = 2.3638e-04
+Validation auc = 0.802170
+Validation accuracy = 0.816568
+Validation f1 = 0.523077
+Validation binary_cross_entropy = 0.729434
+Epoch 30
+Loss = 4.0874e-03, PNorm = 38.0012, GNorm = 0.0139, lr_0 = 2.2894e-04
+Validation auc = 0.802367
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.730560
+Epoch 31
+Loss = 5.3462e-03, PNorm = 38.0058, GNorm = 0.0228, lr_0 = 2.2103e-04
+Loss = 3.1300e-03, PNorm = 38.0087, GNorm = 0.0185, lr_0 = 2.1407e-04
+Loss = 1.4613e-03, PNorm = 38.0089, GNorm = 0.0376, lr_0 = 2.1339e-04
+Validation auc = 0.803550
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.726611
+Epoch 32
+Loss = 3.7709e-03, PNorm = 38.0123, GNorm = 0.0201, lr_0 = 2.0667e-04
+Validation auc = 0.804339
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.731701
+Epoch 33
+Loss = 4.3846e-03, PNorm = 38.0150, GNorm = 0.0166, lr_0 = 2.0017e-04
+Loss = 1.2125e-03, PNorm = 38.0178, GNorm = 0.0391, lr_0 = 1.9387e-04
+Validation auc = 0.804734
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.728348
+Epoch 34
+Loss = 5.1562e-03, PNorm = 38.0226, GNorm = 0.0117, lr_0 = 1.8716e-04
+Validation auc = 0.804734
+Validation accuracy = 0.804734
+Validation f1 = 0.476190
+Validation binary_cross_entropy = 0.761688
+Epoch 35
+Loss = 9.9309e-04, PNorm = 38.0262, GNorm = 0.0128, lr_0 = 1.8069e-04
+Loss = 5.0912e-03, PNorm = 38.0294, GNorm = 0.4440, lr_0 = 1.7501e-04
+Validation auc = 0.805720
+Validation accuracy = 0.816568
+Validation f1 = 0.523077
+Validation binary_cross_entropy = 0.740786
+Epoch 36
+Loss = 4.2604e-03, PNorm = 38.0325, GNorm = 0.0129, lr_0 = 1.6950e-04
+Validation auc = 0.807495
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.726220
+Epoch 37
+Loss = 1.0696e-02, PNorm = 38.0355, GNorm = 0.1788, lr_0 = 1.6364e-04
+Loss = 1.9181e-03, PNorm = 38.0381, GNorm = 0.0158, lr_0 = 1.5849e-04
+Validation auc = 0.806903
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.735195
+Epoch 38
+Loss = 4.5601e-03, PNorm = 38.0405, GNorm = 0.3390, lr_0 = 1.5301e-04
+Validation auc = 0.807495
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.740652
+Epoch 39
+Loss = 4.2204e-04, PNorm = 38.0431, GNorm = 0.0090, lr_0 = 1.4819e-04
+Loss = 4.8178e-03, PNorm = 38.0456, GNorm = 0.3575, lr_0 = 1.4353e-04
+Validation auc = 0.808087
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.740108
+Epoch 40
+Loss = 3.8786e-03, PNorm = 38.0487, GNorm = 0.0088, lr_0 = 1.3857e-04
+Validation auc = 0.808087
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.748678
+Epoch 41
+Loss = 5.2964e-04, PNorm = 38.0511, GNorm = 0.0062, lr_0 = 1.3378e-04
+Loss = 3.8544e-03, PNorm = 38.0534, GNorm = 0.0109, lr_0 = 1.2957e-04
+Validation auc = 0.809467
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.733853
+Epoch 42
+Loss = 5.3858e-03, PNorm = 38.0555, GNorm = 0.0107, lr_0 = 1.2549e-04
+Validation auc = 0.809665
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.738058
+Epoch 43
+Loss = 5.8448e-04, PNorm = 38.0577, GNorm = 0.0123, lr_0 = 1.2115e-04
+Loss = 1.6208e-03, PNorm = 38.0594, GNorm = 0.0153, lr_0 = 1.1734e-04
+Validation auc = 0.810256
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.740804
+Epoch 44
+Loss = 1.9377e-03, PNorm = 38.0617, GNorm = 0.0092, lr_0 = 1.1328e-04
+Loss = 3.7918e-03, PNorm = 38.0636, GNorm = 0.0029, lr_0 = 1.0972e-04
+Validation auc = 0.809467
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.748804
+Epoch 45
+Loss = 4.5072e-03, PNorm = 38.0656, GNorm = 0.0117, lr_0 = 1.0626e-04
+Validation auc = 0.811045
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.747065
+Epoch 46
+Loss = 2.4321e-03, PNorm = 38.0673, GNorm = 0.0127, lr_0 = 1.0259e-04
+Loss = 3.6728e-03, PNorm = 38.0690, GNorm = 0.0215, lr_0 = 1.0000e-04
+Loss = 9.0443e-04, PNorm = 38.0692, GNorm = 0.0195, lr_0 = 1.0000e-04
+Validation auc = 0.811045
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.740190
+Epoch 47
+Loss = 4.4595e-03, PNorm = 38.0710, GNorm = 0.0161, lr_0 = 1.0000e-04
+Validation auc = 0.811440
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.746248
+Epoch 48
+Loss = 5.5802e-03, PNorm = 38.0732, GNorm = 0.0136, lr_0 = 1.0000e-04
+Loss = 1.9063e-03, PNorm = 38.0751, GNorm = 0.0134, lr_0 = 1.0000e-04
+Validation auc = 0.811637
+Validation accuracy = 0.822485
+Validation f1 = 0.545455
+Validation binary_cross_entropy = 0.750669
+Epoch 49
+Loss = 4.5223e-03, PNorm = 38.0761, GNorm = 0.0054, lr_0 = 1.0000e-04
+Validation auc = 0.812229
+Validation accuracy = 0.828402
+Validation f1 = 0.567164
+Validation binary_cross_entropy = 0.726326
+Model 0 best validation auc = 0.812229 on epoch 49
+Loading pretrained parameter "encoder.encoder.0.cached_zero_vector".
+Loading pretrained parameter "encoder.encoder.0.W_i.weight".
+Loading pretrained parameter "encoder.encoder.0.W_h.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.weight".
+Loading pretrained parameter "encoder.encoder.0.W_o.bias".
+Loading pretrained parameter "ffn.1.weight".
+Loading pretrained parameter "ffn.1.bias".
+Loading pretrained parameter "ffn.4.weight".
+Loading pretrained parameter "ffn.4.bias".
+Moving model to cuda
+Model 0 test auc = 0.863550
+Model 0 test accuracy = 0.885417
+Model 0 test f1 = 0.560000
+Model 0 test binary_cross_entropy = 0.477041
+Ensemble test auc = 0.863550
+Ensemble test accuracy = 0.885417
+Ensemble test f1 = 0.560000
+Ensemble test binary_cross_entropy = 0.477041
+5-fold cross validation
+	Seed 0 ==> test auc = 0.942670
+	Seed 0 ==> test accuracy = 0.906250
+	Seed 0 ==> test f1 = 0.678571
+	Seed 0 ==> test binary_cross_entropy = 0.270067
+	Seed 1 ==> test auc = 0.954491
+	Seed 1 ==> test accuracy = 0.916667
+	Seed 1 ==> test f1 = 0.692308
+	Seed 1 ==> test binary_cross_entropy = 0.302378
+	Seed 2 ==> test auc = 0.941149
+	Seed 2 ==> test accuracy = 0.906250
+	Seed 2 ==> test f1 = 0.625000
+	Seed 2 ==> test binary_cross_entropy = 0.299639
+	Seed 3 ==> test auc = 0.963613
+	Seed 3 ==> test accuracy = 0.927083
+	Seed 3 ==> test f1 = 0.740741
+	Seed 3 ==> test binary_cross_entropy = 0.230793
+	Seed 4 ==> test auc = 0.863550
+	Seed 4 ==> test accuracy = 0.885417
+	Seed 4 ==> test f1 = 0.560000
+	Seed 4 ==> test binary_cross_entropy = 0.477041
+Overall test auc = 0.933095 +/- 0.035727
+Overall test accuracy = 0.908333 +/- 0.013819
+Overall test f1 = 0.659324 +/- 0.061855
+Overall test binary_cross_entropy = 0.315983 +/- 0.084566
+Elapsed time = 0:01:46
