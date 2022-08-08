@@ -1,0 +1,14 @@
+model_dataset,elapsed_time (hh:mm:ss)
+bace,0:03:51
+bace-cluster,0:04:02
+bace-random,0:04:04
+clintox-cluster,0:03:22
+clintox-random,0:03:21
+deepchem_Lipophilicity-cluster,0:09:10
+deepchem_Lipophilicity-random,0:09:33
+HIV-cluster,4:58:22
+HIV-random,4:54:50
+sol_del-cluster,0:01:46
+sol_del-random,0:01:34
+tox21-cluster,0:10:25
+tox21-random,0:09:55
