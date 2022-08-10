@@ -1,5 +1,6 @@
 from rdkit.Chem import AllChem
 from rdkit import Chem
+import numpy as np
 
 def generate_fingerprint(smiles,radius,bits):
     '''

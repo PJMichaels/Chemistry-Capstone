@@ -1,0 +1,11 @@
+prepare.py -> takes the raw datasets, maps column names, and splits into train and validate.
+              might be worth normalizing X and y column names??
+              Do we want to also split by clustering vs random
+
+utils -> featurize.py -> generate_morgan_fingerprint()
+
+utils -> loader.py -> load data to train_test, pickle models, etc..
+
+train.py -> takes in datasets, trains the models, records training time, and pickles models
+
+evaluate.py -> outputs a csv with all model results 
