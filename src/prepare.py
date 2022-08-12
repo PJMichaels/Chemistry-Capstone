@@ -1,59 +1,67 @@
-import yaml
-from pathlib import Path
+from asyncore import write
+from email.policy import default
+from unittest import skip
 import pandas as pd
-from sklearn.model_selection import train_test_split
+# import seaborn as sns
+# import os
+from pathlib import Path
+import json
+from collections import defaultdict
+# import math
 
-
-try:
-    params = yaml.safe_load(open("params.yaml"))["prepare"]
-    file_name = params['dataset']
-    split = params['split']
-    random_seed = params['seed']
-except:
-    print('There is a problem during import of params.yaml')
-    exit()
-
-
-data_path = Path.cwd() / 'data' / file_name
-prepared_dir = Path.cwd() / 'data' / "prepared"
-
-if not prepared_dir.exists():
-    prepared_dir.mkdir()
-
-if not data_path.exists():
-    print(f"Path to data not found:\n\t{data_dir}")
-    exit()
-
-
-# will likely need a different elif per data file type
-if data_path.suffix == ".csv":
-    df = pd.read_csv(data_path)
-else:
-    print(f'Could not process data format: \n\t{data_path.suffix}')
-    exit()
-
-# split dataset to train test
-train, test = train_test_split(
-    df,
-    test_size= split,
-    random_state = random_seed
-    )
+def clean_dataset(dataset: str, dataset_dict: dict) -> pd.DataFrame:
+    '''Takes a single dataset default dictionary cleans it, and writes a new .csv file'''
+    dataset_path = Path.cwd() / "data" / (dataset + dataset_dict["suffix"])
+    if not dataset_path.exists:
+        print(f"Can't find {dataset_path}")
+        return None
     
-print(f"\nDataset split into train:test at ratio of {1 - split}:{split}")
-print(f"Row counts are: \nTrain: {len(train)}\nTest: {len(test)}\n")
+    df = pd.read_csv(dataset_path)
 
 
-# write out csv
-train.to_csv(prepared_dir / "train.csv", index=False)
-test.to_csv(prepared_dir / "test.csv", index=False)
+    
 
 
-# Thoughts for future development:
+    return df
 
-# - Determine if this is train and test, or train/test and validate
-#     - train/test and validate may make more sense which could enable
-#       the train.py file to handle the train/test and/or cross validation etc.. 
-# - This might be a place to record some dataset statistics for final analysis
-#   but this could also be done as part of the eval step after featurization is done
-#     - record train vs test datasets
-#     - make note of label class ratios per train/test?
+
+def prepare_datasets(datasets: dict, overwrite: bool = False) -> None:
+    '''Takes in a dictionary of datasets, intended for the params[datasets] dictionary'''
+    
+    ### convert each dataset dict to defaultdict to simplify boolian logic
+    datasets = {dataset: defaultdict(str,datasets[dataset]) for dataset in datasets}
+
+    steps_skipped = False
+    prepared_dir = Path.cwd() / "data" / "prepared"
+    
+    for dataset in datasets:
+
+        output_path = prepared_dir / (dataset + ".csv")
+        if datasets[dataset]["short_name"]:
+            output_path = prepared_dir / (datasets[dataset]["short_name"] + ".csv")
+
+        print(output_path)
+        
+        if not output_path.exists() or overwrite == True:
+            
+            with open(output_path, 'w') as f:
+                df = clean_dataset(dataset, datasets[dataset])
+                df.to_csv(output_path, index = False)
+                print(f"Generated {output_path}")
+        else:
+            print(f"Dataset for {dataset} already exists:{output_path}\n")
+            steps_skipped = True
+    
+    if steps_skipped:
+        print("\nSkipped steps can be reprocessed by including --overwrite parameter")
+    # x = 10
+    # print(eval("x > 6"))
+
+
+
+
+with open(Path("params.json"), 'r') as f:
+    params = json.load(f)
+
+prepare_datasets(params["datasets"], overwrite = True)
+

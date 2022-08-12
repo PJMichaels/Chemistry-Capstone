@@ -1,4 +1,38 @@
 {
+  "datasets":{
+    "bace.csv":{
+      "X": "mol",
+      "y": "pIC50",
+      "y-process": "threshold, x > 6",
+      "y_new": "active"
+    },
+    "clintox.csv.gz": {
+      "X": "smiles",
+      "y": "?",
+      "y-process": null
+    },
+    "deepchem_Lipophilicity.csv": {
+      "short_name": "lipophilicity",
+      "X": "smiles",
+      "y": "?",
+      "y-process": null
+    },
+    "HIV.csv": {
+      "X": "smiles",
+      "y": "HIV_active",
+      "y-process": null
+    },
+    "Solubility_delaney-processed.csv": {
+      "short_name": "sol_del",
+      "X": "smiles",
+      "y": "?",
+      "y-process": null
+    },
+    "tox21.csv.gz": {
+      "X": "smiles",
+      "y": "?"
+    }
+  },
   "models": {
     "SVC": {
       "param_grid": [
