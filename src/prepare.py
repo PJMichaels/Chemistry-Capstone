@@ -1,13 +1,8 @@
-from asyncore import write
-from email.policy import default
-from unittest import skip
 import pandas as pd
-# import seaborn as sns
-# import os
 from pathlib import Path
 import json
 from collections import defaultdict
-# import math
+
 
 def clean_dataset(dataset: str, dataset_dict: dict) -> pd.DataFrame:
     '''Takes a single dataset default dictionary cleans it, and writes a new .csv file'''
@@ -18,9 +13,40 @@ def clean_dataset(dataset: str, dataset_dict: dict) -> pd.DataFrame:
     
     df = pd.read_csv(dataset_path)
 
+    ### creating a set of columns to filter on for prepared df
+    columns = []
+
+    X_name = dataset_dict["X"]
+    y_name = dataset_dict['y']
+
+    ### standardizing X column name to reduce need for dataset params later on
+    if X_name != "smiles":
+        df['smiles'] = df[X_name]
+    
+    columns.append('smiles')
+
+    ### enables binning of continuous data for classification with provided logic
+    if dataset_dict['y_process']:
+        logic = dataset_dict['y_process'].strip()
+        df['labels'] = df[y_name].apply(lambda x: 1 if eval(logic) else 0)
+
+    else:
+        df['labels'] = df[y_name]
+    
+    columns.append("labels")
+    
+    ### persist a copy of labels column with identifiable name if provided - necessary for chemprop
+    if dataset_dict['y_new']:
+        y_new = dataset_dict["y_new"]
+        df[f"labels-{y_new}"] = df['labels']
+        columns.append(f"labels-{y_new}")
+    else:
+        df[f'labels-{y_name}'] = df['labels']
+        columns.append(f"labels-{y_name}")
 
     
-
+    ### filter df to only relevant columns for training and label-id copy column
+    df = df[columns]
 
     return df
 
@@ -35,15 +61,17 @@ def prepare_datasets(datasets: dict, overwrite: bool = False) -> None:
     prepared_dir = Path.cwd() / "data" / "prepared"
     
     for dataset in datasets:
-
-        output_path = prepared_dir / (dataset + ".csv")
+        if ".gz" in dataset:
+            f_name = dataset.replace(".gz", "")
+            output_path = prepared_dir / (f_name)
+        else:
+            output_path = prepared_dir / (dataset)
         if datasets[dataset]["short_name"]:
             output_path = prepared_dir / (datasets[dataset]["short_name"] + ".csv")
 
-        print(output_path)
         
+        ### only process files if they don't exist or overwrite arg is passed
         if not output_path.exists() or overwrite == True:
-            
             with open(output_path, 'w') as f:
                 df = clean_dataset(dataset, datasets[dataset])
                 df.to_csv(output_path, index = False)
@@ -52,16 +80,14 @@ def prepare_datasets(datasets: dict, overwrite: bool = False) -> None:
             print(f"Dataset for {dataset} already exists:{output_path}\n")
             steps_skipped = True
     
+    ### output a reminder that you can use overwrite arg
     if steps_skipped:
         print("\nSkipped steps can be reprocessed by including --overwrite parameter")
-    # x = 10
-    # print(eval("x > 6"))
 
 
 
-
+### eventually below here will be only in a pipeline processing script
 with open(Path("params.json"), 'r') as f:
     params = json.load(f)
 
 prepare_datasets(params["datasets"], overwrite = True)
-
