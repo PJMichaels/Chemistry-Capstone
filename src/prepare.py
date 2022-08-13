@@ -103,7 +103,7 @@ def prepare_datasets(datasets: dict, overwrite: bool = False) -> list:
             steps_skipped = True
         
         ### append list to be returned
-        file_paths.append(output_path.absolute())
+        file_paths.append(str(output_path))
     
     ### output a reminder that you can use overwrite arg
     if steps_skipped:

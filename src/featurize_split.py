@@ -39,8 +39,8 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
         
         ### assign train and validate output paths
         input_path = Path(dataset_path)
-        train_path = split_dir / (dataset_path.name.replace(".csv", f"-{split_style}-train.csv"))
-        validate_path = split_dir / (dataset_path.name.replace(".csv", f"-{split_style}-validate.csv"))
+        train_path = split_dir / (input_path.name.replace(".csv", f"-{split_style}-train.csv"))
+        validate_path = split_dir / (input_path.name.replace(".csv", f"-{split_style}-validate.csv"))
 
         if (not train_path.exists() and not validate_path.exists()) or overwrite == True:
 
@@ -82,7 +82,7 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
             print(f"Train and Validate datasets already exist for {input_path.name}")
             steps_skipped = True
 
-        split_paths.append((train_path.absolute(), validate_path.absolute()))
+        split_paths.append((str(train_path), str(validate_path)))
 
     ### output a reminder that you can use overwrite arg
     if steps_skipped:

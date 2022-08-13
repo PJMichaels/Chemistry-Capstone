@@ -5,10 +5,12 @@ from pathlib import Path
 
 from prepare import prepare_datasets
 from featurize_split import split_dfs
+from train import train_models
 
 
 ### get args - should be argparse eventually
 overwrite = False ### TBD what the default should be
+tune_models = False
 
 ### import params
 if __name__ == "__main__":
@@ -22,6 +24,7 @@ if __name__ == "__main__":
     split_style = params["general"]['split_style']
     validation_percent = params["general"]['validation_percent']
     feature_representation = params["general"]["feature_representation"]
+    models = params['models']
 
     ### process prepare.py
     file_list = prepare_datasets(datasets, overwrite)
@@ -30,6 +33,8 @@ if __name__ == "__main__":
     split_paths = split_dfs(file_list, split_style, validation_percent, random_seed, feature_representation, overwrite)
 
     ### process train.py files
+    training_paths = [train_path for train_path, validate_path in split_paths]
+    train_models(training_paths, models, random_seed, tune_models, overwrite)
     ### next step is the train file
 
 

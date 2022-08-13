@@ -1,46 +1,27 @@
-import yaml
-import time
-from sklearn.linear_model import LogisticRegression
-from utils import loader
+from pathlib import Path
+import pandas as pd
 
 
-try:
-    params = yaml.safe_load(open("params.yaml"))["train"]
-    gen_params = yaml.safe_load(open("params.yaml"))["general"]
-    max_iterations = params['max_iter']
-    y_id = gen_params['y']
-    random_seed = gen_params['seed']
-except:
-    print('There is a problem during import of params.yaml for train.py')
-    exit()
+### what params do we need to import???
 
-### from YAML import split params or maybe eventually cross val info as well as random state
-### random state could also be hard coded maybe
-### YAML PARAMS will also either need to note X and Y column names to know what labels are
+def train_models(training_paths: list, models_dict: dict, random_seed: int, tune_models = False, overwrite = False) -> list:
+    '''
+    Trains models from the params file for each of the training datasets provided and
+    outputs pickled model files
+    
+    Args:
+        training_paths: (list) A list of paths to featurized training datasets
+        model_dict: (dict) params.models dictionary from the params.json file. Includes models to train and hyperparameters parameters
+        random_seed: (int) The random state argument for model training, which enables reproducibility.
+        tune_models: (bool) Setting True for this parameter initiates a grid search for all models and will update best parameters section of params.json
+        overwrite: (bool) If true existing files are overwritten/re-featurized-split
 
-X_train, y_train = loader.load_featurized_train_test(y_id, test = False)
+    Returns ? Some sort of association between datasets and pkl files for eval script
+    '''
 
+    print("\nInitiating dataset training step")
 
-### will need to find a way to make model import into a variable as well and ensure
-### there is a validation check that the model is spelled correctly, etc..
-### how to import a variable?
+    output_list = [] ### may want to change this to be a dictionary or something else
+    steps_skipped = False
 
-### YAMLS params for the model? how to avoid making this too complicated
-### one pipeline per model type, or one pipeline for all model types, but 
-### params may be quite different for each model
-
-### take a time stamp here so we can also note model train time if not captured elsewhere
-print("\nBeggining to train model")
-start_time = time.time()
-
-clf = LogisticRegression(random_state= random_seed ,solver='lbfgs',max_iter= max_iterations, verbose= True)
-clf.fit(X_train, y_train)
-
-stop_time = time.time()
-
-clf.train_time = f"{stop_time - start_time} seconds"
-
-loader.write_model(clf)
-
-### take another time stamp and calculate/record delta time for metrics
-
+    print(training_paths)
