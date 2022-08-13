@@ -19,7 +19,11 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
 
     Returns a list of tuples where each tuple contains the datasets train and validate paths
     '''
+
+    print("\nInitiating featurization and splitting of dataset(s)")
+
     split_paths = []
+    steps_skipped = False
 
     if "morganfingerprint" in feature_representation:
         _, radius, bits = tuple(feature_representation.split("-"))
@@ -28,7 +32,9 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
 
     if not split_dir.exists():
         split_dir.mkdir()
+        print(f"Making output directory: {split_dir}")
 
+    
     for dataset_path in file_list:
         
         ### assign train and validate output paths
@@ -73,9 +79,14 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
             validate_df.to_csv(validate_path, index = False)
 
         else:
-            print(f"Train and Validate datasets already exist for {input_path}")
+            print(f"Train and Validate datasets already exist for {input_path.name}")
+            steps_skipped = True
 
         split_paths.append((train_path.absolute(), validate_path.absolute()))
+
+    ### output a reminder that you can use overwrite arg
+    if steps_skipped:
+        print("\nSkipped steps can be reprocessed by including --overwrite parameter")
 
     return split_paths
 

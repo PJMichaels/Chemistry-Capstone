@@ -69,12 +69,18 @@ def prepare_datasets(datasets: dict, overwrite: bool = False) -> list:
     Returns a list of file paths for all files that would have been generated (included those that already existed)
     '''
 
+    print("\nInitiating dataset preparation step")
+
     ### convert each dataset dict to defaultdict to simplify boolian logic
     datasets = {dataset: defaultdict(str,datasets[dataset]) for dataset in datasets}
 
     file_paths = []
     steps_skipped = False
+    
     prepared_dir = Path.cwd() / "data" / "prepared"
+    if not prepared_dir.exists():
+        prepared_dir.mkdir()
+        print(f"Making output directory: {prepared_dir}")
     
     for dataset in datasets:
         suffix = datasets[dataset]["suffix"]
