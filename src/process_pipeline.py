@@ -30,6 +30,7 @@ if __name__ == "__main__":
     split_paths = split_dfs(file_list, split_style, validation_percent, random_seed, feature_representation, overwrite)
 
     ### process train.py files
+    ### next step is the train file
 
 
 
