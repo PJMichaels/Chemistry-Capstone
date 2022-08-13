@@ -17,5 +17,5 @@ def generate_fingerprint(smiles,radius,bits):
         fp=AllChem.GetMorganFingerprintAsBitVect(mol,radius,bits)
         return(np.array(fp))
     except:
-        print(f'{smiles} failed in RDkit')
+        # print(f'{smiles} failed in RDkit')
         return (np.nan)
