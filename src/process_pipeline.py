@@ -1,6 +1,5 @@
 import argparse
 import json
-# from posixpath import split
 from pathlib import Path
 
 from prepare import prepare_datasets
@@ -10,7 +9,8 @@ from train import train_models
 
 ### get args - should be argparse eventually
 overwrite = False ### TBD what the default should be
-tune_models = False
+### should add an optional arg to point to a different params.json file
+### might eventually want a way to tune the models via command line
 
 ### import params
 if __name__ == "__main__":
@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     ### process train.py files
     training_paths = [train_path for train_path, validate_path in split_paths]
-    train_models(training_paths, models, random_seed, tune_models, overwrite)
+    train_models(training_paths, models, feature_representation, random_seed, overwrite)
     
     ### process evaluation.py step
 

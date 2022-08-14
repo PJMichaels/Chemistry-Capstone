@@ -12,9 +12,14 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
     
     Args:
         file_list: A list of paths to pre-prepared datasets
-        split_style: (str) Can be "random" or "cluster" where cluster is a mini-batch split for unbalanced datasets
+        split_style: (str) Can be "random" or "cluster" where cluster is a mini-batch split
+                           for unbalanced datasets
         validation_percent: (float) Should be a float between between 0 and 1
-        random_seed: (int) The random state argument for splitting and clustering functions, which enables reproducibility.
+        random_seed: (int) The random state argument for splitting and clustering functions,
+                           which enables reproducibility.
+        feature_representation: (str) A string representation of morgan fingerprint with
+                                      radius and bits encoded and separated by -. 
+                                      Ex. morganfingerprint-2-1024
         overwrite: (bool) If true existing files are overwritten/re-featurized-split
 
     Returns a list of tuples where each tuple contains the datasets train and validate paths
@@ -50,7 +55,7 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
 
             ### generate morgan fingerprint features and drop values that couldn't be represented
             df['fp'] = df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
-            df.dropna(subset=["fp"],inplace=True)
+            df.dropna(subset=["fp", "labels"],inplace=True)
 
             if split_style == "random":
                 train_df, validate_df = train_test_split(df, test_size= validation_percent, random_state=random_seed)
