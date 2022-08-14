@@ -79,6 +79,8 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
                         validate_df = pd.concat([validate_df,dataframe])
                     else:
                         train_df = pd.concat([train_df,dataframe])
+                train_df.drop(columns = "fp", inplace = True)
+                validate_df.drop(columns = "fp", inplace = True)
 
             train_df.to_csv(train_path, index = False)
             validate_df.to_csv(validate_path, index = False)

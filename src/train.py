@@ -59,11 +59,13 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
 
     output_list = [] ### may want to change this to be a dictionary or something else
     steps_skipped = False
-    models_dir = Path.cwd() / "models"
+    models_wo_random_state = ["KNeighborsClassifier"]
+
 
     if "morganfingerprint" in feature_representation:
         _, radius, bits = tuple(feature_representation.split("-"))
 
+    models_dir = Path.cwd() / "models"
     if not models_dir.exists():
         models_dir.mkdir()
         print(f"Making output directory: {models_dir}")
@@ -89,7 +91,8 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
                 print(f"Generating model: {model_path}")
                             
                 ### add random seed to model args
-                models_dict[model].update({"random_state": random_seed})
+                if model not in models_wo_random_state:
+                    models_dict[model].update({"random_state": random_seed})
 
                 start_time = datetime.now()
                 clf = eval_model_json(model, models_dict[model])
@@ -102,10 +105,7 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
 
                 with open(model_path, "wb") as f:
                     pickle.dump(clf, f)
-                print(f"Generated model: {model_path}")
 
             else:
                 print(f"Model file already exists: {model_path}")
                 steps_skipped = True
-            
-        break ### DON'T FORGET TO REMOVE THIS
