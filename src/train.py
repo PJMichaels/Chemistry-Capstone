@@ -83,6 +83,7 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
             else:
                 print(f"Model file already exists: {model_path.relative_to(Path.cwd())}")
                 steps_skipped = True
+                model_paths.append(str(model_path))
 
 
     for train_path in required_training_paths:

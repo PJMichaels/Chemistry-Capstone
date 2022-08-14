@@ -31,7 +31,8 @@ random_seed = params["general"]['random_seed']
 split_style = params["general"]['split_style']
 validation_percent = params["general"]['validation_percent']
 feature_representation = params["general"]["feature_representation"]
-models = params['models']
+models = params["models"]
+metrics = params["evaluation_metrics"]
 
 ### process prepare.py
 file_list = prepare_datasets(datasets, overwrite)
@@ -44,7 +45,7 @@ training_paths = [train_path for train_path, validate_path in split_paths]
 model_paths = train_models(training_paths, models, feature_representation, random_seed, overwrite)
 
 ### process evaluation.py step
-evaluate_models(model_paths)
+evaluate_models(model_paths, metrics)
 
 # ### get args - should be argparse eventually
 # overwrite = False ### TBD what the default should be
