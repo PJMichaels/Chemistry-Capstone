@@ -107,6 +107,6 @@ def prepare_datasets(datasets: dict, overwrite: bool = False) -> list:
     
     ### output a reminder that you can use overwrite arg
     if steps_skipped:
-        print("\nSkipped steps can be reprocessed by including --overwrite parameter")
+        print("\nSkipped steps can be reprocessed by including --overwrite or -o parameter")
 
     return file_paths

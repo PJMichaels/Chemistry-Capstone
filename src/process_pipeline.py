@@ -5,6 +5,7 @@ from pathlib import Path
 from prepare import prepare_datasets
 from featurize_split import split_dfs
 from train import train_models
+# from evaluate import eval_models
 
 
 parser = argparse.ArgumentParser(description='Get pipeline processing arguments')
@@ -40,10 +41,10 @@ split_paths = split_dfs(file_list, split_style, validation_percent, random_seed,
 
 ### process train.py files
 training_paths = [train_path for train_path, validate_path in split_paths]
-train_models(training_paths, models, feature_representation, random_seed, overwrite)
+model_paths = train_models(training_paths, models, feature_representation, random_seed, overwrite)
 
 ### process evaluation.py step
-
+# eval_models(model_paths)
 
 # ### get args - should be argparse eventually
 # overwrite = False ### TBD what the default should be

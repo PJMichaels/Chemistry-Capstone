@@ -57,7 +57,7 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
 
     print("\nInitiating dataset training step")
 
-    output_list = [] ### may want to change this to be a dictionary or something else
+    model_paths = []
     steps_skipped = False
     models_wo_random_state = ["KNeighborsClassifier"]
 
@@ -70,14 +70,29 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
         models_dir.mkdir()
         print(f"Making output directory: {models_dir}")
 
+    ### kind of an ugly solution, but this step eliminates featurization time if all models are trained
+    required_training_paths = []
     for train_path in training_paths:
+        model_data_dir = models_dir / Path(train_path).name.replace(".csv", "")
+        for model in models_dict:
+            model_path = model_data_dir / (model + ".pkl")
+
+            if not model_path.exists() or overwrite == True:
+                if train_path not in required_training_paths:    
+                    required_training_paths.append(train_path)
+            else:
+                print(f"Model file already exists: {model_path.relative_to(Path.cwd())}")
+                steps_skipped = True
+
+
+    for train_path in required_training_paths:
         model_data_dir = models_dir / Path(train_path).name.replace(".csv", "")
         if not model_data_dir.exists():
             model_data_dir.mkdir()
             print(f"Making output directory: {model_data_dir}")
 
         df = pd.read_csv(train_path)
-        ### convert fp dtype back to object
+        ### add fingerprint feature back to dataframe - unfortunately this is a duplicate effort right now
         df['fp'] = df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
 
         X_train = df['fp'].to_list()
@@ -106,6 +121,11 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
                 with open(model_path, "wb") as f:
                     pickle.dump(clf, f)
 
-            else:
-                print(f"Model file already exists: {model_path}")
-                steps_skipped = True
+            model_paths.append(str(model_path))
+    
+    ### output a reminder that you can use overwrite arg
+    if steps_skipped:
+        print("\nSkipped steps can be reprocessed by including --overwrite or -o parameter")
+
+    
+    return model_paths

@@ -93,7 +93,7 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
 
     ### output a reminder that you can use overwrite arg
     if steps_skipped:
-        print("\nSkipped steps can be reprocessed by including --overwrite parameter")
+        print("\nSkipped steps can be reprocessed by including --overwrite or -o parameter")
 
     return split_paths
 
