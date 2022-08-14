@@ -35,7 +35,8 @@ if __name__ == "__main__":
     ### process train.py files
     training_paths = [train_path for train_path, validate_path in split_paths]
     train_models(training_paths, models, random_seed, tune_models, overwrite)
-    ### next step is the train file
+    
+    ### process evaluation.py step
 
 
 
