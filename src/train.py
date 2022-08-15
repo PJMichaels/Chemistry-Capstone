@@ -12,6 +12,8 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import SVC
 from sklearn.dummy import DummyClassifier
 
+from sklearn.model_selection import cross_validate
+
 
 ### what params do we need to import???
 
