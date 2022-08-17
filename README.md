@@ -33,4 +33,7 @@ The Chemprop environment was created on the University of Michigan Great Lakes c
 Note: This environment can also be created on a non-GPU enabled machine, but the proper version of pytorch should be selected and installed according to the instructions [here](https://pytorch.org/get-started/locally/) 
     
 ## Overview:
- 
+
+For this project we utilized a blend of several python and shell scripts and notebooks. A flow scheme for our workflow is as follows: 
+    
+    # Make Draw.io flowchart/architecture diagarm
