@@ -1,0 +1,129 @@
+﻿Steps to get on Great Lakes Cluster and access/run our project code:
+
+
+URL:  https://greatlakes8.arc-ts.umich.edu 
+
+
+Some resources:
+* https://arc.umich.edu/greatlakes/user-guide/
+* https://arc.umich.edu/greatlakes/slurm-user-guide/
+
+
+1. Fill out request for for login credentials - note used Elle as Advisor
+   cc'd Dave
+
+
+2. Get VPN to be able to access remotely
+https://documentation.its.umich.edu/vpn/vpn-download-windows-vpn-client
+
+
+3. Connect to UM-VPN using Cisco AnyConnect Secure Mobility Client and using
+   your UMICH  credentials
+
+
+4. Go to the Great Lakes Dashboard here:
+https://greatlakes8.arc-ts.umich.edu/pun/sys/dashboard
+
+
+5. Under Clusters, select the shell option. Use your same login credentials again
+   and Voilà, you are in to the main-frame.
+
+
+6. Once in the shell, clone the github repo via
+   $ git clone https://github.com/PJMichaels/Chemistry-Capstone.git
+
+
+7. next, double check that you can access your slurm computing env with
+   
+    $ my_accounts
+  
+    this should return something like the following:
+
+
+          Cluster                            Account                            GrpTRES   GrpTRESMins MaxJobs           MaxTRES MaxSubmit         MaxWall                      QOS
+---------- ------------------------------ ------------------------------ ------------- ------- ------------- --------- ----------- --------------------
+greatlakes                  siads697s22_class                     cpu=18,mem=90G billing=6091+                                5000        06:00:00                    class
+greatlakes                  siads695w22_class                     cpu=18,mem=90G billing=6091+                                5000        06:00:00                    class
+
+
+
+
+8. From the Great Lakes dashboard, click on My Interactive Apps, and select JupyterLab. Choose your desired/anticipated resource needs, and assuming you have access, enter siads697s22_class in the Slurm input field, then spin up your resource. Once running, click Connect to Jupyter.
+Open a new terminal in Jupyter and run:
+
+
+$ pip install dvc
+$ pip install dvc[‘gdrive’]
+
+
+In order to push/pull from gdrive repo, we need to copy over the .dvc/tmp/gdrive-user-credentials.json file from your local machine (should be generated when you dvc push and dvc pull locally) to your Great Lakes cloned Chemistry-Capstone repo. At this point you should be able to do a dvc pull in your Great Lakes terminal.
+
+
+If all of this works, then go ahead and start coding in a jupyter notebook.
+
+
+
+
+Package/Env control instructions:
+
+
+General guide here: https://arc.umich.edu/software/python/
+
+
+Let’s start out trying to use conda for env management since it does a lot of the package compatibility leg-work for Data Science and ML (and since we both know this).
+
+
+To make conda accessible from the command line, we first need to load the appropriate python module. Run the following command to see what modules exist:
+
+
+$ module available python
+
+
+If got a response like this: 
+---------------------------- Core applications including compilers-------------------------------
+python/3.9.12                 python/3.10.4 (D)                 python3.9-anaconda/2021.11
+
+
+Next load the available anaconda module with this command:
+
+
+$ module load python3.9-anaconda/2021.11
+
+
+Now you should be able to use conda from the command line. I’m not totally sure how conda envs get saved so we should be sure to save requirements.txt files in a project folder with the commands/notebooks we want to run. Fingers crossed we won’t need multiple environments for this project, but we probably will.
+
+
+*Note if this gets annoying to do each time, I believe adding this module load command to our .bashrc file to run automatically at startup.
+
+
+
+
+Setting up chemprop env:
+
+
+$ conda config --add channels conda-forge
+$ conda config --set channel_priority strict
+
+
+$ conda create -n chemprop python=3.8 -y
+$ conda init bash
+
+
+You’ll need to exit and re-open the shell now before you can activate the new chemprop env
+
+
+$ conda activate chemprop
+$ conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch -y
+$ conda install -c conda-forge rdkit -y
+$ pip install git+https://github.com/bp-kelley/descriptastorus
+$ pip install chemprop
+
+
+Lastly we will install anaconda ipykernel so we can access our new env from Jupyter Notebook
+
+
+$ pip install ipykernel
+$ python -m ipykernel install --user --name=chemprop
+
+
+Note that using pip vs conda in certain places was important to get things working.
