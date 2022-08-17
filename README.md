@@ -13,7 +13,7 @@ In modeling, users are regularly faced with how to chose between different model
 
 ## Requirements:
 
-In order to get both the simple and complex models working properly, we generated two environments for this project. The environment for the simple models can be created from the included requirements.txt file in this repository. 
+In order to get both the simple and complex models working properly, we generated two environments for this project. The environment for the simple models can be created from the included [requirements.txt](https://github.com/PJMichaels/Chemistry-Capstone/blob/main/requirements.txt) file in this repository. 
 
 The Chemprop environment was created on the University of Michigan Great Lakes cluster as follows. Some more detailed instructions about how we setup the cluster for this project can be found [here](https://github.com/PJMichaels/Chemistry-Capstone/blob/main/Great%20Lakes%20Access%20Instructions.txt)
 
