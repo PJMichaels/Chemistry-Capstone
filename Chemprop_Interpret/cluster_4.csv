@@ -1,0 +1,31 @@
+,mol,cluster,target_actual,chemprop_opt_pred,Gradient_Boosted_Tree_prediction,complex_pred,simple_pred,agree,molecule,annotation
+83,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CCCCC1)c1cc(ccc1)C1CCOC1,4,1,0.108830738812685,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcaeda0>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+84,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CCCCC1)c1cc(ccc1)C1OCCC1,4,1,0.238936149328947,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcaef20>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+85,Fc1cc(cc(F)c1)C[C@H](NC(=O)C)[C@H](O)C[NH2+]C1(CCOCC1)c1cc(ccc1)[C@H]1CCOC1,4,1,0.0896173991262912,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcafa00>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+86,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CCCCC1)c1cc(ccc1)C1CCOCOC1,4,1,0.2153400995768606,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcaf9a0>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+87,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CC1)c1cc(ccc1)C1OCCC1,4,1,0.3184284657239914,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcafb80>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+88,Fc1cc(cc(F)c1)C[C@H](NC(=O)C)[C@H](O)C[NH2+]C1(CC1)c1cc(ccc1)[C@H]1CCOC1,4,1,0.1821587331593036,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcae800>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+89,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CCCCC1)c1cc(ccc1)C1CCCC1,4,1,0.6280901491641998,0.7566774627012787,1,1,True,<rdkit.Chem.rdchem.Mol object at 0x17dcaf0a0>,"Actual Value: 1
+ Simple_Prediction: 1
+ Complex_Prediction: 1"
+90,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CC1)c1cc(ccc1)C1OCCCC1,4,0,0.2853161603212356,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcaefe0>,"Actual Value: 0
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+91,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CC1)c1cc(ccc1)C1OCCOC1,4,0,0.1215776016935706,0.7566774627012787,0,1,False,<rdkit.Chem.rdchem.Mol object at 0x17dcafbe0>,"Actual Value: 0
+ Simple_Prediction: 1
+ Complex_Prediction: 0"
+92,Fc1cc(cc(F)c1)CC(NC(=O)C)C(O)C[NH2+]C1(CCCCC1)c1cc(ccc1)C1CCCCC1,4,0,0.6280810713768006,0.7566774627012787,1,1,True,<rdkit.Chem.rdchem.Mol object at 0x17dcafb20>,"Actual Value: 0
+ Simple_Prediction: 1
+ Complex_Prediction: 1"
