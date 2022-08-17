@@ -1,7 +1,7 @@
 # University of Michican SIADS 697 & 698 Chemistry-Capstone
 
 Contributers:
-Philip Michaels and David Dunstan
+<b>Philip Michaels and David Dunstan<b>
 
 ## Summary: 
 
