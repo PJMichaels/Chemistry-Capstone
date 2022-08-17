@@ -31,3 +31,6 @@ The Chemprop environment was created on the University of Michigan Great Lakes c
     $ python -m ipykernel install --user --name=chemprop
 
 Note: This environment can also be created on a non-GPU enabled machine, but the proper version of pytorch should be selected and installed according to the instructions [here](https://pytorch.org/get-started/locally/) 
+    
+## Overview:
+ 
