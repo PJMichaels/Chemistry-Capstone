@@ -1,6 +1,7 @@
 model_dataset,elapsed_time (hh:mm:ss)
 bace,0:03:51
 bace-cluster,0:04:02
+bace-cluster-hyperopt,0:05:16
 bace-random,0:04:04
 clintox-cluster,0:03:22
 clintox-random,0:03:21
