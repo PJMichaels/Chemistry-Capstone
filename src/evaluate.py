@@ -1,5 +1,7 @@
 from pathlib import Path
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from utils.generate_morgan_fp import generate_fingerprint
 import pickle
@@ -107,6 +109,7 @@ def evaluate_models(model_paths: list, eval_metrics: dict, feature_representatio
         
         print(f"Gererating evaluation metrics: {eval_output_path.relative_to(Path.cwd())}")
         result_df.to_csv(eval_output_path, index= False)
+        
     
     else:
         print(f"Evaluation results already exists: {eval_output_path.relative_to(Path.cwd())}")
