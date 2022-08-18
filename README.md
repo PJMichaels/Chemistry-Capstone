@@ -36,4 +36,12 @@ Note: This environment can also be created on a non-GPU enabled machine, but the
 
 For this project we utilized a blend of several python and shell scripts and notebooks. A flow scheme for our workflow is as follows: 
     
-    # Make Draw.io flowchart/architecture diagarm
+ ![Pipeline](https://user-images.githubusercontent.com/84757402/185464297-184b0268-d1d6-407f-b4fa-49faf03875cd.png)
+
+The core model performance tasks are automated in the src/ folder. Other tasks such as the converstion of the datasets to classification tasks, and the generation of figures for exploratory data anlaysis and subsequent evaluation were then performed in notebooks. 
+
+In addition, much of the exploratory work around the models was performed initially in notebooks, which are saved in the notebook folder for demonstration. 
+
+# Usage Examples:
+
+Phil to fill in some explanation of pipeline functions and arguments. 
