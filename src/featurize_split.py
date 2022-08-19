@@ -59,6 +59,8 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
 
             if split_style == "random":
                 train_df, validate_df = train_test_split(df, test_size= validation_percent, random_state=random_seed)
+                train_df.to_csv(train_path, index = False)
+                validate_df.to_csv(validate_path, index = False)
         
             if split_style == "cluster":
 
@@ -82,8 +84,7 @@ def split_dfs(file_list: list, split_style: str, validation_percent: float, rand
                 train_df.drop(columns = "fp", inplace = True)
                 validate_df.drop(columns = "fp", inplace = True)
 
-            train_df.to_csv(train_path, index = False)
-            validate_df.to_csv(validate_path, index = False)
+            
 
         else:
             print(f"Train and Validate datasets already exist for {input_path.name}")

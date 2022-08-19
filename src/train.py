@@ -5,14 +5,14 @@ import pickle
 
 from utils.generate_morgan_fp import generate_fingerprint
 
+from sklearn.model_selection import cross_validate
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import SVC
 from sklearn.dummy import DummyClassifier
-
-from sklearn.model_selection import cross_validate
 
 
 ### what params do we need to import???
@@ -62,20 +62,26 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
     model_paths = []
     steps_skipped = False
     models_wo_random_state = ["KNeighborsClassifier"]
+    cv_scoring = ['accuracy', 'f1','roc_auc','neg_log_loss']
 
 
     if "morganfingerprint" in feature_representation:
         _, radius, bits = tuple(feature_representation.split("-"))
 
-    models_dir = Path.cwd() / "models"
+    models_dir = Path.cwd() / "Simple_Models"
     if not models_dir.exists():
         models_dir.mkdir()
         print(f"Making output directory: {models_dir}")
 
+    predictions_dir = models_dir / "Predictions"
+    if not predictions_dir.exists():
+        predictions_dir.mkdir()
+        print(f"Making predictions output directory: {predictions_dir}")
+
     ### kind of an ugly solution, but this step eliminates featurization time if all models are trained
     required_training_paths = []
     for train_path in training_paths:
-        model_data_dir = models_dir / Path(train_path).name.replace(".csv", "")
+        model_data_dir = models_dir / Path(train_path).name.replace("-train.csv", "")
         for model in models_dict:
             model_path = model_data_dir / (model + ".pkl")
 
@@ -89,17 +95,23 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
 
 
     for train_path in required_training_paths:
-        model_data_dir = models_dir / Path(train_path).name.replace(".csv", "")
+        model_data_dir = models_dir / Path(train_path).name.replace("-train.csv", "")
         if not model_data_dir.exists():
             model_data_dir.mkdir()
             print(f"Making output directory: {model_data_dir}")
 
-        df = pd.read_csv(train_path)
-        ### add fingerprint feature back to dataframe - unfortunately this is a duplicate effort right now
-        df['fp'] = df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
+        validate_path = Path(str(train_path).replace("train", "validate"))
 
-        X_train = df['fp'].to_list()
-        y_train = df['labels'].to_list()
+        train_df = pd.read_csv(train_path)
+        validate_df = pd.read_csv(validate_path)
+        ### add fingerprint feature back to dataframe - unfortunately this is a duplicate effort right now
+        train_df['fp'] = train_df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
+        validate_df['fp'] = validate_df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
+
+        X_train = train_df['fp'].to_list()
+        y_train = train_df['labels'].to_list()
+        X_validate = validate_df['fp'].to_list()
+        y_validate = validate_df['labels'].to_list()
 
         for model in models_dict:
             model_path = model_data_dir / (model + ".pkl")
@@ -114,9 +126,22 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
 
                 start_time = datetime.now()
                 clf = eval_model_json(model, models_dict[model])
+
+                cv_result=cross_validate(clf , X_train, y_train, scoring= cv_scoring, cv=5, return_estimator=False)
+                pd.DataFrame(cv_result).describe().to_csv(str(model_path).replace('.pkl', '.csv'))
+
                 clf.fit(X_train, y_train)
 
                 end_time = datetime.now()
+
+                ### make predictions and output predictions csv
+                train_df[f"{model}_pred_prob"] = clf.predict_proba(X_train)[::,1]
+                train_df[f"{model}_pred"] = clf.predict(X_train)
+
+                validate_df[f"{model}_pred_prob"] = clf.predict_proba(X_validate)[::,1]
+                validate_df[f"{model}_pred"] = clf.predict(X_validate)
+
+                
 
                 clf.train_time = end_time - start_time
                 print(f"Train time: {clf.train_time}")
@@ -125,6 +150,16 @@ def train_models(training_paths: list, models_dict: dict, feature_representation
                     pickle.dump(clf, f)
 
             model_paths.append(str(model_path))
+        
+        ### write out prediction results to csv files in predictions directory
+        train_df.drop(columns = "fp", inplace= True)
+        train_pred_output = predictions_dir / (Path(train_path).name.replace(".csv", "-pred.csv"))
+        train_df.to_csv(train_pred_output)
+
+        validate_df.drop(columns = "fp", inplace= True)
+        validate_pred_output = predictions_dir / (Path(validate_path).name.replace(".csv", "-pred.csv"))
+        validate_df.to_csv(validate_pred_output)
+        
     
     ### output a reminder that you can use overwrite arg
     if steps_skipped:
