@@ -45,3 +45,30 @@ In addition, much of the exploratory work around the models was performed initia
 # Usage Examples:
 
 Phil to fill in some explanation of pipeline functions and arguments. 
+
+
+# To do:
+
+Git Hub:
+Requirements - Done
+Readme - In progress, need to document code better
+Testing pipeline/code repository 
+Clean-up files and remove any old ones
+
+Writing:
+Model Comparison - Phil in progress
+Discussion - Need results 
+Editing first pass
+
+Blog Post: 
+Need to enable Gitpages for our repository (select slate theme)
+Run this of a second branch gh-pages 
+Outline - main page - host readme & overview
+2nd Page - project inspiration and highlevel results
+Link to technical report
+
+Video Recording: 
+Background of project
+Overview of pipeline (how would one run this on their dataset) - ability to quickly test simple models to compare against a more complex result 
+
+
