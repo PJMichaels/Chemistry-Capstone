@@ -1,7 +1,7 @@
 {
   "general": {
     "random_seed": 0,
-    "split_style": "random",
+    "split_style": "cluster",
     "validation_percent": 0.15,
     "feature_representation": "morganfingerprint-2-1024"
   },
@@ -76,6 +76,7 @@
   },
   "evaluation_metrics":[
     "accuracy_score",
+    "balanced_accuracy_score",
     "f1_score",
     "roc_auc_score",
     "log_loss",

@@ -9,6 +9,7 @@ import pickle
 ### it would be clever to make this a dynamic import, and maybe do the same with other scripts?
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import balanced_accuracy_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import log_loss
 from sklearn.metrics import matthews_corrcoef
@@ -87,16 +88,28 @@ def evaluate_models(model_paths: list, eval_metrics: dict, feature_representatio
                     clf = pickle.load(f)
                 
                 y_train_pred = clf.predict(X_train)
+                y_train_pred_prob = clf.predict_proba(X_train)
                 y_validate_pred = clf.predict(X_validate)
+                y_validate_pred_prob = clf.predict_proba(X_validate)
 
                 for metric in eval_metrics:
                     metric_func = eval(metric)
                     ### train metric scores
-                    score = metric_func(y_train, y_train_pred)
+                    if metric == "log_loss":
+                        score = metric_func(y_train, y_train_pred_prob)
+                    elif metric == "roc_auc_score":
+                        score = metric_func(y_train, y_train_pred_prob[::,1])
+                    else:
+                        score = metric_func(y_train, y_train_pred)
                     result_row = [dataset, split_method, "train", model, metric, score]
                     result_data.append(result_row)
                     ### validate metric scores
-                    score = metric_func(y_validate, y_validate_pred)
+                    if metric == "log_loss":
+                        score = metric_func(y_validate, y_validate_pred_prob)
+                    elif metric == "roc_auc_score":
+                        score = metric_func(y_validate, y_validate_pred_prob[::,1])
+                    else:
+                        score = metric_func(y_validate, y_validate_pred)
                     result_row = [dataset, split_method, "validate", model, metric, score]
                     result_data.append(result_row)
                 
