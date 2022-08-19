@@ -1,7 +1,5 @@
 result_file,dataset,split_id,split_method,metric,score,Model
-bace-cluster-train-pred-hyperopt.csv,bace,train,cluster,accuracy_score,0.9867909867909868,Chemprop
 bace-cluster-train-pred.csv,bace,train,cluster,accuracy_score,0.9316239316239316,Chemprop
-bace-cluster-validate-pred-hyperopt.csv,bace,validate,cluster,accuracy_score,0.7610619469026548,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,accuracy_score,0.6991150442477876,Chemprop
 bace-random-train-pred.csv,bace,train,random,accuracy_score,0.9875583203732504,Chemprop
 bace-random-validate-pred.csv,bace,validate,random,accuracy_score,0.8458149779735683,Chemprop
@@ -25,9 +23,7 @@ tox21-cluster-train-pred.csv,tox21,train,cluster,accuracy_score,0.96730734686545
 tox21-cluster-validate-pred.csv,tox21,validate,cluster,accuracy_score,0.8482688391038696,Chemprop
 tox21-random-train-pred.csv,tox21,train,random,accuracy_score,0.9484369385555156,Chemprop
 tox21-random-validate-pred.csv,tox21,validate,random,accuracy_score,0.8982706002034588,Chemprop
-bace-cluster-train-pred-hyperopt.csv,bace,train,cluster,balanced_accuracy_score,0.9829272537417334,Chemprop
 bace-cluster-train-pred.csv,bace,train,cluster,balanced_accuracy_score,0.9198746954403063,Chemprop
-bace-cluster-validate-pred-hyperopt.csv,bace,validate,cluster,balanced_accuracy_score,0.6355424743732874,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,balanced_accuracy_score,0.5826651781183396,Chemprop
 bace-random-train-pred.csv,bace,train,random,balanced_accuracy_score,0.981974027385351,Chemprop
 bace-random-validate-pred.csv,bace,validate,random,balanced_accuracy_score,0.791892379920549,Chemprop
@@ -51,9 +47,7 @@ tox21-cluster-train-pred.csv,tox21,train,cluster,balanced_accuracy_score,0.87778
 tox21-cluster-validate-pred.csv,tox21,validate,cluster,balanced_accuracy_score,0.6487084414781856,Chemprop
 tox21-random-train-pred.csv,tox21,train,random,balanced_accuracy_score,0.7969462570190587,Chemprop
 tox21-random-validate-pred.csv,tox21,validate,random,balanced_accuracy_score,0.645045518207283,Chemprop
-bace-cluster-train-pred-hyperopt.csv,bace,train,cluster,f1_score,0.9899941141848146,Chemprop
 bace-cluster-train-pred.csv,bace,train,cluster,f1_score,0.9484173505275498,Chemprop
-bace-cluster-validate-pred-hyperopt.csv,bace,validate,cluster,f1_score,0.8474576271186441,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,f1_score,0.8023255813953488,Chemprop
 bace-random-train-pred.csv,bace,train,random,f1_score,0.9907300115874854,Chemprop
 bace-random-validate-pred.csv,bace,validate,random,f1_score,0.892966360856269,Chemprop
@@ -77,9 +71,7 @@ tox21-cluster-train-pred.csv,tox21,train,cluster,f1_score,0.8392226148409895,Che
 tox21-cluster-validate-pred.csv,tox21,validate,cluster,f1_score,0.41568627450980394,Chemprop
 tox21-random-train-pred.csv,tox21,train,random,f1_score,0.7305164319248827,Chemprop
 tox21-random-validate-pred.csv,tox21,validate,random,f1_score,0.42528735632183906,Chemprop
-bace-cluster-train-pred-hyperopt.csv,bace,train,cluster,roc_auc_score,0.9991003775201478,Chemprop
 bace-cluster-train-pred.csv,bace,train,cluster,roc_auc_score,0.9810624113095398,Chemprop
-bace-cluster-validate-pred-hyperopt.csv,bace,validate,cluster,roc_auc_score,0.7030346087486045,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,roc_auc_score,0.7553029534152035,Chemprop
 bace-random-train-pred.csv,bace,train,random,roc_auc_score,0.9990083677461422,Chemprop
 bace-random-validate-pred.csv,bace,validate,random,roc_auc_score,0.9292163235825207,Chemprop
@@ -103,9 +95,7 @@ tox21-cluster-train-pred.csv,tox21,train,cluster,roc_auc_score,0.985495332637254
 tox21-cluster-validate-pred.csv,tox21,validate,cluster,roc_auc_score,0.8308820500144192,Chemprop
 tox21-random-train-pred.csv,tox21,train,random,roc_auc_score,0.9761109925534285,Chemprop
 tox21-random-validate-pred.csv,tox21,validate,random,roc_auc_score,0.8698743386243385,Chemprop
-bace-cluster-train-pred-hyperopt.csv,bace,train,cluster,log_loss,0.06150401924001363,Chemprop
 bace-cluster-train-pred.csv,bace,train,cluster,log_loss,0.19603599178904257,Chemprop
-bace-cluster-validate-pred-hyperopt.csv,bace,validate,cluster,log_loss,0.7840950481226613,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,log_loss,0.48468397859475,Chemprop
 bace-random-train-pred.csv,bace,train,random,log_loss,0.07216280300015414,Chemprop
 bace-random-validate-pred.csv,bace,validate,random,log_loss,0.3512069906345316,Chemprop
@@ -129,9 +119,7 @@ tox21-cluster-train-pred.csv,tox21,train,cluster,log_loss,0.11633015108296318,Ch
 tox21-cluster-validate-pred.csv,tox21,validate,cluster,log_loss,0.3403458470018723,Chemprop
 tox21-random-train-pred.csv,tox21,train,random,log_loss,0.13470465156697628,Chemprop
 tox21-random-validate-pred.csv,tox21,validate,random,log_loss,0.2633280596878985,Chemprop
-bace-cluster-train-pred-hyperopt.csv,bace,train,cluster,matthews_corrcoef,0.9706849956194915,Chemprop
 bace-cluster-train-pred.csv,bace,train,cluster,matthews_corrcoef,0.847388979050434,Chemprop
-bace-cluster-validate-pred-hyperopt.csv,bace,validate,cluster,matthews_corrcoef,0.31509139274371467,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,matthews_corrcoef,0.17621877168781763,Chemprop
 bace-random-train-pred.csv,bace,train,random,matthews_corrcoef,0.9721168026008825,Chemprop
 bace-random-validate-pred.csv,bace,validate,random,matthews_corrcoef,0.6278445923940645,Chemprop
