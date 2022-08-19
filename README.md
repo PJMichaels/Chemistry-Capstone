@@ -36,4 +36,49 @@ Note: This environment can also be created on a non-GPU enabled machine, but the
 
 For this project we utilized a blend of several python and shell scripts and notebooks. A flow scheme for our workflow is as follows: 
     
-    # Make Draw.io flowchart/architecture diagarm
+ ![Pipeline](https://user-images.githubusercontent.com/84757402/185464297-184b0268-d1d6-407f-b4fa-49faf03875cd.png)
+
+The core model performance tasks are automated in the src/ folder. Other tasks such as the converstion of the datasets to classification tasks, and the generation of figures for exploratory data anlaysis and subsequent evaluation were then performed in notebooks. 
+
+In addition, much of the exploratory work around the models was performed initially in notebooks, which are saved in the notebook folder for demonstration. 
+
+# Usage Examples:
+
+Phil to fill in some explanation of pipeline functions and arguments. 
+
+# Overview of Results:
+
+
+# Link to Detailed Blog and Full Report:
+
+
+# Next Steps:
+
+
+
+# To do:
+
+Git Hub:
+1. Requirements - Done
+2. Readme - In progress, need to document code better
+3. Testing pipeline/code repository 
+4. Clean-up files and remove any old ones
+
+Writing:
+1. Model Comparison - Phil in progress
+2. Discussion - Need results 
+3. Editing first pass
+
+Blog Post: 
+1. Need to enable Gitpages for our repository (select slate theme)
+2. Run this of a second branch gh-pages 
+3. Outline - main page - host readme & overview
+4. 2nd Page - project inspiration and highlevel results
+5. Link to technical report
+
+Video Recording: 
+1. Background of project
+2. Data spliting overview  
+3. Overview of pipeline (how would one run this on their dataset) - ability to quickly test simple models to compare against a more complex result 
+
+
