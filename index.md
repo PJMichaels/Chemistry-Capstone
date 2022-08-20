@@ -5,8 +5,7 @@ permalink: /
 
 ### Click [here](BlogPost.pdf) to view the in-depth report.
 
-Go to [about page](about.md)
-Go go [third page](page3.md)
+Go to [Pipeline Video Tour](https://drive.google.com/file/d/1VzaYKBJP9WgfkLmqmSXuuMPifh6q9_iX/view?usp=sharing)
 
 Go to [Bace Eval](Bace_Eval/Bace_Eval.md)
 
