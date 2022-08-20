@@ -18,6 +18,69 @@ from sklearn.metrics import matthews_corrcoef
 
 ### not sure how best to detail cluster vs random split, maybe these are two separate outputs
 
+def process_cross_val_results():
+    '''
+    Function gets cross val results from simple models, attempts to also get chemprop cross val results, and outputs a result file.
+    Code just lifted and shifted from ipynb into this script, so it is not the most optimized..
+    '''
+    result_path = Path.cwd() / "evaluation" / "cross_val_results.csv"
+
+    simple_models_dir = Path.cwd() / "Simple_Models"
+
+    dataset_paths = [path for path in simple_models_dir.iterdir() if path.name != "Predictions"]
+
+    cv_results={}
+    for dataset_path in dataset_paths:
+        dataset = dataset_path.name
+
+        cv_res_paths = [cv_res_path for cv_res_path in dataset_path.iterdir() if cv_res_path.suffix == '.csv']
+        
+        model_results={}
+
+        for cv_res_path in cv_res_paths:
+            model = cv_res_path.name.replace(".csv", "")
+            df=pd.read_csv(cv_res_path)
+            mean_roc_auc=df.iloc[1]['test_roc_auc'].round(2)
+            std_roc_auc=df.iloc[2]['test_roc_auc'].round(2)
+            result=f'{mean_roc_auc} \u00B1 {std_roc_auc}'
+            model_results.update({model.replace('.csv',''):result})
+        cv_results.update({dataset:model_results})
+
+    simple_model_df=pd.DataFrame(cv_results).T
+
+
+    ### ChemProp
+    complex_model_dir = Path.cwd() / "Complex_Models"
+
+    if complex_model_dir.exists():
+
+        dataset_paths = [path for path in complex_model_dir.iterdir() if path.name != "Predictions"]
+        model = "Chemprop"
+
+        for dataset_path in dataset_paths:
+            dataset = dataset_path.name
+
+            cv_result_path = dataset_path / 'test_scores.csv'
+            model_results={}
+            
+            df=pd.read_csv(cv_result_path)
+            mean_roc_auc=df['Mean auc'].iloc[0].round(2)
+            std_roc_auc=df['Standard deviation auc'].iloc[0].round(2)
+            result=f'{mean_roc_auc} \u00B1 {std_roc_auc}'
+            model_results.update({model.replace('.csv',''):result})
+            cv_results.update({dataset:model_results})
+        complex_model_df=pd.DataFrame(cv_results).T
+
+        merged_df=pd.merge(simple_model_df,complex_model_df,left_index=True,right_index=True)
+        merged_df.to_csv(result_path)
+    else:
+        simple_model_df.to_csv(result_path)
+
+    print(f"Generating combined Sklearn Cross Validation metrics: {result_path.relative_to(Path.cwd())}")
+
+
+
+
 def get_chemprop_results():
     '''
     Function gets results from Complex Models folder if it exists... this is pretty dirty code that would be good to cleanup if/when time allows
@@ -147,7 +210,7 @@ def evaluate_models(eval_metrics: dict, feature_representation: str, overwrite: 
     try:
         get_chemprop_results()
     except:
-        "Unable to generate Chemprop results at this time."
+        print("Unable to generate Chemprop results at this time.")
 
     if chemprop_results_path.exists():
         chemprop_df = pd.read_csv(chemprop_results_path)
@@ -158,5 +221,10 @@ def evaluate_models(eval_metrics: dict, feature_representation: str, overwrite: 
         combined_df.to_csv(combined_results_path, index = False)
         
 
-### Next step would be processing cross val results
+    try:
+        process_cross_val_results()
+    except:
+        print("Unable to generate Cross Validation results at this time.")
+
+### Next steps would be processing train time or auto generation of visualizations but we might not get to this
 
