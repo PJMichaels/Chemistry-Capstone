@@ -6,7 +6,6 @@ altair-loader:
 
 ## Cheminformatics Intro
 
-Introduction to Cheminformatics
 Cheminformatics is the application of computational or computer based approaches, often referred to as in silico methods, to chemistry and chemical structures. One of the key challenges in the cheminformatics space is the featurization, or description of a molecule such that a computer can understand it. In nature, molecules are a complex combination of electronic interactions that play out on a quantum scale in 3-dimensional space. However, despite dramatic increases in computational power the field has yet to achieve this level of modeling at scale. (https://wires.onlinelibrary.wiley.com/doi/10.1002/wcms.1290) Therefore, we must rely on simpler representations in order to describe a molecule. 
 
 In many chemistry applications, structures are drawn to a 2D image, where atoms (assumed carbon unless otherwise specified) are connected by simple lines to form bonds. While this type of image can be effective for communication of structure, it often masks subtleties of how the molecules look in 3D space, or behave from an electronic perspective. For example, when comparing cyclohexane to benzene, the 2D structures are quite similar , with 6 carbon atoms connected by either single or double bonds, in 3D they appear to be drastically different. 
@@ -23,19 +22,19 @@ The algorithm for computation of these Morgan fingerprints is the iteration over
 
     Benzene: 
 
-    array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-       0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
-       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+     0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     Gleevec: 
 
-    array([1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0,
-       0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1,
-       0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
-       1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0,
-       1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1])
+    [1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0,
+     0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1,
+     0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0,
+     1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0,
+     1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1]
 
 Figure 2: The radius 2, 100 bit representation of Gleevec and benzene.
 
@@ -43,12 +42,7 @@ From Figure 2, we can see that the relatively simple structure of benzene is als
 
  <img width="630" alt="Figure 3 Bit Vector Representations" src="https://user-images.githubusercontent.com/84757402/185757194-00e24330-da81-4b57-9785-b1ef5a46747f.png">
 
-Bit 69 (present in both molecules) 		Bit 13 in Gleevec		Bit 13 in Benzene
-
-Figure 3. Bit vector representations for bit 69 for both molecules and then bit 13 for Gleevec and then bit 13 for benzene.
-
 Once bit-vector representations of the molecules have been generated, many other data science tasks are then possible. For instance, we can compute the Tanimoto (Jaccard) similarity between these bit vectors as follows, where a simple nitrogen substitution on pyridine yields a similarity of 0.33, while the more elaborated oncology drug, Gleevec is only 0.06, as shown in Figure 4. For this project we decided to utilize the Morgan fingerprint as our primary means to featurize the molecules. An area for future work could be to expand this approach to utilize multiple different fingerprint types, as well as compare some of the proprietary ones which are only available within licensed software to determine if they provide improved model performance. 
 
 <img width="630" alt="Figure4 ChemInfo_Similarity" src="https://user-images.githubusercontent.com/84757402/185757250-cb81fe12-62d6-4738-bf31-2bee9a6c64db.png">
 
-Figure 4. The similarity metrics for three molecules compared with benzene. 
