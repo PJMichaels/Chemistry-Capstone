@@ -15,10 +15,12 @@ parser = argparse.ArgumentParser(description='Get pipeline processing arguments'
 
 parser.add_argument("--overwrite", "-o", action = "store_true", help= "Optional argument: If passed, this forces re-processing and overwrite of files that already exist")
 parser.add_argument("--param_path", "-p", default= "params.json" , help= "Optional argument: Allows you to choose a custom params.json file path")
+parser.add_argument("--eval_only", "-e", default= "store_true" , help= "Optional argument: If passed, this skips all steps but evaluation")
 
 parsed_args = parser.parse_args()
 
 overwrite = parsed_args.overwrite
+eval_only = parsed_args.eval_only
 param_path = Path.cwd() / parsed_args.param_path
 
 if not param_path.exists():
@@ -37,15 +39,18 @@ feature_representation = params["general"]["feature_representation"]
 models = params["models"]
 metrics = params["evaluation_metrics"]
 
-### process prepare.py
-file_list = prepare_datasets(datasets, overwrite)
+if not eval_only:
+    ### process prepare.py
+    file_list = prepare_datasets(datasets, overwrite)
 
-### process featurize_split df --- might be memory issues keeping all of these datasets in memory so should output file names again
-split_paths = split_dfs(file_list, split_style, validation_percent, random_seed, feature_representation, overwrite)
+    ### process featurize_split df --- might be memory issues keeping all of these datasets in memory so should output file names again
+    split_paths = split_dfs(file_list, split_style, validation_percent, random_seed, feature_representation, overwrite)
 
-### process train.py files
-training_paths = [train_path for train_path, _ in split_paths]
-train_models(training_paths, models, feature_representation, random_seed, overwrite)
+    ### process train.py files
+    training_paths = [train_path for train_path, _ in split_paths]
+    train_models(training_paths, models, feature_representation, random_seed, overwrite)
+else:
+    print("--eval_only arg applied - skipping all steps but evaluation")
 
 # ### process evaluation.py step
-evaluate_models(metrics, feature_representation, overwrite)
+evaluate_models(metrics)

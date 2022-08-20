@@ -152,15 +152,13 @@ def get_chemprop_results():
 
 
 
-def evaluate_models(eval_metrics: dict, feature_representation: str, overwrite: bool = False):
+def evaluate_models(eval_metrics: dict):
     '''
     Assesses models based on paths to the pickled models and evaluation metrics passed to this function.
     
     Args:
         model_paths: (list) A list of paths to trained and pickled models
         eval_dict: (dict) params.eval_metrics dictionary from the params.json file. Includes the sklearn metrics to apply in output.
-        feature_representation: (str) A string representation of morgan fingerprint with radius and bits encoded and separated by - Ex. morganfingerprint-2-1024
-        overwrite: (bool) If true existing files are overwritten/re-featurized-split
 
     Returns ? Some sort of association between datasets and pkl files for eval script
     '''
@@ -172,7 +170,7 @@ def evaluate_models(eval_metrics: dict, feature_representation: str, overwrite: 
     sklearn_predict_dir = Path.cwd() / "Simple_Models" / "Predictions"
     
     eval_output_path = Path.cwd() / "evaluation" / "Scikit-learn_Model_Results.csv"
-    chemprop_results_path = Path.cwd() / "evaluation" / "Chemprop_Results.csv" ### will remove this if works
+    chemprop_results_path = Path.cwd() / "evaluation" / "Chemprop_Results.csv"
     combined_results_path = Path.cwd() / "evaluation" / "Combined_Results.csv"
 
     result_data = []
