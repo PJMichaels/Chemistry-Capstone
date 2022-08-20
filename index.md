@@ -1,6 +1,20 @@
+---
+title: Main Page
+permalink: /
+---
+
+### Click [here](BlogPost.pdf) to view the in-depth report.
+
+
+
+Go to [about page](about.md)
+Go go [third page](page3.md)
+
+Go to [Bace Eval](Bace_Eval/Bace_Eval.md)
+
 ## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/PJMichaels/Chemistry-Capstone/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+You can use the [editor on GitHub](https://github.com/dustada1/capstone_blog_test/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
@@ -30,7 +44,7 @@ For more details see [Basic writing and formatting syntax](https://docs.github.c
 
 ### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/PJMichaels/Chemistry-Capstone/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dustada1/capstone_blog_test/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
 ### Support or Contact
 
