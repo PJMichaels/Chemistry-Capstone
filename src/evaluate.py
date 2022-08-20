@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
 from utils.generate_morgan_fp import generate_fingerprint
 import pickle
@@ -19,7 +19,7 @@ from sklearn.metrics import matthews_corrcoef
 ### not sure how best to detail custer vs random split, maybe these are two separate outputs
 
 
-def evaluate_models(model_paths: list, eval_metrics: dict, feature_representation: str, overwrite: bool = False):
+def evaluate_models(eval_metrics: dict, feature_representation: str, overwrite: bool = False):
     '''
     Assesses models based on paths to the pickled models and evaluation metrics passed to this function.
     
@@ -34,96 +34,52 @@ def evaluate_models(model_paths: list, eval_metrics: dict, feature_representatio
 
     print("\nInitiating model evaluation step")
 
-    ### iterate through model_paths and make a dictionary that has dataset, then a list of model_path objects
-    ### I will then iterate through everything to do the eval.
+    probability_based_metrics = ["log_loss", "roc_auc_score"]
 
-    train_sets = {}
-    data_dir = Path.cwd() / "data" / "split"
-
-    if "morganfingerprint" in feature_representation:
-        _, radius, bits = tuple(feature_representation.split("-"))
+    predict_dir = Path.cwd() / "Simple_Models" / "Predictions"
+    eval_output_path = Path.cwd() / "evaluation" / "Scikit-learn_Model_Results.csv"
+    chemprop_results_path = Path.cwd() / "evaluation" / "Chemprop_Results.csv"
+    combined_results_path = Path.cwd() / "evaluation" / "Combined_Results"
 
     result_data = []
 
-    eval_dir = Path.cwd() / "evaluation"
-    if not eval_dir.exists():
-        eval_dir.mkdir()
+    for predictions_path in predict_dir.iterdir():
+        dataset, split_method, split_id, _ = tuple(predictions_path.name.split('-'))
+        df = pd.read_csv(predictions_path)
+        models = [x.replace("_pred_prob", "") for x in df.columns if "pred_prob" in x]
 
-    ### need to figure out if this is going to get overwritten, appended to, or get a unique name...
-    eval_output_path = eval_dir / "Scikit-learn_Evaluation_Results.csv"
+        for model in models:
+            y_true = df['labels']
+            y_pred = df[f'{model}_pred']
+            y_pred_prob = df[f'{model}_pred_prob']
 
-    if not eval_output_path.exists() or overwrite == True:
+            for metric in eval_metrics:
+                metric_func = eval(metric)
 
-        for model_path in model_paths:
-            path = Path(model_path)
-            train_path = data_dir / (path.parent.name + ".csv")
-            
-            if train_path not in train_sets.keys():
-                train_sets[train_path] = []
-            
-            train_sets[train_path].append(path)
-            
-        for train_path in train_sets:
+                if metric in probability_based_metrics:
+                    score = metric_func(y_true, y_pred_prob)
+                else:
+                    score = metric_func(y_true, y_pred)
 
-            dataset = train_path.name.split("-")[0]
-            split_method = train_path.name.split("-")[1]
-            split_id = train_path.name.split("-")[1]
-
-            train_df = pd.read_csv(train_path)
-            train_df['fp'] = train_df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
-            X_train = train_df['fp'].to_list()
-            y_train = train_df['labels'].to_list()
-
-            validate_path = Path(str(train_path).replace("train", "validate"))
-            validate_df = pd.read_csv(validate_path)
-            validate_df['fp'] = validate_df['smiles'].apply(lambda x: generate_fingerprint(x,int(radius),int(bits)))
-            X_validate = validate_df['fp'].to_list()
-            y_validate = validate_df['labels'].to_list()
-
-            for model_path in train_sets[train_path]:
-                
-                model = model_path.name.replace(".pkl", "")
-
-                with open(model_path, 'rb') as f:
-                    clf = pickle.load(f)
-                
-                y_train_pred = clf.predict(X_train)
-                y_train_pred_prob = clf.predict_proba(X_train)
-                y_validate_pred = clf.predict(X_validate)
-                y_validate_pred_prob = clf.predict_proba(X_validate)
-
-                for metric in eval_metrics:
-                    metric_func = eval(metric)
-                    ### train metric scores
-                    if metric == "log_loss":
-                        score = metric_func(y_train, y_train_pred_prob)
-                    elif metric == "roc_auc_score":
-                        score = metric_func(y_train, y_train_pred_prob[::,1])
-                    else:
-                        score = metric_func(y_train, y_train_pred)
-                    result_row = [dataset, split_method, "train", model, metric, score]
-                    result_data.append(result_row)
-                    ### validate metric scores
-                    if metric == "log_loss":
-                        score = metric_func(y_validate, y_validate_pred_prob)
-                    elif metric == "roc_auc_score":
-                        score = metric_func(y_validate, y_validate_pred_prob[::,1])
-                    else:
-                        score = metric_func(y_validate, y_validate_pred)
-                    result_row = [dataset, split_method, "validate", model, metric, score]
-                    result_data.append(result_row)
-                
-                score = clf.train_time
-                result_row = [dataset, split_method, "N/A", model, "fit_time", score]
+                result_row = [predictions_path.name, dataset, split_id, split_method, metric, score, model]
                 result_data.append(result_row)
 
-        ### put all aggregated data into a dataframe
-        result_df = pd.DataFrame(result_data, columns=["dataset", "split_method", "split_id", "model", "metric","score"])
-        
-        print(f"Gererating evaluation metrics: {eval_output_path.relative_to(Path.cwd())}")
-        result_df.to_csv(eval_output_path, index= False)
-        
+    ### put all aggregated data into a dataframe
+    result_df = pd.DataFrame(result_data, columns=["result_file" ,"dataset", "split_id", "split_method", "metric","score", "model"])
     
-    else:
-        print(f"Evaluation results already exists: {eval_output_path.relative_to(Path.cwd())}")
-        print("Skipped steps can be reprocessed by including --overwrite or -o parameter")
+    print(f"Generating Sklearn evaluation metrics: {eval_output_path.relative_to(Path.cwd())}")
+    result_df.to_csv(eval_output_path, index= False)
+    
+    if chemprop_results_path.exists():
+        chemprop_df = pd.read_csv(chemprop_results_path)
+        chemprop_df.columns = [c.lower() for c in chemprop_df.columns]
+
+        combined_df = pd.concat([result_df, chemprop_df])
+        print(f"Generating combined Sklearn and Chemprop evaluation metrics: {eval_output_path.relative_to(Path.cwd())}")
+        combined_df.to_csv(combined_results_path, index = False)
+
+
+
+### Next step would be processing cross val results
+
+

@@ -45,8 +45,7 @@ split_paths = split_dfs(file_list, split_style, validation_percent, random_seed,
 
 ### process train.py files
 training_paths = [train_path for train_path, _ in split_paths]
-
-model_paths = train_models(training_paths, models, feature_representation, random_seed, overwrite)
+train_models(training_paths, models, feature_representation, random_seed, overwrite)
 
 # ### process evaluation.py step
-# evaluate_models(model_paths, metrics, feature_representation, overwrite)
+evaluate_models(metrics, feature_representation, overwrite)
