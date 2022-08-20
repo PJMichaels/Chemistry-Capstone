@@ -27,7 +27,7 @@ def process_cross_val_results():
 
     simple_models_dir = Path.cwd() / "Simple_Models"
 
-    dataset_paths = [path for path in simple_models_dir.iterdir() if path.name != "Predictions"]
+    dataset_paths = [path for path in simple_models_dir.iterdir() if path.name != "Predictions" and path.name != ".gitignore"]
 
     cv_results={}
     for dataset_path in dataset_paths:
@@ -45,7 +45,6 @@ def process_cross_val_results():
             result=f'{mean_roc_auc} \u00B1 {std_roc_auc}'
             model_results.update({model.replace('.csv',''):result})
         cv_results.update({dataset:model_results})
-
     simple_model_df=pd.DataFrame(cv_results).T
 
 
@@ -91,26 +90,16 @@ def get_chemprop_results():
     if chemprop_predict_dir.exists():
         eval_results = {}
 
-        datasets = ["bace", "clintox", "deepchem_Lipophilicity", "HIV", "sol_del", "tox21"]
-
-        data_map={
-            'HIV.csv': {'target':'HIV_active','structure':'smiles'},
-            'bace.csv':{'target':'active','structure':'mol'},
-            'tox21.csv':{'target':'NR-AhR','structure':'smiles'},
-            'clintox.csv':{'target':'CT_TOX','structure':'smiles'},
-            'sol_del.csv':{'target':'binned_sol','structure':'smiles'},
-            'deepchem_Lipophilicity.csv':{'target':'drug_like','structure':'smiles'}   
-        }
-
         pred_threshold = 0.5
 
         for path in chemprop_predict_dir.iterdir():
-            target = [data_map[dataset]['target'] for dataset in data_map if dataset[:-4] in path.name][0]
-            dataset = [dataset for dataset in data_map if dataset[:-4] in path.name][0]
+            # target = [data_map[dataset]['target'] for dataset in data_map if dataset[:-4] in path.name][0]
+            dataset = path.name.split("-")[0]
             df = pd.read_csv(path)
-            y_true = df["target_actual"].to_list()
-            y_pred = df[target].apply(lambda x: 1 if x > pred_threshold else 0).to_list()
-            y_pred_prob = df[target].to_list()
+            y_true_name = [c for c in df.columns if "labels-" in c][0]
+            y_true = df[y_true_name].to_list()
+            y_pred = df["labels"].apply(lambda x: 1 if x > pred_threshold else 0).to_list()
+            y_pred_prob = df["labels"].to_list()
 
             eval_results[path.name] = {
                 "dataset" : dataset,
@@ -121,24 +110,15 @@ def get_chemprop_results():
                 "log_loss": log_loss(y_true, y_pred_prob),
                 "matthews_corrcoef": matthews_corrcoef(y_true, y_pred)
             }
-            
+        
         df = pd.DataFrame(eval_results).T
         df = df.reset_index()
         df = df.rename(columns = {"index": "result_file"})
         df['split_id'] = df['result_file'].apply(lambda x: "train" if "train" in x else "validate")
         df['split_method'] = df['result_file'].apply(lambda x: "cluster" if "cluster" in x else "random")
-        df['dataset'] = df['dataset'].apply(lambda x: "deepchem_lipophilicity.csv" if x == "deepchem_Lipophilicity.csv" else x)
         df['matthews_corrcoef']
 
         vis_df = df.melt(['result_file', 'dataset', 'split_id', 'split_method'], value_name = "score", var_name= "metric")
-
-        vis_df['dataset'] = vis_df['dataset'].str[:-4]
-        vis_df['dataset'] = vis_df['dataset'].str.replace('deepchem_', '')
-
-
-        vis_df.sample(5)
-
-
 
         vis_df = vis_df[~ vis_df["result_file"].str.contains("hyperopt")]
 

@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description='Get pipeline processing arguments'
 
 parser.add_argument("--overwrite", "-o", action = "store_true", help= "Optional argument: If passed, this forces re-processing and overwrite of files that already exist")
 parser.add_argument("--param_path", "-p", default= "params.json" , help= "Optional argument: Allows you to choose a custom params.json file path")
-parser.add_argument("--eval_only", "-e", default= "store_true" , help= "Optional argument: If passed, this skips all steps but evaluation")
+parser.add_argument("--eval_only", "-e", action= "store_true" , help= "Optional argument: If passed, this skips all steps but evaluation")
 
 parsed_args = parser.parse_args()
 
