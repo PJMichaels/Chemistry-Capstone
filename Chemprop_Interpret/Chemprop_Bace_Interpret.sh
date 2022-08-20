@@ -9,7 +9,7 @@ chemprop_interpret \
     --checkpoint_dir ~/Chemistry-Capstone/Complex_Models/bace-cluster-hyperopt \
     --property_id 1 \
     --num_workers 1 \
-    --smiles_columns mol\
+    --smiles_columns smiles\
     --features_generator morgan\
 
 
