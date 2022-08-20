@@ -1,4 +1,4 @@
-result_file,dataset,split_id,split_method,metric,score,Model
+result_file,dataset,split_id,split_method,metric,score,model
 bace-cluster-train-pred.csv,bace,train,cluster,accuracy_score,0.9316239316239316,Chemprop
 bace-cluster-validate-pred.csv,bace,validate,cluster,accuracy_score,0.6991150442477876,Chemprop
 bace-random-train-pred.csv,bace,train,random,accuracy_score,0.9875583203732504,Chemprop
