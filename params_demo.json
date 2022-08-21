@@ -1,7 +1,7 @@
 {
   "general": {
     "random_seed": 0,
-    "split_style": "random",
+    "split_style": "cluster",
     "validation_percent": 0.15,
     "feature_representation": "morganfingerprint-2-1024"
   },
@@ -25,14 +25,6 @@
       "y": "exp",
       "y_process": "x >= -0.4 and x <= 5.6",
       "y_new": "drug_like"
-    },
-    "Solubility_delaney-processed": {
-      "suffix": ".csv",
-      "short_name": "sol_del",
-      "X": "smiles",
-      "y": "measured log solubility in mols per litre",
-      "y_process": "x >= -1",
-      "y_new": "binned_sol"
     },
     "tox21": {
       "suffix": ".csv.gz",

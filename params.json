@@ -1,7 +1,7 @@
 {
   "general": {
     "random_seed": 0,
-    "split_style": "cluster",
+    "split_style": "random",
     "validation_percent": 0.15,
     "feature_representation": "morganfingerprint-2-1024"
   },
