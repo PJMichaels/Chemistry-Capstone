@@ -1,0 +1,24 @@
+Steps to get cracking following a successful git clone.
+
+Written using Windows path notation. Can be adapted for Mac or Linux.
+
+1. Load cloned project folder in an IDE or navigate to it in your terminal
+    - I recommend Pycharm or Visual Studio Code as IDEs for working with this project 
+
+2. Create a compatible python environment
+    - Using conda makes this a whole lot easier, so I recommend doing this.
+    - To use conda environments in VS code, you want to open VS code via Anaconda Prompt
+      using the command $ code, and then ensuring you use a cmd terminal. (Powershell won't work)
+    - Using the following commands to create and load your environment from the provided
+      requirements.txt
+    
+    $ conda create --name chem-capstone python=3.8 --file requirements_conda.txt -y
+    $ conda activate chem-capstone
+    $ python -m ipykernel install --user --name=chem-capstone -file requirements.txt
+
+3. Test that everything worked by running the demo pipeline with the below command. This
+   should not take more than 5 minutes, but may vary depending on compute resources.
+
+   $ python src\\process_pipeline.py -p params_demo.json
+
+4. If this works you should be good to go!
