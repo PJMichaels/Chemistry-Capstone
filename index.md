@@ -22,6 +22,6 @@ All of the code is available in the linked Git-hub repository. We have included 
 
 We have also provided a brief [video](https://drive.google.com/file/d/1VzaYKBJP9WgfkLmqmSXuuMPifh6q9_iX/view?usp=sharing) overview and Q&A on this pipeline to help users get started. 
 
-## Ackwnoledgements:
+## acknowledgements:
 
 We would like to thank both Dr. Elle O'Brien and Michelle LeBlanc for their continued support and guidance over the course of this project.
