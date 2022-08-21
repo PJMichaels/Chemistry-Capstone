@@ -3,9 +3,9 @@
 Contributers:
 <b>Philip Michaels and David Dunstan<b>
 
-## Abstract:
+## Introduction:
 
-In modeling, users are regularly faced with how to chose between different model types. The general heuristic of selecting the simplest model appropriate for a given task is good, however how does one know what will work best? In the field of drug discovery, advances in automation and high-throughput screening and laboratory techniques have enabled unprecedented creation of datasets. These datasets have fueled a rise in the interest and application of data science techniques to understand and extract value. In this project we aim to explore and compare cutting edge models to those that are popular historically. To achive this, we train and evaluate several models against a series of relevant drug discovery datasets.
+In modeling, users are regularly faced with how to choose between different model types. The general heuristic of selecting the simplest model appropriate for a given task is good, however how does one know what will work best? In the field of drug discovery, advances in automation and high-throughput screening and laboratory techniques have enabled unprecedented creation of datasets. These datasets have fueled a rise in the interest and application of data science techniques to understand and extract value. In this project we aim to explore and compare cutting edge models to those that are popular historically. To achieve this, we train and evaluate several models against a series of relevant drug discovery datasets.
 
 ## Requirements:
 
