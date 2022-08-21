@@ -14,8 +14,6 @@
 In modeling, users are regularly faced with how to choose between different model types. The general heuristic of selecting the simplest model appropriate for a given task is good, however how does one know what will work best? In the field of drug discovery, advances in automation and high-throughput screening and laboratory techniques have enabled unprecedented creation of datasets. These datasets have fueled a rise in the interest and application of data science techniques to understand and extract value. In this project we aim to explore and compare cutting edge models to those that are popular historically. To achieve this, we train and evaluate several models against a series of relevant drug discovery datasets.
 
 <br>
-<br>
-
 ## **Requirements:**
 
 In order to get both the simple and complex models working properly, we generated two environments for this project. The environment for the simple models can be created from the included [requirements.txt](https://github.com/PJMichaels/Chemistry-Capstone/blob/main/requirements.txt) file in this repository. 
@@ -177,33 +175,4 @@ For our project, we opted to utilize a shell script in order to pass the command
 To learn more context surrounding this project including inspiration, an introduction to the field of cheminformatics, our results, and suggested next steps you can read our full report in our [Blog Post](https://pjmichaels.github.io/Chemistry-Capstone/).
 
 <br>
-<br>
-
-# To do:
-
-Git Hub:
-1. Requirements - Done
-2. Readme - Close to final
-3. Testing pipeline/code repository 
-4. Clean-up files and remove any old ones - done!
-
-Writing:
-1. Model Comparison - Phil in progress - done
-2. Discussion - Done 
-3. Editing first pass - Done 
-4. Editing Final pass - 
-
-Blog Post: 
-1. Need to enable Gitpages for our repository (select slate theme)- Done
-2. Run this of a second branch gh-pages -Done
-3. Outline - main page - host readme & overview - Done
-4. About authors page - Done
-5. Cheminformatics into page - Done
-5. Link to technical report
-
-Video Recording: 
-1. Background of project
-2. Data spliting overview  
-3. Overview of pipeline (how would one run this on their dataset) - ability to quickly test simple models to compare against a more complex result 
-
 
