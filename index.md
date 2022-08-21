@@ -10,7 +10,11 @@ In modeling, users are regularly faced with how to chose between different model
 
 ### If you are new to chemistry please consider exploring our [Cheminformatics Introduction](Chemistry_Intro/index.md). 
 
-### Please click [here](BlogPost.pdf) to view the in-depth technical report.
+### Abstract:
+
+Model selection is an important aspect to any data science project. With new model frameworks being published regularly, there have been increasing calls for standardized datasets across industries to help compare the results. We herein describe an evaluation of different models of varying complexity in the drug-discovery context. We rely on cheminformatics to process and featurize 6 datasets that cover a range of sizes and drug discovery related tasks. We trained several common classification models as well as a directed message passing neural network from the Chemprop package for each dataset. We then compared the models using a range of metrics and found roc-auc to be the most useful for our examples. From our results, while Chemprop was amongst the highest scoring in all cases, it did not always outperform the simpler models. Therefore, we find that exploring a wide range of models to be prudent in establishing baselines and providing comparative insight. 
+
+### For more details, please click [here](BlogPost.pdf) to view the in-depth technical report.
 
 ## Code:
 
@@ -18,6 +22,6 @@ All of the code is available in the linked Git-hub repository. We have included 
 
 We have also provided a brief [video](https://drive.google.com/file/d/1VzaYKBJP9WgfkLmqmSXuuMPifh6q9_iX/view?usp=sharing) overview and Q&A on this pipeline to help users get started. 
 
+## Ackwnoledgements:
 
-### We can link some notebooks if we want like this:
-Go to [Bace Eval](Bace_Eval/Bace_Eval.md)
+We would like to thank both Dr. Elle O'Brien and Michelle LeBlanc for their continued support and guidance over the course of this project.
