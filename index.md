@@ -16,9 +16,9 @@ Model selection is an important aspect to any data science project. With new mod
 ### For more details, please click [here](BlogPost.pdf) to view the in-depth technical report.
 
 ## Code:
-All of the code is available in the linked Git-hub repository. We have included both a set of notebooks that provide visualization and a quick way to explore the results, as well as an end-to-end pipeline which will provide facile duplication of this work. We hope that this pipeline will be of use and can be expanded to include additional featurization, models and datasets in the future. <br><br>
+All of the code is available in the linked Git-hub repository. We have included both a set of notebooks that provide visualization and a quick way to explore the results, as well as an end-to-end pipeline which will provide facile duplication of this work. We hope that this pipeline will be of use and can be expanded to include additional featurization, models and datasets in the future. <br>
 
-We have also provided a brief [video](https://drive.google.com/file/d/1VzaYKBJP9WgfkLmqmSXuuMPifh6q9_iX/view?usp=sharing) overview and Q&A on this pipeline to help users get started. 
+We have also provided a brief [video](https://drive.google.com/file/d/1mB5ULvIeSq6zseq_u0noXfpAi5hbol8D/view?usp=sharing) overview and Q&A on this pipeline to help users get started. 
 
 ## Acknowledgements:
 We would like to thank both Dr. Elle O'Brien and Michelle LeBlanc for their continued support and guidance over the course of this project.
