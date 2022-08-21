@@ -125,20 +125,22 @@ To learn more context surrounding this project including inspiration, an introdu
 
 Git Hub:
 1. Requirements - Done
-2. Readme - In progress, need to document code better
+2. Readme - Close to final
 3. Testing pipeline/code repository 
 4. Clean-up files and remove any old ones - done!
 
 Writing:
 1. Model Comparison - Phil in progress - done
-2. Discussion - Need results 
-3. Editing first pass
+2. Discussion - Done 
+3. Editing first pass - Done 
+4. Editing Final pass - 
 
 Blog Post: 
-1. Need to enable Gitpages for our repository (select slate theme)
-2. Run this of a second branch gh-pages 
-3. Outline - main page - host readme & overview
-4. 2nd Page - project inspiration and highlevel results
+1. Need to enable Gitpages for our repository (select slate theme)- Done
+2. Run this of a second branch gh-pages -Done
+3. Outline - main page - host readme & overview - Done
+4. About authors page - Done
+5. Cheminformatics into page - Done
 5. Link to technical report
 
 Video Recording: 
