@@ -5,12 +5,13 @@ altair-loader:
 ---
 
 ## Cheminformatics Intro
+# To see an example notebook please click [here](/cheminformatics_intro/Cheminformatics_intro.md)
 
 Cheminformatics is the application of computational or computer based approaches, often referred to as in silico methods, to chemistry and chemical structures. One of the key challenges in the cheminformatics space is the featurization, or description of a molecule such that a computer can understand it. In nature, molecules are a complex combination of electronic interactions that play out on a quantum scale in 3-dimensional space. However, despite dramatic increases in computational power the field has yet to achieve this level of modeling at scale. (https://wires.onlinelibrary.wiley.com/doi/10.1002/wcms.1290) Therefore, we must rely on simpler representations in order to describe a molecule. 
 
 In many chemistry applications, structures are drawn to a 2D image, where atoms (assumed carbon unless otherwise specified) are connected by simple lines to form bonds. While this type of image can be effective for communication of structure, it often masks subtleties of how the molecules look in 3D space, or behave from an electronic perspective. For example, when comparing cyclohexane to benzene, the 2D structures are quite similar , with 6 carbon atoms connected by either single or double bonds, in 3D they appear to be drastically different. 
 
-<img width="621" alt="Benzene vs Cyclohexane Figure" src="https://user-images.githubusercontent.com/84757402/185757093-fac91a3a-4a43-4b18-9f6a-69b71adc7526.png">
+<img width="621" alt="Benzene vs Cyclohexane Figure" src="https://user-images.githubusercontent.com/84757402/185757093-fac91a3a-4a43-4b18-9f6a-69b71adc7526.png"> (2D renderings produced with [RDkit](https://www.rdkit.org), 3D structures obtained from [Pubchem](https://pubchem.ncbi.nlm.nih.gov)
 
 To get started with describing molecules computationally, we can utilize SMILES strings (Simplified Molecular Input Line Entry System), which uses alphanumeric characters and punctuation to describe chemical structures. While there has been some work in using SMILES and natural language processing techniques from a generative modeling perspective, the SMILES strings are not typically used for chemical property modeling.(https://link.springer.com/article/10.1007/s00894-021-04674-8)  As we can see in Figure 1, despite a very similar 6 carbon atom chemical formula, the SMILES strings are quite similar, except for the capitalization. However, SMILES representations of molecules are quite prevalent for capturing the molecular structure within datasets due to their small size and textual based representation that can be easily saved to comma separated value (CSV) or text (txt) files. The 3D structure shows the most differentiation, with cyclohexane having more 3D character than the flat benzene ring. 
 
