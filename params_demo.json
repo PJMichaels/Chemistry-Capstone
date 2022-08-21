@@ -33,13 +33,6 @@
     }
   },
   "models": {
-    "SVC": {
-      "C": 1,
-      "kernel": "linear",
-      "degree": 3,
-      "gamma": "scale",
-      "probability": true
-    },
     "LogisticRegression": {
       "solver": "lbfgs",
       "max_iter": 1000,
