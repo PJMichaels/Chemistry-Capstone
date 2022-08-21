@@ -54,9 +54,9 @@ Chemprop can also be triggered by means of protocols in the Chemprop_Scripts sec
 - requirements.txt: Python package requirements which we recommend installing into an anaconda environment.
 
 
-# Usage Examples:
+# Pipeline User Guide:
 
-If you only want to clone this repository and explore our results, you should start by exploring and running notebooks in the Jupyter Notebooks directory which will read in results pre-populated in the evaluation directory. Cheminformatics_intro.ipynb introduces some useful domain specific concepts, and General_Result_Visuals.ipynb contains an interactive Altair chart that allows you to explore and compare model, dataset, and scoring metric data. This is the most comprehensive visualization for engauging with our work.
+If you only want to clone this repository and explore our results, you should start by exploring and running notebooks in the Jupyter Notebooks directory which will read in results pre-populated in the evaluation directory. Cheminformatics_intro.ipynb introduces some useful domain specific concepts, and General_Result_Visuals.ipynb contains an interactive Altair chart that allows you to explore and compare model, dataset, and scoring metric data. This is the most comprehensive visualization for exploring our results.
 
 If you want to reproduce or iterate on our results, you can do so using the automated pipeline, which should be executed via the terminal from the root folder with the following command: (note the example path is for a Windows PC, and will need to be altered depending on your operating system)
 
@@ -73,26 +73,29 @@ We recommend starting to reproduce results by executing the following limited pa
 
 $ python src\\process_pipeline.py --param_file params_demo.json
 
+
+
+# Params.json User Guide
 The params.json file enables further iteration or modulation of pipeline protocols. It contains 3 main sections.
 
-params.json["general"]:
-Required:
-random_seed: set the random state for all data splitting and model training to enable reproducible results
-split_style: "random" for random splitting or "cluster" for a KNN based unsupervised splitting of train and validate datasets
-validation_percent: percent of data to split off into the validation set
+## params.json ["general"]
+### Required:
+random_seed: set the random state for all data splitting and model training to enable reproducible results \
+split_style: "random" for random splitting or "cluster" for a KNN based unsupervised splitting of train and validate datasets \
+validation_percent: percent of data to split off into the validation set \
 feature_representation: only morganfingerprint option is available so far, but the two hyphen delimiter numbers can be changed to set the radius (first number), or the number of bits (second number) for chemical featurization (ADD A COUPLE MORE EXAMPLES AND/OR A LINK TO RDKIT PAGE)
 
-params.json["datasets"]: 
-Required:
-suffix: dataset file suffix that when concatenated to dataset, should represent a dataset file name in the data directory. The only compatible options are ".csv" and ".csv.gz" so far.
-X: Must correspond to a dataset column containing smiles strings
+## params.json["datasets"]
+### Required:
+suffix: dataset file suffix that when concatenated to dataset, should represent a dataset file name in the data directory. The only compatible options are ".csv" and ".csv.gz" so far.\
+X: Must correspond to a dataset column containing smiles strings \
 y: Should correspond to a label binary label column, but can be used in combination with the optional parameter y_process to convert a continuous value to binary classes
-Optional:
-short_name: when provide, this will replace the raw dataset name in all pipeline and result artifact files
-y_process: a boolean statement which when provided is used to remap continuous values into a binary 1 or 0 value. This must be formatted such that a value of x would return True. True values are mapped to class 1.
+### Optional:
+short_name: when provide, this will replace the raw dataset name in all pipeline and result artifact files \
+y_process: a boolean statement which when provided is used to remap continuous values into a binary 1 or 0 value. This must be formatted such that a value of x would return True. True values are mapped to class 1. \
 y_new: provides a new column name for labels in all pipeline and report artifact files
 
-params.json["models"]:
+## params.json["models"]
 This section enables selection of which models to train against the provided datasets. The model name must match exactly the model class name from Sklearn in order to work, and model dictionary keys must correspond exactly to model class arguements in order for these to work. Currently this is only compatible with the models included in the default params.json file, but this can be easily adapted by adding new import statements into train.py.
 
 
