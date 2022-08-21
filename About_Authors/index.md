@@ -8,8 +8,5 @@ This project is a culmination of the University of Michigan Masters in Applied D
 ### Phil Michaels [LinkedIn](https://www.linkedin.com/in/philip-michaels-9234b47b/)
 <img src="IMG-0019.JPG" alt="drawing" width="200"/>
 
-<br>
-<br>
-
 ### David Dunstan [LinkedIn](https://www.linkedin.com/in/david-dunstan-40a2aa55/)
 <img src="IMG_2739.jpg" alt="drawing" width="200"/>
