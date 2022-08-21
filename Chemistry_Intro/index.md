@@ -5,7 +5,7 @@ altair-loader:
 ---
 
 ## Cheminformatics Intro
-# To see an example notebook please click [here](/Cheminformatics_intro/Cheminformatics_intro.md)
+### To see the example notebook for this intro please click [here](/Cheminformatics_intro/Cheminformatics_intro.md)
 
 Cheminformatics is the application of computational or computer based approaches, often referred to as in silico methods, to chemistry and chemical structures. One of the key challenges in the cheminformatics space is the featurization, or description of a molecule such that a computer can understand it. In nature, molecules are a complex combination of electronic interactions that play out on a quantum scale in 3-dimensional space. However, despite dramatic increases in computational power the field has yet to achieve this level of modeling at scale. (https://wires.onlinelibrary.wiley.com/doi/10.1002/wcms.1290) Therefore, we must rely on simpler representations in order to describe a molecule. 
 
