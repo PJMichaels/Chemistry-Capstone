@@ -13,7 +13,7 @@ In data science, users are regularly faced with how to choose between different 
 ### Abstract:
 Model selection is an important aspect to any data science project. With new model frameworks being published regularly, there have been increasing calls for standardized datasets across industries to help compare the results. We herein describe an evaluation of different models of varying complexity in the drug-discovery context. We rely on cheminformatics to process and featurize several datasets that cover a range of sizes and drug discovery related tasks. We trained several common classification models as well as a directed message passing neural network from the Chemprop package for each dataset. We then compared the models using a range of metrics and found roc-auc to be the most useful for our examples. From our results, while Chemprop was amongst the highest scoring in all cases, it did not always outperform the simpler models. Therefore, we find that exploring a wide range of models to be prudent in establishing baselines and providing comparative insight.
 
-### For more details, please click [here](BlogPost.pdf) to view the in-depth technical report.
+### For more details, please click [here](BlogPost.pdf) to view the in-depth technical report. 
 
 ## Code:
 All of the code is available in the linked Git-hub repository. We have included both a set of notebooks that provide visualization and a quick way to explore the results, as well as an end-to-end pipeline which will provide facile duplication of this work. We hope that this pipeline will be of use and can be expanded to include additional featurization, models and datasets in the future. <br>
