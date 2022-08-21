@@ -98,18 +98,30 @@ y_new: provides a new column name for labels in all pipeline and report artifact
 ## params.json["models"]
 This section enables selection of which models to train against the provided datasets. The model name must match exactly the model class name from Sklearn in order to work, and model dictionary keys must correspond exactly to model class arguements in order for these to work. Currently this is only compatible with the models included in the default params.json file, but this can be easily adapted by adding new import statements into train.py.
 
+# Chemprop Utilization
 
+For a detailed explanation of Chemprop as well as the various arguments and functions, please see the [documentation](https://chemprop.readthedocs.io/en/latest/). 
+For our project, we opted to utilize a shell script in order to pass the commands and arguments to the Great Lakes Cluster. An example for training the model is shown here. The paths to the data and destination are passed as arguments, as are any arguments that are relevant. In this case, we selected extra metrics, an external validation set (to keep it consistent with the simple models) as well as a 5 fold cross validation and we used circular morgan fingerprints as an additonal feature.  
+    
+    chemprop_train \
+    --data_path ~/Chemistry-Capstone/data/split/bace-random-train.csv \
+    --dataset_type classification \
+    --save_dir ~/Chemistry-Capstone/Complex_Models/bace-random \
+    --epochs 50 \
+    --extra_metrics accuracy f1 binary_cross_entropy \
+    --metric auc \
+    -- labels\
+    --smiles_columns smiles \
+    --num_folds 5 \
+    --split_sizes 0.8 0 0.2 \
+    --separate_val_path ~/Chemistry-Capstone/data/split/bace-random-validate.csv\
+    --features_generator morgan
+
+  
+    
 # Overview of Results:
 
-To learn more context surrounding this project including inspiration, an introduction to the field of cheminformatics, our results, and suggested next steps you can read our full report here: (LINK TO BLOG POST)
-
-# Link to Detailed Blog and Full Report:
-
-COMBINE THIS SECTION AND SECTION BELOW WITH PREVIOUS SECTION
-
-# Next Steps:
-
-
+To learn more context surrounding this project including inspiration, an introduction to the field of cheminformatics, our results, and suggested next steps you can read our full report in our [Blog Post](https://pjmichaels.github.io/Chemistry-Capstone/).
 
 # To do:
 
