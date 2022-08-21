@@ -44,7 +44,7 @@ Note: This environment can also be created on a non-GPU enabled machine, but the
 
 For this project we utilized a blend of several python and shell scripts and notebooks. A flow scheme for our workflow is as follows: 
     
- ![Pipeline](https://user-images.githubusercontent.com/84757402/185464297-184b0268-d1d6-407f-b4fa-49faf03875cd.png)
+ ![Pipeline](https://github.com/PJMichaels/Chemistry-Capstone/blob/3e3d8a95e2c4a2a5fe211567b6a53c26099e79e0/images/Repo_DAG.PNG)
 
 This repository was designed to easily enable other to reproduce, investigate, and build on this work. While early exploratory work was done in Jupyter notebooks, much of the heavy lifting can now be automatically reproduced by means of a custom pipeline, explained in detail below. The pipeline will allow users to reproduce or iterate on dataset cleaning, data splitting, Sklearn model training, and generation of result files. While the trained models themselves have been left out of this git repository due to storage limitations, this repository does come with a full set of pre-populated evaluation metric files and some visualizations, which can be found in the evaluation directory. While we assume some individuals will want to reproduce the full pipeline, we also made it possible to just iterate on the evaluation portion of the pipeline as well so one could clone this repo, add or remove a new scoring metric, and just reprocess the existing model prediction results.
 
