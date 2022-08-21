@@ -1,11 +1,11 @@
 <br>
 
 <h1 align="center">
-  University of Michican SIADS 697 & 698 Chemistry-Capstone
+  <b>University of Michican SIADS 697 & 698 <br> Chemistry-Capstone</b>
 </h1>
 
 ## **Contributers:**
-<p align="center">Philip Michaels and David Dunstan</p>
+<p align="center"><b>Philip Michaels and David Dunstan</b></p>
 
 <br>
 
